@@ -2250,10 +2250,10 @@ header .mobile-number span {
   font-family: "Rajdhani", sans-serif;
 }
 
-.news-outer .title {
+.news-outer .title{
   margin: 0;
   font-size: 24px;
-  color:transparent;
+  color:black;
   text-transform: capitalize;
   line-height: 1.1;
 }

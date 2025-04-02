@@ -24,19 +24,19 @@ const Footer = () => {
                       <span>
                         <FaLocationDot />
                       </span>
-                      92 Princess Road, parkvenue Greater London, NW18JR, UK
+                      Registered Address : C-162, 163 Hanuman Nagar, Bharat Marg, Vaishali Nagar, Jaipur, Jaipur, Rajasthan, 302021
                     </li>
                     <li>
                       <span>
                         <FaEnvelope />
                       </span>
-                      contact123@gmail.com
+                      info@dronum.in
                     </li>
                     <li>
                       <span>
                         <FaPhone />
                       </span>
-                      (+291) 912-3456-073
+                      (+91) 7433 876 876
                     </li>
                   </ul>
                 </div>
@@ -49,7 +49,7 @@ const Footer = () => {
                       <Link to="/about">About</Link>
                     </li>
                     <li>
-                      <Link to="/faq">FAQ</Link>
+                      <Link to="/faq">Contact Us</Link>
                     </li>
                     {/* <li>
                       <Link to="/shop">Shop</Link>
@@ -63,7 +63,7 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-              <div className="item">
+              {/* <div className="item">
                 <div className="item-inner">
                   <h4 className="title">Recent Post</h4>
                   <ul>
@@ -81,7 +81,7 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
               <div className="item">
                 <div className="item-inner">
                   <h4 className="title">Newsletter</h4>
@@ -90,10 +90,10 @@ const Footer = () => {
                     and special offers delivered directly in your inbox.
                   </p>
 
-                  <div className="input-group">
+                  {/* <div className="input-group">
                     <input type="text" placeholder="Enter your email" />
                     <button className="button">Subscribe</button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -102,16 +102,16 @@ const Footer = () => {
             <div className="middle-inner">
               <div className="logo">
                 <Link to="/">
-                  <img src="assets\img\logo-large-red.png" alt="" />
+                  <img src="assets\img\logo.png" alt="" />
                 </Link>
               </div>
               <ul className="copyright-menu">
                 <li>
                   <Link to="/login"> My account </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/privacy"> Privacy Policy </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/contact-us"> Contact Us </Link>
                 </li>
@@ -137,7 +137,7 @@ const Footer = () => {
           </div>
           <div className="bottom">
             <div className="bottom-inner">
-              <span>© 2023 Your Company. Designed By GridValley</span>
+              <span>© DRONUM INDIA AVIATIONS PRIVATE LIMITED All Rights Reserved.</span>
             </div>
           </div>
         </div>

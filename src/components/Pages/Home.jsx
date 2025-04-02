@@ -23,9 +23,9 @@ const Home = () => {
       <Video />
       <Counter />
       <Team />
-      <Quality />
+      {/* <Quality /> */}
       <News />
-      <Pricing />
+      {/* <Pricing /> */}
       <Client />
       <Brand />
       <Footer />
