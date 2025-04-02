@@ -6,15 +6,19 @@ const News = () => {
   const headline = [
     {
       headline: "How to Start a Drone Photography",
+      backgroundImage:"assets/img/lo1.png"
     },
     {
       headline: "How Amazon is Integrating Drones",
+      backgroundImage:"assets/img/lo2.png"
     },
     {
       headline: "How Amazon is Integrating Drones",
+      backgroundImage:"assets/img/lo3.png"
     },
     {
       headline: "How to Start a Drone Photography",
+      backgroundImage:"assets/img/lo4.png"
     },
   ];
   return (
@@ -56,6 +60,7 @@ const News = () => {
                   {headline.map((i) => (
                     <NewsItems vlaue={i} />
                   ))}
+                 
                 </div>
               </div>
             </div>

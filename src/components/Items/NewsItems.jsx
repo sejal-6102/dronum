@@ -5,7 +5,9 @@ const NewsItems = (props) => {
   return (
     <>
       <div className="news">
-        <div className="news-items">
+        <div className="news-items"
+        style={{ backgroundImage: `url(${props.vlaue.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
           <div className="sub-title">
             <span>December 13, 2020</span>
           </div>
@@ -14,11 +16,11 @@ const NewsItems = (props) => {
               <Link to="/blog-details">{props.vlaue.headline}</Link>
             </h4>
           </div>
-          <div className="text">
+          {/* <div className="text">
             <p>
               suffered alteration in some form, by injected humor, or randomize.
             </p>
-          </div>
+          </div> */}
           <Link to="/blog-details">Read More</Link>
         </div>
       </div>

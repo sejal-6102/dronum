@@ -2242,9 +2242,10 @@ header .mobile-number span {
 
 .news-outer .sub-title span {
   display: inline-block;
+  
   font-size: 16px;
   font-weight: 600;
-  color: #d72323;
+  color: transparent;
   position: relative;
   font-family: "Rajdhani", sans-serif;
 }
@@ -2252,19 +2253,19 @@ header .mobile-number span {
 .news-outer .title {
   margin: 0;
   font-size: 24px;
-  color: #1a1a1a;
+  color:transparent;
   text-transform: capitalize;
   line-height: 1.1;
 }
 
 .news-outer .title a {
-  color: #1a1a1a;
+  color: transparent;
   font-weight: 700;
   transition: all 0.2s linear;
 }
 
 .news-outer .title a:hover {
-  color: #d72323;
+  color: transparent;
 }
 
 .news-outer .item:last-child {
@@ -2304,7 +2305,7 @@ header .mobile-number span {
 
 .news-outer .news-items {
   display: block;
-  background-color: #fff;
+  background-color: #f1e9e9;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   margin-bottom: 30px;
   padding: 23px 20px;
@@ -2329,7 +2330,7 @@ header .mobile-number span {
 .news-outer .news-items>a::before {
   position: absolute;
   content: "";
-  background-color: #d72323;
+  background-color: transparent;
   right: -30px;
   top: 8px;
   width: 20px;
@@ -2339,7 +2340,7 @@ header .mobile-number span {
 
 .news-outer .news-items>a {
   position: relative;
-  color: #d72323;
+  color: transparent;
   font-size: 18px;
   font-weight: 700;
   line-height: 18px;
