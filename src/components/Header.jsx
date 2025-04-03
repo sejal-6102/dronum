@@ -44,7 +44,7 @@ const Header = () => {
                   <Nav.Link href="/contact-us">Contact Us</Nav.Link>
                   <Nav.Link href="/team-listing">Team Listing</Nav.Link>
                      <Nav.Link href="/blog-grid">Blog</Nav.Link>
-                     <Nav.Link href="/blog-details">Blog</Nav.Link>
+                    
 
                   {/* <NavDropdown title="Pages" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/team-listing">

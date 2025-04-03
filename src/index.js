@@ -51,7 +51,7 @@ root.render(
         <Route path="/checkout" element={<Checkout/>}/>
         <Route path="/latest-news" element={<NewsGrid/>}/>
         <Route path="/blog-grid" element={<BlogGrid/>}/>
-        <Route path="/blog-details" element={<BlogDetail/>}/>
+        <Route path="/blog-details/:title" element={<BlogDetail/>}/>
         <Route path="/privacy" element={<Privacy/>}/>
         <Route path="/enroll-Form" element={<EnrollForm/>}/>
 
