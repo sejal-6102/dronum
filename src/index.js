@@ -25,6 +25,7 @@ import BlogGrid from "./components/Pages/BlogGrid";
 import Shop from "./components/Pages/Shop";
 import Privacy from "./components/Pages/Privacy";
 import SingleProduct from "./components/Pages/SingleProduct";
+import EnrollForm from "./components/Pages/EnrollForm";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -52,6 +53,7 @@ root.render(
         <Route path="/blog-grid" element={<BlogGrid/>}/>
         <Route path="/blog-details" element={<BlogDetail/>}/>
         <Route path="/privacy" element={<Privacy/>}/>
+        <Route path="/enroll-Form" element={<EnrollForm/>}/>
 
 
       </Routes>

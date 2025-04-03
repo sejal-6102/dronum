@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ServicesItem from "./Items/ServicesItem";
+import EnrollForm from "./Pages/EnrollForm";
 
 const Services = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const service = [
     {
       img: "assets/img/co1.png",
@@ -65,6 +68,10 @@ const Services = () => {
        description:"Drone Software Course"
     },
   ];
+
+  const setModal = modal=>{
+    setIsModalOpen(modal);
+  }
   return (
     <>
       <div className="service-outer">
@@ -87,8 +94,9 @@ const Services = () => {
             </div>
 
             <div className="content">
-              {service.map((i) =><ServicesItem value={i}/>)}
+              {service.map((i) =><ServicesItem value={i} link={setModal} />)}
             </div>
+            <EnrollForm isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
           </div>
         </div>
       </div>

@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 
 const ServicesItem = (props) => {
+
+  const setModal = (modal)=>{
+props.link(modal);
+  }
   return (
     <>
       <div className={"item"}>
@@ -15,8 +19,9 @@ const ServicesItem = (props) => {
               <p>
               {props.value.description}
               </p>
-              <Link to="/services">Enroll Now</Link>
+              <Link to="#" onClick={() => setModal(true)}>Enroll Now</Link>
             </div>
+
           </div>
         </div>
       </div>

@@ -76,7 +76,7 @@ const post = [
                 picture that he had recently cut out of an illustrated an
                 magazine
               </p>
-              <Link to="" className='site-button'>Read More</Link>
+              <Link to="/blog-details" className='site-button'>Read More</Link>
             </div>
           </div>
         ))}
