@@ -12,14 +12,20 @@ import Pricing from "../Pricing";
 import Client from "../Client";
 import Brand from "../Brand";
 import Footer from "../Footer";
+import NewsPopup from "../NewsPopup";
+import ImageGallery from "../ImageGallery";
+
+
 
 const Home = () => {
   return (
     <>
       <Header />
-      <Hero />
+      <NewsPopup />
+       <Hero />
       <About />
       <Services />
+      <ImageGallery />
       <Video />
       <Counter />
       <Team />

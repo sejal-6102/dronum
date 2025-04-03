@@ -47,7 +47,7 @@ const News = () => {
                     </div> */}
                     <div className="title">
                       <h4>
-                        <Link to="/blog-details">
+                        <Link to="/blog-details" style={{color:'red'}}>
                         RPTO's in line up - Uttar Pradesh, Gujrat, Maharashtra, Andhrapradesh
                         </Link>
                       </h4>
