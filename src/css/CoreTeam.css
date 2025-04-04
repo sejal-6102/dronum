@@ -1,0 +1,137 @@
+/* Core Team Container */
+.coreteam-container {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .coreteam-heading {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .coreteam-subheading {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  /* Flip Card Grid */
+  .coreteam-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Flip Card */
+  .coreteam-card {
+    width: 30%;
+    height: 300px;
+    perspective: 1000px;
+    position: relative;
+  }
+  
+  .coreteam-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+  }
+  
+  .coreteam-card:hover .coreteam-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Front & Back Styles */
+  .coreteam-front,
+  .coreteam-back {
+    position: absolute;
+    top: 40;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  /* ✅ Fixed Front Side Background */
+  .coreteam-front {
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateY(0deg);
+  }
+  
+  /* Overlay for text readability */
+  .coreteam-front .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .coreteam-front h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .coreteam-front p {
+    font-size: 16px;
+  }
+  
+  /* Back Side */
+  .coreteam-back {
+    background: #ff9f43;
+    color: white;
+    transform: rotateY(180deg);
+  }
+  
+  /* Ensures Both Sides Are the Same Size */
+  .coreteam-front,
+  .coreteam-back {
+    height: 100%;
+  }
+  
+  .coreteam-back h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    margin-top: 90px;
+  }
+  
+  .coreteam-back p {
+    font-size: 16px;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 1024px) {
+    .coreteam-card {
+      width: 45%; /* 2 per row on tablets */
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .coreteam-card {
+      width: 100%; /* 1 per row on mobile */
+    }
+  }
+  

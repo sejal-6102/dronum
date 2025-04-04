@@ -13,6 +13,7 @@
     "animate.css": "^4.1.1",
     "antd": "^5.15.3",
     "bootstrap": "^5.3.3",
+    "lucide-react": "^0.487.0",
     "node-modules": "^1.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",

@@ -14,6 +14,7 @@ import Brand from "../Brand";
 import Footer from "../Footer";
 import NewsPopup from "../NewsPopup";
 import ImageGallery from "../ImageGallery";
+import Partners from "../Partners";
 
 
 
@@ -33,7 +34,7 @@ const Home = () => {
       <News />
       {/* <Pricing /> */}
       <Client />
-      <Brand />
+      <Partners />
       <Footer />
     </>
   );

@@ -3,6 +3,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import PagesHero from "../PagesHero";
 import Team from "../Team";
+import CoreTeam from "../CoreTeam";
 
 const TeamListing = () => {
   return (
@@ -13,6 +14,7 @@ const TeamListing = () => {
         img='assets/img/7.jpg'
       />
       <Team/>
+      <CoreTeam />
       <Footer />
     </>
   );
