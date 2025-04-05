@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import EnrollForm from "./Pages/EnrollForm";
+import { Link } from "react-router-dom";
 
 const images = [
   "assets/img/daas1.png",
@@ -6,7 +8,10 @@ const images = [
   "assets/img/daas3.png",
 ];
 
-const ImageBox = ({ src }) => {
+const ImageBox = ({ src,link }) => {
+  const setModal = (modal)=>{
+    link(modal);
+      }
   return (
     <div className="image-gallery-box">
       <div className="image-gallery-imgBx">
@@ -19,7 +24,9 @@ const ImageBox = ({ src }) => {
         </div>
         {/* Book Now Button */}
         <div className="image-gallery-btn-container">
-          <button className="book-now-btn">Book Now</button>
+          {/* <button className="book-now-btn">Book Now</button> */}
+        <Link to="#" className="book-now-btn" onClick={() => setModal(true)}>Enroll Now</Link>
+      
         </div>
       </div>
     </div>
@@ -27,6 +34,12 @@ const ImageBox = ({ src }) => {
 };
 
 const ImageGallery = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const setModal = modal=>{
+    setIsModalOpen(modal);
+  }
+
   return (
     <div className="image-gallery-wrapper">
       <div className="heading animate__animated animate__zoomIn">
@@ -45,9 +58,11 @@ const ImageGallery = () => {
       </div>
       <div className="image-gallery-container">
         {images.map((src, index) => (
-          <ImageBox key={index} src={src} />
+          <ImageBox key={index} src={src} link={setModal} />
         ))}
       </div>
+      <EnrollForm isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
+
     </div>
   );
 };

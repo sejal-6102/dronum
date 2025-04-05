@@ -6215,6 +6215,14 @@ footer .bottom .bottom-inner span {
 #news-popup-wrapper .popup-content {
   position: relative;
   padding: 15px;
+  border-width: 1rem;
+}
+
+#news-popup-wrapper .popup-content h4{
+  position: relative;
+  padding: 15px;
+  width:'80%';
+  border-width: 1rem;
 }
 
 /* Close Button */
