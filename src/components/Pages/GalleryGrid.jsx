@@ -3,6 +3,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import PagesHero from "../PagesHero";
 import GaGrid from "../GaGrid";
+import Services from "../Services"
 
 const GalleryGrid = () => {
   return (
@@ -10,9 +11,10 @@ const GalleryGrid = () => {
       <Header />
       <PagesHero
         img="assets/img/5-2.jpg"
-        name="Gallery Grid"
+        name="Courses"
       />
-      <GaGrid/>
+      {/* <GaGrid/> */}
+      <Services />
       <Footer />
     </>
   );

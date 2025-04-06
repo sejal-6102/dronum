@@ -106,4 +106,9 @@
   .close-btn:hover{
     color:black;
   }
+
+  #enroll-container select option {
+    background-color: #113a87; /* or a darker color like #003d82 */
+    color: white;
+  }
   

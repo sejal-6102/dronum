@@ -8,9 +8,7 @@ const NewsItems = (props) => {
         <div className="news-items"
         style={{ backgroundImage: `url(${props.vlaue.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
-          <div className="sub-title">
-            <span>December 13, 2020</span>
-          </div>
+        
           <div className="title">
             <h4>
               <Link to="/blog-details">{props.vlaue.headline}</Link>
@@ -21,7 +19,9 @@ const NewsItems = (props) => {
               suffered alteration in some form, by injected humor, or randomize.
             </p>
           </div> */}
-          <Link to="/blog-details">Read More</Link>
+          {/* <Link to="/blog-details">Read More</Link> */}
+          <a href={props.vlaue.maplink}  target="_blank" rel="noopener noreferrer">  View on Google Maps
+</a>
         </div>
       </div>
     </>

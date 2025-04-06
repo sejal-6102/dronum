@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EnrollForm from "./Pages/EnrollForm";
+import BookNowForm from "./Pages/BookNowForm";
 import { Link } from "react-router-dom";
 
 const images = [
@@ -25,7 +25,7 @@ const ImageBox = ({ src,link }) => {
         {/* Book Now Button */}
         <div className="image-gallery-btn-container">
           {/* <button className="book-now-btn">Book Now</button> */}
-        <Link to="#" className="book-now-btn" onClick={() => setModal(true)}>Enroll Now</Link>
+        <Link to="#" className="book-now-btn" onClick={() => setModal(true)}>Book Now</Link>
       
         </div>
       </div>
@@ -61,7 +61,7 @@ const ImageGallery = () => {
           <ImageBox key={index} src={src} link={setModal} />
         ))}
       </div>
-      <EnrollForm isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
+      <BookNowForm isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
 
     </div>
   );
