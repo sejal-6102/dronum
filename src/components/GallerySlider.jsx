@@ -44,6 +44,30 @@ const GallerySlider = () => {
   ];
   return (
     <>
+     <div className="main-services-outer" style={{marginBottom:"0px"}}>
+        <div className="container">
+          <div className="main-services-inner animate__animated animate__zoomIn">
+            <div className="top">
+              <div className="heading">
+                <div className="item  ">
+                  <div className="sub-heading">
+                    <span className="line-left"></span>
+                    <span className="text">Event Glimps</span>
+                  </div>
+                  <h2>DRONUM & MARUT DRONE ACADEMY</h2>
+                </div>
+                <div className="item  ">
+                  <p>
+                  Our team ensures seamless operations with top-notch guidance and customer service.
+                  </p>
+                </div>
+              </div>
+            </div>
+           
+          
+          </div>
+        </div>
+      </div>
       <div className="gallery-slider-outer animate__animated animate__zoomIn">
         <div className="container">
           <div className="gallery-slider-inner">

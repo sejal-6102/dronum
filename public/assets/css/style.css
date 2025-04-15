@@ -4174,7 +4174,7 @@ footer .bottom .bottom-inner span {
 
 .gallery-slider-outer {
   display: block;
-  padding-top: 80px;
+  padding-top: 0px;
 }
 
 .gallery-slider-outer .gallery-slider-inner {

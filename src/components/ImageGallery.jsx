@@ -3,12 +3,31 @@ import BookNowForm from "./Pages/BookNowForm";
 import { Link } from "react-router-dom";
 
 const images = [
-  "assets/img/daas1.png",
-  "assets/img/daas2.png",
-  "assets/img/daas3.png",
+  {
+  src:"assets/img/daas1.png",
+  title:"AERIAL SURVEYING AND MAPPING: ",
+  des:"UTILIZING DRONES FOR ACCURATE AND EFFICIENT SURVEYING AND MAPPING. "
+  },
+
+  {
+  src:"assets/img/daas2.png",
+  title:"AGRICULTURAL SERVICES: ",
+  des:" DRONES FOR CROP MONITORING, SPRAYING, AND OTHER AGRICULTURAL APPLICATIONS.  "
+  },
+  {
+  src:"assets/img/daas3.png",
+  title:"INFRASTRUCTURE INSPECTION:  ",
+  des:"CONDUCTING INSPECTIONS OF INFRASTRUCTURE SUCH AS BRIDGES, TOWERS AND BUILDINGS.  "
+  },
+  {
+    src:"assets/img/daas3.png",
+    title:"PHOTOGRAPHY AND VIDEOGRAPHY:  ",
+  des:"HIGH-QUALITY AERIAL PHOTOGRAPHY AND VIDEOGRAPHY FOR EVENTS, REAL ESTATE AND OTHER PURPOSES"
+    },
+  
 ];
 
-const ImageBox = ({ src,link }) => {
+const ImageBox = ({ src,title,des,link }) => {
   const setModal = (modal)=>{
     link(modal);
       }
@@ -19,8 +38,8 @@ const ImageBox = ({ src,link }) => {
       </div>
       <div className="image-gallery-content">
         <div>
-          <h2>Image Title</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <h2>{title}</h2>
+          <p>{des}</p>
         </div>
         {/* Book Now Button */}
         <div className="image-gallery-btn-container">
@@ -57,10 +76,17 @@ const ImageGallery = () => {
         </div>
       </div>
       <div className="image-gallery-container">
-        {images.map((src, index) => (
-          <ImageBox key={index} src={src} link={setModal} />
-        ))}
-      </div>
+  {images.map((item, index) => (
+    <ImageBox
+      key={index}
+      src={item.src}
+      title={item.title}
+      des={item.des}
+      link={setModal}
+    />
+  ))}
+</div>
+
       <BookNowForm isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
 
     </div>

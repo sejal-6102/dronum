@@ -21,25 +21,25 @@ const Header = () => {
                 <Nav className="">
                   <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/about">About us</Nav.Link>
-                  {/* <NavDropdown title="Courses" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/all-services">
-                      All Services
+                  <NavDropdown title="Courses" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/gallery-grid">
+                    All Courses
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/services">
-                      Services Details
+                      Courses Details
                     </NavDropdown.Item>
-                  </NavDropdown> */}
-                  <Nav.Link href="/gallery-grid">Courses</Nav.Link>
+                  </NavDropdown>
+                  {/* <Nav.Link href="/gallery-grid">Courses</Nav.Link> */}
                   
-                  {/* <NavDropdown title="Why Choose Us" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/gallery-grid">
-                      Gallery Grid
+                  <NavDropdown title="Why Choose Us" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/all-services">
+                      Who we are
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/gallery-details">
-                      Gallery Details
+                      Our Glimps
                     </NavDropdown.Item>
-                  </NavDropdown> */}
-                  <Nav.Link href="/all-services">Why Choose Us?</Nav.Link>
+                  </NavDropdown>
+                  {/* <Nav.Link href="/all-services">Why Choose Us?</Nav.Link> */}
 
                   <Nav.Link href="/contact-us">Contact Us</Nav.Link>
                   <Nav.Link href="/team-listing">Team Listing</Nav.Link>

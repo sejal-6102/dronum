@@ -13,7 +13,7 @@ const GalleryGrid = () => {
         img="assets/img/5-2.jpg"
         name="Courses"
       />
-      {/* <GaGrid/> */}
+      <GaGrid/>
       <Services />
       <Footer />
     </>
