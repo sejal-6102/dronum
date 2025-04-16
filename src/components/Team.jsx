@@ -4,19 +4,19 @@ import TeamItems from "./Items/TeamItems";
 const Team = () => {
   const team = [
     {
-      img: "assets/img/pic1-2.jpg",
-      position: "Photographer",
-      name: "Stephan Humbert",
+      img: "assets/img/footprints.jpg",
+      position: "Smt. Sheetal Mahajan ji",
+      name:"Padma Shri Awardee Sky Diver",
     },
     {
-      img: "assets/img/pic2-2.jpg",
-      position: "Creative Director",
-      name: "Leo Simon",
+      img: "assets/img/footprints1.jpg",
+      position: "हवा महल जयपुुर",
+      name: "परम पूूजनीय हाथोज़ धाम महंंत बालमुुकंुुंद आचाय  जी MLA",
     },
     {
-      img: "assets/img/pic3-1.jpg",
-      position: "Photographer",
-      name: "John Casey",
+      img: "assets/img/footprints1.jpg",
+      position: "Ex. DG ACB IAS officer",
+      name: "Shri B.L. Soni ji",
     },
   ];
   return (
@@ -30,7 +30,7 @@ const Team = () => {
                 <span className="text">Core Team</span>
                 <span className="line-right"></span>
               </div>
-              <h2>Our Dedicated Team</h2>
+              <h2>Creating Our Footprints</h2>
             </div>
             <div className="content">
               {team.map((i) => (

@@ -16,20 +16,32 @@ const ServiceSlider = () => {
 
   const slide = [
     {
-      img: "assets/img/pic4.jpg",
+      img: "assets/img/dcga1.png",
     },
     {
-      img: "assets/img/pic2.jpg",
+      img: "assets/img/dcga2.png",
     },
     {
-      img: "assets/img/pic1.jpg",
+      img: "assets/img/dcga3.png",
+    },
+    {
+      img: "assets/img/dcga4.png",
     },
   ];
 
   return (
+    <>
+   <h1 style={{ fontSize: 'clamp(1.5rem, 5vw, 3rem)', textAlign: 'center', margin: '10px 0',color:"red" }}>
+   <b>DGCA REMOTE PILOT CERTIFICATION (RPC) COURSE FOR SMALL/ MEDIUM CLASS - ( 5 - 7 DAYS EACH )</b>
+</h1>
+   <p style={{ fontSize:'25px', textAlign: 'center', margin: '10px 0' }}>
+   <b>DGCA Approved Drone Pilots Trained at DRONUM </b>
+</p>
+
     <div className="content animate__animated animate__zoomIn">
       <div className="items">
         <div className="items-inner">
+       
           <Slider
             asNavFor={nav2}
             ref={(slider) => (sliderRef1 = slider)}
@@ -58,6 +70,7 @@ const ServiceSlider = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

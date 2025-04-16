@@ -26,12 +26,12 @@ const GaGrid = () => {
                   children: <AllGrid setModal={setModal} />,
                 },
                 {
-                  label: "Environment",
+                  label: "Small Remote Pilot",
                   key: "2",
                   children: <Environment setModal={setModal}/>,
                 },
                 {
-                  label: "Architectural",
+                  label: "Medium Remote Pilot",
                   key: "3",
                   children: <Architectural setModal={setModal}/>,
                 },

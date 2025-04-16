@@ -7,7 +7,7 @@ const ServicesDetail = () => {
   return (
     <>
     <Header/>
-    <PagesHero name='Service Details' img='assets/img/1-2.jpg'/>
+    <PagesHero name='DCGA COURSE' img='assets/img/1-2.jpg'/>
     <SDetails/>
     <Footer/>
     </>
