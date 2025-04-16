@@ -26,7 +26,10 @@ const Environment = ({setModal}) => {
 
   return (
     <>
-      <div className="bottom">
+<h1 style={{ fontSize: 'clamp(1.5rem, 5vw, 3rem)', textAlign: 'center', margin: '10px 0' }}>
+  dhgcegfy
+</h1>    
+ <div className="bottom">
         <Masonry columns={3}>
           {gallery.map((i) => (
             <ServicesItem value={i}  link={setModal} />
