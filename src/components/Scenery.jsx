@@ -2,7 +2,7 @@ import React from "react";
 import { Masonry } from "@mui/lab";
 import ServicesItem from "./Items/ServicesItem";
 
-const Scenery=()=>{
+const Scenery=({setModal})=>{
     const gallery = [
         
         {
@@ -31,7 +31,7 @@ const Scenery=()=>{
             <div className="bottom">
         <Masonry columns={3}>
           {gallery.map((i) => (
-            <ServicesItem value={i} />
+            <ServicesItem value={i} link={setModal} />
           ))}
         </Masonry>
       </div>

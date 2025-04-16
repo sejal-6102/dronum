@@ -21,7 +21,6 @@ props.link(modal);
               </p>
               <Link to="#" onClick={() => setModal(true)}>Enroll Now</Link>
             </div>
-
           </div>
         </div>
       </div>

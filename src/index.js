@@ -39,7 +39,7 @@ root.render(
         <Route path="/all-services" element={<AllServices/>}/>
         <Route path="/services" element={<ServicesDetail/>}/>
         <Route path="/gallery-grid" element={<GalleryGrid/>}/>
-        <Route path="/gallery-details" element={<GalleryDetails/>}/>
+        <Route path="/our-glimps" element={<GalleryDetails/>}/>
         <Route path="/team-listing" element={<TeamListing/>}/>
         <Route path="/faq" element={<Faq/> }/>
         <Route path="/contact-us" element={<ContactUS/>}/>

@@ -18,7 +18,7 @@ const VideoItems = (props) => {
                 </Link>
               </li>
               <li>
-                <Link to="gallery-details">
+                <Link to="our-glimps">
                   <FaLink />
                 </Link>
               </li>

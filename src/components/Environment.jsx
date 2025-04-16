@@ -1,8 +1,9 @@
 import { Masonry } from "@mui/lab";
-import React from "react";
+import React,{useState} from "react";
 import ServicesItem from "./Items/ServicesItem";
 
-const Environment = () => {
+const Environment = ({setModal}) => {
+  
   const gallery = [
     {
       img: "assets/img/pic1-8.jpg",
@@ -22,15 +23,17 @@ const Environment = () => {
       title: "Event photography",
     },
   ];
+
   return (
     <>
       <div className="bottom">
         <Masonry columns={3}>
           {gallery.map((i) => (
-            <ServicesItem value={i} />
+            <ServicesItem value={i}  link={setModal} />
           ))}
+
         </Masonry>
-      </div>
+     </div>
     </>
   );
 };

@@ -8,7 +8,7 @@ import GDetails from "../GDetails";
 const GalleryDetails = () => {
   return <>
   <Header/>
-  <PagesHero img="assets/img/1-2.jpg" name="Gallery Details"/>
+  <PagesHero img="assets/img/1-2.jpg" name="Our Glimps"/>
   <GallerySlider/>
   <GDetails/>
   <Footer />

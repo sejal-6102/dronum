@@ -46,7 +46,7 @@ const About = () => {
                     Customized Commands
                   </li>
                 </ul>
-                <Link to="/about/" className="button">
+                <Link to="/about" className="button">
                   Read More
                 </Link>
               </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Masonry } from "@mui/lab";
 import ServicesItem from "./Items/ServicesItem";
 
-const AllGrid = () => {
+const AllGrid = ({setModal}) => {
   const gallery = [
     {
       class: "nature",
@@ -61,7 +61,7 @@ const AllGrid = () => {
       <div className="bottom">
         <Masonry columns={3}>
           {gallery.map((i) => (
-            <ServicesItem value={i} />
+            <ServicesItem value={i} link={setModal} />
           ))}
         </Masonry>
       </div>
