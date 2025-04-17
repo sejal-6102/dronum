@@ -14,7 +14,7 @@ const TeamItems = (props) => {
               <span>{props.vlaue.position}</span>
               <h4>{props.vlaue.name}</h4>
             </div>
-            <ul className="socil-media">
+            {/* <ul className="socil-media">
               <li>
                 <Link to="https://www.facebook.com/">Facebook</Link>
               </li>
@@ -24,7 +24,7 @@ const TeamItems = (props) => {
               <li>
                 <Link to="https://in.linkedin.com/">Linkedin</Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>

@@ -2214,15 +2214,15 @@ header .mobile-number span {
 .news-outer .img-content {
   display: block;
   width: 100%;
-  height: 515px;
+  height: 415px;
   position: relative;
-  background-image: url(../img/location.png);
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: url(../img/location3.png); 
+  background-size: cover; 
+   background-repeat: no-repeat;
   transition: all 10s;
- 
   
 }
+
 
 .news-outer .img-content:hover {
   transform: scale(1.1);
@@ -6217,17 +6217,18 @@ footer .bottom .bottom-inner span {
   position: relative;
   padding: 15px;
   border-width: 1rem;
+  display: block;
 }
 
 #news-popup-wrapper .popup-content h4{
-  position: relative;
+  /* position: relative; */
   padding: 15px;
   width:'80%';
   border-width: 1rem;
 }
 
 /* Close Button */
-#news-popup-wrapper .close-button {
+/* #news-popup-wrapper .close-button {
   position: absolute;
   top: 1px;
   right: -80px;
@@ -6236,7 +6237,21 @@ footer .bottom .bottom-inner span {
   font-size: 24px;
   cursor: pointer;
   color: #da1a1a;
+} */
+
+#news-popup-wrapper .close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 34px;
+  cursor: pointer;
+  color: #da1a1a;
+  z-index: 10;
+
 }
+
 
 /* Slider container */
 #news-popup-wrapper .slider-container {
@@ -6337,7 +6352,7 @@ footer .bottom .bottom-inner span {
 }
 
 /* Check News Button */
-#news-popup-wrapper .check-news-button {
+/* #news-popup-wrapper .check-news-button {
   width: 100%;
   background-color: #f0f0f0;
   border: none;
@@ -6347,6 +6362,26 @@ footer .bottom .bottom-inner span {
   font-weight: 500;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+} */
+
+#news-popup-wrapper .check-news-button {
+  display: block;
+  width: 100%;
+  background-color: #007bff; /* Blue background */
+  color: white;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  text-decoration: none; /* Remove underline for <a> tag */
+  transition: background-color 0.3s ease;
+}
+
+#news-popup-wrapper .check-news-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 /* Fully Responsive */
@@ -6403,7 +6438,7 @@ footer .bottom .bottom-inner span {
     font-size: 20px;
     right: 0px;
     top: 2px;
-    left:140px;
+   
   }
 }
 

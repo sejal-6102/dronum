@@ -6,7 +6,7 @@ const NewsItems = (props) => {
     <>
       <div className="news">
         <div className="news-items"
-        style={{ backgroundImage: `url(${props.vlaue.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        style={{ backgroundImage: `url(${props.vlaue.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center',height:"200px" }}>
 
         
           <div className="title">

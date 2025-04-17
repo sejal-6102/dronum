@@ -3,13 +3,20 @@ import { Link } from "react-router-dom";
 import "../css/Partners.css"; // Import the CSS file
 
 const images = [
-  "assets/img/w1.png",
-  "assets/img/w2.png",
-  "assets/img/w3.png",
-  "assets/img/w4.png",
-  "assets/img/w5.png",
-  "assets/img/w6.png",
-  "assets/img/w7.png",
+  "assets/img/partner1.png",
+  "assets/img/partner2.png",
+  "assets/img/partner3.png",
+  "assets/img/partner4.png",
+  "assets/img/partner5.png",
+  "assets/img/partner6.png",
+  "assets/img/partner7.png",
+  "assets/img/partner8.png",
+  "assets/img/partner9.png",
+  "assets/img/partner10.png",
+  "assets/img/partner11.png",
+  "assets/img/partner12.png",
+  "assets/img/partner13.png",
+  "assets/img/partner14.png",
 ];
 
 const Partners = () => {

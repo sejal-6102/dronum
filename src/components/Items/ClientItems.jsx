@@ -10,10 +10,7 @@ const ClientItems = (props) => {
             <FaQuoteLeft />
           </span>
           <p>
-            Aliquam sit amet eleifend odio. Donec at dictum mi. Duis auctor,
-            tellus a elementum pharetra, sapien magna rhoncus velit, id blandit
-            mauris dolor eu turpis. Aenean aliquam nisl aliquam, suscipit ligula
-            sit amet, mattis libero.
+          {props.vlaue.des}
           </p>
         </div>
         <div className="img-content">
@@ -22,7 +19,7 @@ const ClientItems = (props) => {
           </div>
           <div className="client-text">
             <span>{props.vlaue.name}</span>
-            <span>Designer</span>
+            {/* <span>Designer</span> */}
           </div>
         </div>
       </div>

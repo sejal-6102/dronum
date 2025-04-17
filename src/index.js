@@ -36,9 +36,9 @@ root.render(
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<AboutOne/>}/>
-        <Route path="/all-services" element={<AllServices/>}/>
+        <Route path="/who-we-are" element={<AllServices/>}/>
         <Route path="/services" element={<ServicesDetail/>}/>
-        <Route path="/gallery-grid" element={<GalleryGrid/>}/>
+        <Route path="/all-courses" element={<GalleryGrid/>}/>
         <Route path="/our-glimps" element={<GalleryDetails/>}/>
         <Route path="/team-listing" element={<TeamListing/>}/>
         <Route path="/faq" element={<Faq/> }/>

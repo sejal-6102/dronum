@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const NewsPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -48,7 +49,7 @@ const NewsPopup = () => {
     <div id="news-popup-wrapper">
       <div className="popup-content">
         <h4>Latest News & Articles</h4>
-        <button className="close-button" onClick={handleClose}>&times;</button>
+        <button className="close-button" onClick={handleClose}   style={{ position: 'absolute', top: '7px', right: '10px',left:'160px' }}>&times;</button>
 
         {/* Slider */}
         <div className="slider-container">
@@ -79,7 +80,9 @@ const NewsPopup = () => {
         </div>
 
         {/* Button */}
-        <button className="check-news-button">Check our News & Events &gt;</button>
+        <Link to="/blog-grid" className="check-news-button">
+  Check our News & Events &gt;
+</Link>
       </div>
     </div>
   );

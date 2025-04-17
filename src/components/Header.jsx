@@ -22,7 +22,7 @@ const Header = () => {
                   <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/about">About us</Nav.Link>
                   <NavDropdown title="Courses" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/gallery-grid">
+                    <NavDropdown.Item href="/all-courses">
                     All Courses
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/services">
@@ -32,7 +32,7 @@ const Header = () => {
                   {/* <Nav.Link href="/gallery-grid">Courses</Nav.Link> */}
                   
                   <NavDropdown title="Why Choose Us" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/all-services">
+                    <NavDropdown.Item href="/who-we-are">
                       Who we are
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/our-glimps">
