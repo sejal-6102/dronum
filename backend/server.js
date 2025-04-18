@@ -11,29 +11,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Add this line to respond to /api/
-app.get("/api", (req, res) => {
-  res.send("API is working 🔥");
-});
-
+// MongoDB connection
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
+// API Routes
 app.use("/api/enroll", enrollRoutes);
 app.use("/api/book", bookRoutes);
 app.use("/api/contact", contactRoutes);
 
-module.exports = app; // For Vercel
-
-// Optional: Only for local development
+// For local testing only (skip this in Vercel)
 if (process.env.NODE_ENV !== "production") {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
 }
+
+module.exports = app;
