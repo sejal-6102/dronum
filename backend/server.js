@@ -1,4 +1,3 @@
-// backend/server.js
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -12,7 +11,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection
+// Add this line to respond to /api/
+app.get("/api", (req, res) => {
+  res.send("API is working 🔥");
+});
+
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -21,14 +24,16 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
-// API routes
 app.use("/api/enroll", enrollRoutes);
 app.use("/api/book", bookRoutes);
 app.use("/api/contact", contactRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Backend is live ✅");
-});
+module.exports = app; // For Vercel
 
-// 👇 DO NOT USE app.listen() on Vercel
-module.exports = app;
+// Optional: Only for local development
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
