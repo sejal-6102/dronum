@@ -1,3 +1,4 @@
+// backend/server.js
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -11,6 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// MongoDB connection
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -19,11 +21,10 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
+// API routes
 app.use("/api/enroll", enrollRoutes);
 app.use("/api/book", bookRoutes);
 app.use("/api/contact", contactRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// 👇 DO NOT USE app.listen() on Vercel
+module.exports = app;
