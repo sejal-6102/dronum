@@ -37,7 +37,7 @@ root.render(
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<AboutOne/>}/>
         <Route path="/who-we-are" element={<AllServices/>}/>
-        <Route path="/services" element={<ServicesDetail/>}/>
+        <Route path="/dgca-courses" element={<ServicesDetail/>}/>
         <Route path="/all-courses" element={<GalleryGrid/>}/>
         <Route path="/our-glimps" element={<GalleryDetails/>}/>
         <Route path="/team-listing" element={<TeamListing/>}/>

@@ -25,7 +25,7 @@ const Header = () => {
                     <NavDropdown.Item href="/all-courses">
                     All Courses
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="/services">
+                    <NavDropdown.Item href="/dgca-courses">
                       DGCA Courses
                     </NavDropdown.Item>
                   </NavDropdown>

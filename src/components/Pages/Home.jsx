@@ -28,7 +28,7 @@ const Home = () => {
       <Services />
       <ImageGallery />
       <Video />
-      <Counter />
+      {/* <Counter /> */}
       <Team />
       {/* <Quality /> */}
       <News />

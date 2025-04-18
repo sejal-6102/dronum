@@ -7,10 +7,32 @@ const BookNowForm = ({ isOpen, closeModal }) => {
   if (!isOpen) return null; // Don't render if modal is closed
 
   // Prevent page reload on submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Form submitted!"); // Replace with API call or logic
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/book", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        alert("Booking submitted successfully!");
+        closeModal();
+      } else {
+        alert("Submission failed: " + result.message);
+      }
+    } catch (error) {
+      alert("Error submitting form: " + error.message);
+    }
   };
+  
 
   return (
     <div id="enroll-container" className="modal-overlay" onClick={closeModal}>

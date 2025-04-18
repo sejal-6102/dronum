@@ -4191,12 +4191,12 @@ footer .bottom .bottom-inner span {
   margin: 0;
 }
 
-.gallery-slider-outer .gallery-slider-inner .owl-nav .owl-next,
+/* .gallery-slider-outer .gallery-slider-inner .owl-nav .owl-next,
 .gallery-slider-outer .gallery-slider-inner .owl-nav .owl-prev {
   position: absolute;
   top: 50%;
-  margin: -15px 0;
-
+  margin: 0px 0;
+background-color: red;
   width: 35px;
   height: 35px;
   text-align: center;
@@ -4204,16 +4204,34 @@ footer .bottom .bottom-inner span {
   font-weight: 600;
   display: inline-block;
   z-index: 10;
+} */
+
+.gallery-slider-outer .gallery-slider-inner .owl-nav .owl-next,
+.gallery-slider-outer .gallery-slider-inner .owl-nav .owl-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: orangered;
+  color:white;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  font-size: 42px;
+  font-weight: 600;
+  display: inline-block;
+  z-index: 10;
+  line-height: 35px; /* Ensure icon/text is vertically centered inside the box */
 }
+
 
 .owl-theme .owl-nav .owl-prev:hover,
 .owl-theme .owl-nav .owl-next:hover {
-  background: none !important;
-  color: #404040 !important;
+  background-color: orangered;
+  color:white;
 }
 
 .owl-theme .owl-nav .owl-prev:hover {
-  background: none !important;
+  background: grey !important;
 }
 
 .gallery-slider-outer .gallery-slider-inner .owl-nav .owl-next {

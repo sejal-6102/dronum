@@ -24,22 +24,22 @@ const GallerySlider = () => {
   };
   const slides = [
     {
-      img: "assets/img/pic4-4.jpg",
+      img: "assets/img/15.jpg",
     },
     {
-      img: "assets/img/pic5-2.jpg",
+      img: "assets/img/16.jpg",
     },
     {
-      img: "assets/img/pic6.jpg",
+      img: "assets/img/17.jpg",
     },
     {
-      img: "assets/img/pic1-5.jpg",
+      img: "assets/img/18.jpg",
     },
     {
-      img: "assets/img/pic2-5.jpg",
+      img: "assets/img/19.jpg",
     },
     {
-      img: "assets/img/pic3-4.jpg",
+      img: "assets/img/20.jpg",
     },
   ];
   return (

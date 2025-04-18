@@ -10,7 +10,7 @@ const About = () => {
             <div className="item">
               <div className="item-inner">
                 <div className="img-content">
-                  <img src="assets/img/bg-1-1.jpg" alt="" />
+                  <img src="assets/img/rtpo.jpg" alt="" />
                 </div>
                 <div className="text-content">
                   <span className="outline-title" style={{fontSize:'40px'}}>DGCA RPTO</span>
@@ -26,25 +26,29 @@ const About = () => {
                     <span className="text">About</span>
                   </div>
                   <h2>
-                  Dronum India Aviation – Your Premier RPTO for Drone Training in Jaipur, Rajasthan
+                  RPTO Authorization & Achievements
                   </h2>
                   <p>
-                  We help you attain high-quality, hand-on-the-throttle theoretical knowledge about drones, from flight hours to drone manufacturer approved certification for flying in several states and cities of our country. Dedicated to safety and innovation, Dronum trains aspiring drone pilots & instructor, allowing them to pursue different career and entrepreneurship opportunities in various industries.
-                  </p>
+                  Dronum India Aviations is a DGCA-authorized Drone Remote Pilot Training Organization (RPTO), committed to providing world-class drone training programs. Our certification & training programs ensures that we meet the
+                  highest standards in drone pilot education, safety protocols, and operational expertise. With this accreditation, we empower aspiring drone professionals with industry-recognized training and licensing, making them future-ready for the rapidly growing UAV industry.                  </p>
                 </div>
                 <ul>
                   <li>
                     <img src="assets/img/pilot.png" alt="" />
-                    Mobile Device Supported
+                    Trained Numerous of Certified Drone Pilots
+
                   </li>
                   <li>
                     <img src="assets/img/remote-control.png" alt="" />
-                    Easy integrative control
+                    Government & Industry Collaborations
                   </li>
                   <li>
                     <img src="assets/img/game-console.png" alt="" />
-                    Customized Commands
+                    Expansion Across Multiple States
                   </li>
+                  <li>
+                    <img src="assets/img/pilot.png" alt="" />
+                    Cutting - Edge Drone Training Curriculum                  </li>
                 </ul>
                 <Link to="/about" className="button">
                   Read More
