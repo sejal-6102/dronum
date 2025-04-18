@@ -26,5 +26,9 @@ app.use("/api/enroll", enrollRoutes);
 app.use("/api/book", bookRoutes);
 app.use("/api/contact", contactRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Backend is live ✅");
+});
+
 // 👇 DO NOT USE app.listen() on Vercel
 module.exports = app;
