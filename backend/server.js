@@ -8,7 +8,12 @@ const bookRoutes = require("./routes/booknowroutes");
 const contactRoutes = require("./routes/contactRoutes");
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: 'https://dronum.vercel.app', // <-- Frontend URL
+  methods: ['GET', 'POST'], // Add others if needed: PUT, DELETE, etc.
+  credentials: true // if using cookies or auth
+}));
 app.use(express.json());
 
 // MongoDB connection
