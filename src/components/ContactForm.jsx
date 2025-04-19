@@ -1,31 +1,31 @@
 import React from "react";
 
 const ContactForm = () => {
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const data = Object.fromEntries(formData.entries());
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
 
-  //   try {
-  //     const response = await fetch("http://localhost:5000/api/contact", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-  //     const result = await response.json();
-  //     if (response.ok) {
-  //       alert("Message sent successfully!");
-  //       e.target.reset();
-  //     } else {
-  //       alert("Submission failed: " + result.message);
-  //     }
-  //   } catch (error) {
-  //     alert("Error submitting form: " + error.message);
-  //   }
-  // };
+      const result = await response.json();
+      if (response.ok) {
+        alert("Message sent successfully!");
+        e.target.reset();
+      } else {
+        alert("Submission failed: " + result.message);
+      }
+    } catch (error) {
+      alert("Error submitting form: " + error.message);
+    }
+  };
 
   return (
     <div className="contact-outer">
@@ -69,9 +69,7 @@ const ContactForm = () => {
               <div className="heading">
                 <h2 style={{ color: "white" }}>Get In Touch</h2>
               </div>
-              <form 
-              // onSubmit={handleSubmit}
-              >
+              <form onSubmit={handleSubmit}>
                 <div className="input-fild">
                   <p><input className="input" type="text" name="name" placeholder="Name" required /></p>
                 </div>
