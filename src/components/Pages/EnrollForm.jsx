@@ -13,7 +13,7 @@ const EnrollForm = ({ isOpen, closeModal }) => {
     const data = Object.fromEntries(formData.entries());
   
     try {
-      const response = await fetch("http://localhost:5000/api/enroll", {
+      const response = await fetch("https://dronum-backend.vercel.app/api/enroll", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
