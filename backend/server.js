@@ -33,4 +33,9 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
+app.get("/check", (req, res) => {
+  res.json("hello world");
+});
+
+
 module.exports = app;
