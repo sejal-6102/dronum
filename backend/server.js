@@ -28,7 +28,7 @@ mongoose
 // API Routes
 app.use("/api/enroll", enrollRoutes);
 app.use("/api/book", bookRoutes);
-app.use("/api/contact", contactRoutes);
+app.use("/contact", contactRoutes);
 
 // For local testing only (skip this in Vercel)
 if (process.env.NODE_ENV !== "production") {
