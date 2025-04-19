@@ -7,7 +7,7 @@ const ContactForm = () => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("https://dronum-backend.vercel.app/contact", {
+      const response = await fetch("https://dronum-backend.vercel.app/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
