@@ -12,7 +12,11 @@ const ClientItems = (props) => {
           <p>
           {props.vlaue.des}
           </p>
+          <div style={{ fontSize: "20px", color: "#C28800" }}>
+        ⭐⭐⭐⭐⭐
+      </div>
         </div>
+       
         <div className="img-content">
           <div className="client-img">
             <img src={props.vlaue.img} alt={props.vlaue.name} />

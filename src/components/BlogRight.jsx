@@ -14,20 +14,23 @@ const BlogRight = () => {
               <ul>
                 <li>
                   <RecentPostItems
-                    img="assets/img/thum1-150x150.jpg"
-                    title="How Drones Are Saving Our Beaches"
+                    img="assets/img/blog1.png"
+                    title="Master Drone Operations with DGCA-Approved "
+                    date="December 04, 2024"
                   />
                 </li>
                 <li>
                   <RecentPostItems
-                    img="assets/img/thum2-150x150.jpg"
-                    title="How to Start a Drone Photography Business"
+                    img="assets/img/blog2.png"
+                    title="Unlock Your Drone Career with Dronum India Aviation’s"
+                    date="November 30, 2024"
                   />
                 </li>
                 <li>
                   <RecentPostItems
-                    img="assets/img/thum4-150x150.jpg"
-                    title="How Amazon is Integrating Drones into Their Supply"
+                    img="assets/img/blog3.png"
+                    title="Fast-Track Your Drone Certification:"
+                    date="November 18, 2024"
                   />
                 </li>
               </ul>

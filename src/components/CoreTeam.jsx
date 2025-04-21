@@ -3,48 +3,48 @@ import "../css/CoreTeam.css"; // Import CSS
 
 const teamMembers = [
   {
-    name: "John Doe",
-    designation: "CEO",
-    imgSrc: "/assets/img/pic4-5.jpg", // Ensure this exists in "public"
-    details: "John is an experienced entrepreneur with expertise in business growth.",
+    name: "MOU & Joint Venture",
+    designation: "",
+    imgSrc:"/assets/img/footprint11.jpg", // Ensure this exists in "public"
+    details: "MOU & Joint Venture Signed Between Dronum & CISS Academy For RPTO Setup",
   },
   {
-    name: "Jane Smith",
-    designation: "CTO",
-    imgSrc: "https://via.placeholder.com/300x400",
+    name: "Shree Deepak Bhargav Sir",
+    designation: "",
+    imgSrc:"/assets/img/footprint12.jpg",
     details: "Jane is a tech enthusiast, leading our software development.",
   },
   {
-    name: "David Wilson",
-    designation: "Project Manager",
-    imgSrc: "https://via.placeholder.com/300x400",
-    details: "David ensures smooth project execution and team collaboration.",
+    name: "Shree R.K. Tyagi Ji ",
+    designation: "",
+    imgSrc: "/assets/img/footprint13.jpg",
+    details: "Director - CISS Academy for Skill Human Development Pvt. Ltd. ",
   },
   {
-    name: "Emma Brown",
-    designation: "Designer",
-    imgSrc: "https://via.placeholder.com/300x400",
-    details: "Emma creates stunning designs for our products and marketing.",
+    name: "CI Uday Singh ji",
+    designation: "",
+    imgSrc: "/assets/img/footprint14.jpg",
+    details: "(Police Station - Muhana, Jaipur)",
   },
   {
-    name: "Michael Lee",
-    designation: "Marketing Head",
-    imgSrc: "https://via.placeholder.com/300x400",
-    details: "Michael leads the marketing strategies for brand growth.",
+    name: "Smt. Anju Gupta ji ",
+    designation: "",
+    imgSrc: "assets/img/footprint15.jpg",
+    details: "Principal, KVGIT College, Jaipur",
   },
   {
-    name: "Sophia Johnson",
-    designation: "HR Manager",
-    imgSrc: "https://via.placeholder.com/300x400",
-    details: "Sophia manages talent acquisition and employee well-being.",
+    name: "MOU & SLA ",
+    designation: "",
+    imgSrc: "assets/img/footprint16.jpg",
+    details: "MOU & SLA Signed Between Dronum & Marut Drone Academy For Training and R & M Course.",
   },
 ];
 
 const CoreTeam = () => {
   return (
     <div className="coreteam-container">
-      <h2 className="coreteam-heading">Core Team</h2>
-      <p className="coreteam-subheading">Meet our team of experts leading the way</p>
+      <h2 className="coreteam-heading">Our Footprints</h2>
+      <p className="coreteam-subheading">Our Footprints reflect the journey we've taken—marked by impact, innovation, and a commitment to creating lasting change.</p>
 
       <div className="coreteam-wrapper">
         {teamMembers.map((member, index) => (

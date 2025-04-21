@@ -8,7 +8,9 @@ const RecentPostItems = (props) => {
         <img src={props.img} alt="" />
       </div>
       <div className="text-content">
-        <span>12 December</span>
+        <span>
+          {props.date}
+        </span>
         <Link to="/blog-details">
           {props.title}
         </Link>

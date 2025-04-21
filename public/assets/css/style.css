@@ -186,7 +186,9 @@ header {
 }
 
 .sticky-header .sticky .header-inner {
-  background-color: rgba(13, 19, 72, 0.8) !important;
+  /* background-color: rgba(13, 19, 72, 0.8) !important; */
+  background-color: white !important;
+  color:#00173c
 
 }
 
@@ -206,6 +208,7 @@ header .header-container {
   align-items: center;
   max-width: 100%;
   min-height: 97px;
+  background-color:white;
 }
 
 header .logo {
@@ -239,7 +242,8 @@ header .navbar-toggler:hover {
 }
 
 header .navbar-toggler.collapsed .navbar-toggler-icon {
-  background-image: url(../img/menu.png);
+  background-image: url(../img/menu1.png);
+  
 }
 
 header .navbar-toggler .navbar-toggler-icon {
@@ -310,7 +314,7 @@ header .mobile-number {
 }
 
 header .mobile-number span {
-  color: #fff;
+  color: #070236;
   font-family: "Rajdhani", sans-serif;
   font-size: 22px;
   font-weight: 700;
@@ -319,7 +323,7 @@ header .mobile-number span {
 @media (min-width:992px) {
 
   header .navbar-expand-lg .navbar-nav .nav-link {
-    color: #fff;
+    color:rgb(4, 4, 73);
     display: block;
     font-weight: 600;
     padding: 35px 14px;
@@ -335,7 +339,7 @@ header .mobile-number span {
     height: 30px;
     transition: all 0.5s ease-out;
     top: 34px;
-    border: 1px solid #fff;
+    border: 1px solid #150242;
     border-left: 0px;
     opacity: 0;
     right: 5%;
@@ -355,7 +359,7 @@ header .mobile-number span {
     height: 30px;
     transition: all 0.5s ease-out;
     top: 34px;
-    border: 1px solid #fff;
+    border: 1px solid  #150242;
     border-right: 0px;
     opacity: 0;
     left: 5%;

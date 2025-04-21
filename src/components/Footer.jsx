@@ -58,7 +58,7 @@ const Footer = () => {
                       <Link to="/team-listing">Our Team</Link>
                     </li>
                     <li>
-                      <Link to="/services">Services</Link>
+                      <Link to="/blog-grid">Blog</Link>
                     </li>
                   </ul>
                 </div>
@@ -107,7 +107,7 @@ const Footer = () => {
               </div>
               <ul className="copyright-menu">
                 <li>
-                  <Link to="/login"> My account </Link>
+                  <Link to="/"> Home </Link>
                 </li>
                 {/* <li>
                   <Link to="/privacy"> Privacy Policy </Link>

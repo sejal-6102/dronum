@@ -11,7 +11,7 @@ const Team = () => {
     {
       img: "assets/img/footprints1.jpg",
       position: "हवा महल जयपुुर",
-      name: "परम पूूजनीय हाथोज़ धाम महंंत बालमुुकंुुंद आचाय  जी MLA",
+      name: "परम पूूजनीय हाथोज़ धाम महंंत बालमुकुंद आचाय  जी MLA",
     },
     {
       img: "assets/img/footprints1.jpg",
@@ -33,8 +33,8 @@ const Team = () => {
               <h2>Creating Our Footprints</h2>
             </div>
             <div className="content">
-              {team.map((i) => (
-                <TeamItems vlaue={i} />
+              {team.map((i,index) => (
+                <TeamItems key ={index} vlaue={i} />
               ))}
             </div>
           </div>

@@ -7,6 +7,7 @@ import Brand from "../Brand";
 import PagesHero from "../PagesHero";
 import Header from "../Header";
 import Footer from "../Footer";
+import Partners from "../Partners";
 
 const AboutOne = () => {
   return (
@@ -17,7 +18,8 @@ const AboutOne = () => {
       <Quality />
       <Team />
       <Video />
-      <Brand />
+      {/* <Brand /> */}
+       <Partners />
       <Footer />
     </>
   );

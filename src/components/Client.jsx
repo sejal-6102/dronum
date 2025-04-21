@@ -6,24 +6,24 @@ import ClientItems from "./Items/ClientItems";
 const Client = () => {
   const client = [
     {
-      img: "assets/img/pic4-2.jpg",
-      name: "name 1",
-      des:"review 1"
+      img: "assets/img/rev1.png",
+      name: "Jay Chawda",
+      des:"I had the opportunity to experience the training at Dronum India Aviations, and overall, it has been a great experience.The instructors are knowledgeable and supportive, making it easy to learn the basics of drone flying."
     },
     {
-      img: "assets/img/pic3-2.jpg",
-      name: "name 2",
-      des:"review 2"
+      img: "assets/img/rev2.png",
+      name: "hrushikesh khaladkar",
+      des:"I recently completed my training at dronum, and I must say it was an outstanding experience!The instructors were highly knowledgeable, patient, and professional, ensuring that every student gained both theoretical and practical expertise "
     },
     {
-      img: "assets/img/pic2-3.jpg",
-      name: "name 3",
-      des:"review 3"
+      img: "assets/img/rev3.png",
+      name: "VIRENKUMAR DUDHAT",
+      des:"My experience at Dronum's drone pilot training program in Jaipur was highly positive. The instructors demonstrated a strong command of the subject matter, effectively conveying both theoretical knowledge and practical flight skills."
     },
     {
-      img: "assets/img/pic1-3.jpg",
-      name: "name 4",
-      des:"review 4"
+      img: "assets/img/rev4.png",
+      name: "99 Rohan Ahir",
+      des:"It was an amazing experience with Dronum India Aviations..The instructor's and all the faculty members were polite and friendly.Everything was perfectly managed by them.Everything was perfectly managed by them.Very good everthing"
     },
   ];
 
@@ -39,10 +39,11 @@ const Client = () => {
                     <div className="line-left"></div>
                     <span> Reviews</span>
                   </div>
-                  <h2>Feed Backs</h2>
+                  <h2>Our Testimonial</h2>
                   {/* <p>Dronum India Aviations is a DGCA-authorized Drone Remote Pilot Training Organization (RPTO), committed to providing world-class drone training programs. Our certification & training programs ensures that we meet the
                   highest standards in drone pilot education, safety protocols, and operational expertise. With this accreditation, we empower aspiring drone professionals with industry-recognized training and licensing, making them future-ready for the rapidly growing UAV industry.</p> */}
                 </div>
+       
               </div>
             </div>
             <div className="bottom">

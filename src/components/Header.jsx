@@ -85,9 +85,24 @@ const Header = () => {
                     <FaUser />
                   </Link>
                 </div> */}
-                <div className="mobile-number">
-                  <span> (+91) 7433 876 876</span>
-                </div>
+                <div
+  className="mobile-number"
+  style={{
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4px',
+    fontSize: 'clamp(14px, 1.8vw, 18px)',
+    lineHeight: '1.6',
+    padding: '10px 20px',
+    textAlign: 'left',
+    whiteSpace: 'nowrap',
+    wordBreak: 'keep-all',
+  }}
+>
+  <span> (+91) 7433 876 876</span>
+  <span> (+91) 7665876876</span>
+</div>
+
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
               </div>
             </div>
