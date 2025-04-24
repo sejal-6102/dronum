@@ -4,23 +4,23 @@ import { Link } from "react-router-dom";
 
 const images = [
   {
-  src:"assets/img/daas1.png",
+  src:"assets/img/daas01.jpg",
   title:"AERIAL SURVEYING AND MAPPING: ",
   des:"UTILIZING DRONES FOR ACCURATE AND EFFICIENT SURVEYING AND MAPPING. "
   },
 
   {
-  src:"assets/img/daas2.png",
+  src:"assets/img/daas02.jpg",
   title:"AGRICULTURAL SERVICES: ",
   des:" DRONES FOR CROP MONITORING, SPRAYING, AND OTHER AGRICULTURAL APPLICATIONS.  "
   },
   {
-  src:"assets/img/daas3.png",
+  src:"assets/img/daas03.jpg",
   title:"INFRASTRUCTURE INSPECTION:  ",
   des:"CONDUCTING INSPECTIONS OF INFRASTRUCTURE SUCH AS BRIDGES, TOWERS AND BUILDINGS.  "
   },
   {
-    src:"assets/img/daas3.png",
+    src:"assets/img/daas04.jpg",
     title:"PHOTOGRAPHY AND VIDEOGRAPHY:  ",
   des:"HIGH-QUALITY AERIAL PHOTOGRAPHY AND VIDEOGRAPHY FOR EVENTS, REAL ESTATE AND OTHER PURPOSES"
     },

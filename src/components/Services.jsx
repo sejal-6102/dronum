@@ -7,63 +7,63 @@ const Services = () => {
   
   const service = [
     {
-      img: "assets/img/co1.png",
+      img: "assets/img/co01.jpg",
       title: "Duration: 5-7 Days",
       description:"Small Remote Pilot Certification Course"
 
     },
     {
-      img: "assets/img/co10.png",
+      img: "assets/img/co002.jpg",
       title: "Duration : 7 Days",
        description:"Medium Remote Pilot Certification Course"
     },
     {
-      img: "assets/img/co11.png",
+      img: "assets/img/co003.jpg",
       title: "Duration : 15 Days",
        description:"Small TTT Course"
     },
     {
-      img: "assets/img/co2.png",
+      img: "assets/img/co004.jpg",
       title: "Duration : 7-9 Days",
        description:"Only TTT"
     },
     {
-      img: "assets/img/co4.png",
+      img: "assets/img/co005.jpg",
       title: "Duration : 2 Months",
        description:"Kisaan Drone Operator/ Agri Drone Entrepreneur Course"
     },
     {
-      img: "assets/img/co5.png",
+      img: "assets/img/co006.jpg",
       title: "Duration : 8 Days",
        description:"Small and Medium Remote Pilot Certification Course"
     },
     {
-      img: "assets/img/co6.png",
+      img: "assets/img/co007.jpg",
       title: "Duration : 8 Days",
        description:"Survey & Mapping with RPC"
     },
     {
-      img: "assets/img/co7.png",
+      img: "assets/img/co008.jpg",
       title: "Duration : 3 Days",
        description:"Agri Spraying Course"
     },
     {
-      img: "assets/img/co8.png",
+      img: "assets/img/co009.jpg",
       title: "Duration : 8 Days",
        description:"Agriculture with RPC"
     },
     {
-      img: "assets/img/co9.png",
+      img: "assets/img/co010.jpg",
       title: "Duration : 9 Days",
-       description:"SDrone Technician Course"
+       description:"Drone Technician Course"
     },
     {
-      img: "assets/img/co1.png",
+      img: "assets/img/co011.jpg",
       title: "Duration : 2 Days",
        description:"Crash Course for Enhancing Your Instructor Skills"
     },
     {
-      img: "assets/img/co2.png",
+      img: "assets/img/co012.jpg",
       title: "Duration : 3 Days",
        description:"Drone Software Course"
     },
