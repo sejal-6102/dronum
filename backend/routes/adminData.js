@@ -1,7 +1,7 @@
 const express = require('express');
 const verifyToken = require('../middleware/authMiddleware'); // Import the middleware
 const Booking = require('../models/bookNow'); // Adjust path if needed
-const Contact = require('../models/Contact');   // Adjust path if needed
+const Contact = require('../models/contact');   // Adjust path if needed
 const Enroll = require('../models/enroll');     // Adjust path if needed
 
 const router = express.Router();
