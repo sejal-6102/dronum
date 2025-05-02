@@ -26,6 +26,10 @@ import Shop from "./components/Pages/Shop";
 import Privacy from "./components/Pages/Privacy";
 import SingleProduct from "./components/Pages/SingleProduct";
 import EnrollForm from "./components/Pages/EnrollForm";
+import AdminPannel from "./components/Pages/Admin/AdminPannel";
+import AdminLogin from "./components/Pages/AdminLogin";
+import ProtectedRoute from "./components/Pages/ProtectedRoute";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -46,7 +50,7 @@ root.render(
         <Route path="/*" element={<Error/>}/>
         {/* <Route path="/shop" element={<Shop/>}/> */}
         <Route path="/singleProduct" element={<SingleProduct/>}/>
-        <Route path="/login" element={<MyAccount/>}/>
+      
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/checkout" element={<Checkout/>}/>
         <Route path="/latest-news" element={<NewsGrid/>}/>
@@ -54,6 +58,23 @@ root.render(
         <Route path="/blog-details/:title" element={<BlogDetail/>}/>
         <Route path="/privacy" element={<Privacy/>}/>
         <Route path="/enroll-Form" element={<EnrollForm/>}/>
+        {/* <Route path="/admin-panel" element={<AdminPannel />} /> */}
+
+
+
+        {/* Public route for Admin Login Page */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* Protected route for the Admin Panel/Dashboard */}
+        <Route
+          path="/admin/dashboard" // This is the URL for the admin dashboard
+          element={
+            <ProtectedRoute> {/* This component checks for the token */}
+              <AdminPannel /> {/* If token exists, it renders AdminPannel */}
+            </ProtectedRoute>
+          }
+        />
+
 
 
       </Routes>

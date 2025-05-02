@@ -5,6 +5,6 @@ const bookNowSchema = new mongoose.Schema({
   email: String,
   phone: String,
   city: String,
+  drone: String,
 });
-
-module.exports = mongoose.model("drone-booking", bookNowSchema);
+module.exports = mongoose.models['drone-booking'] || mongoose.model("drone-booking", bookNowSchema);

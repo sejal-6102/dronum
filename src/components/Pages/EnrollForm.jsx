@@ -11,9 +11,16 @@ const EnrollForm = ({ isOpen, closeModal }) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+
+    const phoneRegex = /^\d{10}$/; // Regular expression for exactly 10 digits
+    if (!phoneRegex.test(data.phone)) {
+      // Check if the phone number from the form data matches the pattern
+      alert("Please enter a valid 10-digit phone number (digits only).");
+      return; // Stop the submission if validation fails
+    }
   
     try {
-      const response = await fetch("https://dronum-backend.vercel.app/api/enroll", {
+      const response = await fetch("http://localhost:5000/api/enroll", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +56,17 @@ const EnrollForm = ({ isOpen, closeModal }) => {
           <input type="email" id="email" name="email" placeholder="Email*" required />
 
           <label htmlFor="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Phone Number*" required />
+          <input
+            type="tel" // Use "tel" type for semantic meaning (often brings up numeric keypad on mobile)
+            id="phone"
+            name="phone"
+            placeholder="10-digit Phone Number*"
+            required
+            pattern="\d{10}" // HTML5 pattern: Exactly 10 digits (\d)
+            maxLength="10"   // Prevent typing more than 10 characters
+            title="Please enter exactly 10 digits (e.g., 1234567890)." // Tooltip for pattern mismatch
+            inputMode="numeric" // Hint for mobile keyboards to show numbers
+          />
 
           <label htmlFor="city">City</label>
           <input type="text" id="city" name="city" placeholder="City*" required />
@@ -57,14 +74,14 @@ const EnrollForm = ({ isOpen, closeModal }) => {
           <label htmlFor="course">Course</label>
           <select id="course" name="course" required>
             <option value="">Select Course</option>
-            <option value="web-development">Small Remote Pilot Certification Course (RPC) – 5-7 Days</option>
-            <option value="data-science">Remote Pilot Certification (RPC) with Agri – 8 Days</option>
-            <option value="ui-ux">Drone Technician Course – 9 Days</option>
-            <option value="ui-ux">Medium Remote Pilot Certification Course – 7 Days</option>
-            <option value="ui-ux">RPC + Remote Pilot Instructor Course (RPI/TTT) – 15 Days</option>
-            <option value="ui-ux">Drone Security Officer Training – 20 Days</option>
-            <option value="ui-ux">Survey & Mapping with RPC – 8 Days</option>
-            <option value="ui-ux">FPV Drones ( Build & Pilot Training) - 15 Days </option>
+            <option value="Small Remote Pilot Certification Course (RPC) – 5-7 Days">Small Remote Pilot Certification Course (RPC) – 5-7 Days</option>
+            <option value="Remote Pilot Certification (RPC) with Agri – 8 Days">Remote Pilot Certification (RPC) with Agri – 8 Days</option>
+            <option value="Drone Technician Course – 9 Days">Drone Technician Course – 9 Days</option>
+            <option value="Medium Remote Pilot Certification Course – 7 Days">Medium Remote Pilot Certification Course – 7 Days</option>
+            <option value="RPC + Remote Pilot Instructor Course (RPI/TTT) – 15 Days">RPC + Remote Pilot Instructor Course (RPI/TTT) – 15 Days</option>
+            <option value="Drone Security Officer Training – 20 Days">Drone Security Officer Training – 20 Days</option>
+            <option value="Survey & Mapping with RPC – 8 Days">Survey & Mapping with RPC – 8 Days</option>
+            <option value="PV Drones ( Build & Pilot Training) - 15 Days ">FPV Drones ( Build & Pilot Training) - 15 Days </option>
           
           </select>
 

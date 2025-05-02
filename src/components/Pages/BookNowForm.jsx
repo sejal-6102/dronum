@@ -11,9 +11,19 @@ const BookNowForm = ({ isOpen, closeModal }) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+
+
+
+    const phoneRegex = /^\d{10}$/; // Regular expression for exactly 10 digits
+    if (!phoneRegex.test(data.phone)) {
+      // Check if the phone number from the form data matches the pattern
+      alert("Please enter a valid 10-digit phone number (digits only).");
+      return; // Stop the submission if validation fails
+    }
   
     try {
-      const response = await fetch("https://dronum-backend.vercel.app/api/book", {
+     // const response = await fetch("https://dronum-backend.vercel.app/api/book"
+      const response = await fetch("http://localhost:5000/api/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,14 +59,33 @@ const BookNowForm = ({ isOpen, closeModal }) => {
           <input type="email" id="email" name="email" placeholder="Email*" required />
 
           <label htmlFor="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Phone Number*" required />
+          <input
+            type="tel" // Use "tel" type for semantic meaning (often brings up numeric keypad on mobile)
+            id="phone"
+            name="phone"
+            placeholder="10-digit Phone Number*"
+            required
+            pattern="\d{10}" // HTML5 pattern: Exactly 10 digits (\d)
+            maxLength="10"   // Prevent typing more than 10 characters
+            title="Please enter exactly 10 digits (e.g., 1234567890)." // Tooltip for pattern mismatch
+            inputMode="numeric" // Hint for mobile keyboards to show numbers
+          />
+
 
           <label htmlFor="city">City</label>
           <input type="text" id="city" name="city" placeholder="City*" required />
 
-       
+          <label htmlFor="drone">Drone</label>
+          <select id="drone" name="drone" required>
+            <option value="">Select Drone</option>
+            <option value="AERIAL SURVEYING AND MAPPING">AERIAL SURVEYING AND MAPPING</option>
+            <option value="AGRICULTURAL SERVICES">AGRICULTURAL SERVICES</option>
+            <option value="INFRASTRUCTURE INSPECTION">INFRASTRUCTURE INSPECTION</option>
+            <option value="PHOTOGRAPHY AND VIDEOGRAPHY">PHOTOGRAPHY AND VIDEOGRAPHY</option>
+          
+          </select>
 
-          <button type="submit">Send Message</button>
+          <button type="submit">Book Now</button>
         </form>
       </div>
     </div>

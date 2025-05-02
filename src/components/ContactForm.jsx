@@ -6,8 +6,17 @@ const ContactForm = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
+
+    const phoneRegex = /^\d{10}$/; // Regular expression for exactly 10 digits
+    if (!phoneRegex.test(data.phone)) {
+      // Check if the phone number from the form data matches the pattern
+      alert("Please enter a valid 10-digit phone number (digits only).");
+      return; // Stop the submission if validation fails
+    }
+
     try {
-      const response = await fetch("https://dronum-backend.vercel.app/api/contact", {
+      // const response = await fetch("https://dronum-backend.vercel.app/api/contact"
+      const response = await fetch("http://localhost:5000/api/contact" , {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +86,22 @@ const ContactForm = () => {
                   <p><input className="input" type="email" name="email" placeholder="Email" required /></p>
                 </div>
                 <div className="input-fild">
-                  <p><input className="input" type="text" name="phone" placeholder="Phone Number" required /></p>
+                  <p>
+                  
+                  
+                  
+                  <input
+            type="tel" // Use "tel" type for semantic meaning (often brings up numeric keypad on mobile)
+            id="phone"
+            className="input"
+            name="phone"
+            placeholder="10-digit Phone Number*"
+            required
+            pattern="\d{10}" // HTML5 pattern: Exactly 10 digits (\d)
+            maxLength="10"   // Prevent typing more than 10 characters
+            title="Please enter exactly 10 digits (e.g., 1234567890)." // Tooltip for pattern mismatch
+            inputMode="numeric" // Hint for mobile keyboards to show numbers
+          /></p>
                 </div>
                 <div className="input-fild">
                   <p><input className="input" type="text" name="city" placeholder="City" required /></p>

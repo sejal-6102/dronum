@@ -1,0 +1,255 @@
+/* Dashboard.module.css */
+
+/* --- Overall Layout --- */
+.dashboardLayout {
+    display: flex;
+    min-height: 100vh; /* Full height */
+    background-color: #f4f7f6; /* Light background for content area */
+  }
+  
+  /* --- Sidebar --- */
+  .sidebar {
+    width: 250px; /* Fixed width for sidebar */
+    background-color: #020231; /* Dark background like example */
+    color: #ecf0f1; /* Light text color */
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    transition: width 0.3s ease; /* Smooth transition for responsiveness */
+  }
+  
+  .sidebarHeader {
+    padding: 20px 15px;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-bottom: 1px solid #34495e;
+    text-align: center;
+  }
+  
+  .sidebarNav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0; /* Add margin top */
+  }
+  
+  .sidebarNav li {
+    margin: 0;
+  }
+  
+  .navButton {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    color: #bdc3c7; /* Slightly dimmer text for inactive */
+    text-align: left;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-left: 4px solid transparent; /* For active indicator */
+  }
+  
+  .navButton:hover {
+    background-color: #34495e; /* Darker hover */
+    color: #ffffff; /* White text on hover */
+  }
+  
+  .navButton.active {
+    background-color: #FF4D00; /* Active background color */
+    color: #ffffff; /* White text for active */
+    font-weight: bold;
+    border-left: 4px solid #ffffff; /* Active indicator line */
+  }
+  
+  
+  /* --- Main Content --- */
+  .mainContent {
+    flex-grow: 1; /* Take remaining space */
+    padding: 25px;
+    overflow-x: hidden; /* Prevent accidental horizontal scroll */
+  }
+  
+  .mainHeader {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+  }
+  
+  .mainHeader h2 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #34495e;
+  }
+  
+  .contentArea {
+    background-color: #ffffff; /* White background for content cards/tables */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* --- Loading & Error States --- */
+  .loading,
+  .error {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2em;
+  }
+  
+  .error {
+    color: #e74c3c; /* Red for errors */
+  }
+  
+  .noData {
+      text-align: center;
+      padding: 30px;
+      color: #7f8c8d;
+  }
+  
+  /* --- Data Table --- */
+  .tableContainer {
+      overflow-x: auto; /* Enable horizontal scrolling on smaller screens */
+      width: 100%;
+  }
+  
+  .dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.95em;
+  }
+  
+  .dataTable th,
+  .dataTable td {
+    border: 1px solid #e0e0e0;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: middle;
+  }
+  
+  .dataTable th {
+    background-color: #f8f9fa; /* Light grey header */
+    font-weight: bold;
+    color: #34495e;
+  }
+  
+  .dataTable tbody tr:nth-child(even) {
+    background-color: #fdfdfd; /* Slightly off-white for zebra stripes */
+  }
+  
+  .dataTable tbody tr:hover {
+    background-color: #f1f1f1; /* Hover effect */
+  }
+  
+  /* --- Responsiveness --- */
+  
+  /* Smaller Desktops / Tablets */
+  @media (max-width: 992px) {
+    .sidebar {
+      width: 200px; /* Slightly smaller sidebar */
+    }
+    .mainHeader h2 {
+        font-size: 1.6em;
+    }
+    .dataTable {
+        font-size: 0.9em;
+    }
+     .dataTable th,
+     .dataTable td {
+        padding: 8px 10px;
+     }
+  }
+  
+  
+  /* Tablets and Mobile */
+  @media (max-width: 768px) {
+    .dashboardLayout {
+      flex-direction: column; /* Stack sidebar and content */
+    }
+  
+    .sidebar {
+      width: 100%; /* Full width sidebar */
+      height: auto; /* Auto height */
+      position: static; /* Remove fixed positioning if any */
+      border-bottom: 2px solid #34495e;
+    }
+  
+    .sidebarHeader {
+        padding: 15px;
+        font-size: 1.2em;
+    }
+  
+     .sidebarNav ul {
+         margin-top: 10px;
+         display: flex; /* Make items horizontal */
+         overflow-x: auto; /* Allow scrolling if too many items */
+         padding-bottom: 5px; /* Space for scrollbar */
+     }
+     .sidebarNav li {
+         flex-shrink: 0; /* Prevent items from shrinking */
+     }
+      .navButton {
+         padding: 10px 15px;
+         font-size: 0.9em;
+         border-left: none; /* Remove left border */
+         border-bottom: 4px solid transparent; /* Use bottom border for active */
+      }
+       .navButton.active {
+          border-left: none;
+          border-bottom: 4px solid #ffffff;
+       }
+  
+  
+    .mainContent {
+      padding: 15px;
+    }
+    .mainHeader h2 {
+        font-size: 1.4em;
+    }
+     .contentArea {
+        padding: 15px;
+     }
+  
+     /* Optional: Improve table display on mobile */
+     /* This example keeps horizontal scroll, but you could use other patterns */
+     .dataTable th, .dataTable td {
+         white-space: nowrap; /* Prevent text wrapping in cells */
+     }
+  
+     /* Alternative Mobile Table (more complex - hide headers, use data-labels) */
+     /*
+     .dataTable thead {
+         display: none;
+     }
+     .dataTable tr {
+         display: block;
+         margin-bottom: 15px;
+         border: 1px solid #ddd;
+         border-radius: 4px;
+         padding: 10px;
+         box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+     }
+      .dataTable td {
+         display: block;
+         text-align: right; // Align value to the right
+         border: none;
+         border-bottom: 1px dotted #eee;
+         padding: 8px 0;
+         position: relative;
+         padding-left: 50%; // Make space for label
+      }
+       .dataTable td::before {
+           content: attr(data-label); // Use data-label attribute
+           position: absolute;
+           left: 5px;
+           font-weight: bold;
+           text-align: left;
+           white-space: nowrap;
+           color: #333;
+       }
+       .dataTable td:last-child {
+           border-bottom: none;
+       }
+     */
+  }

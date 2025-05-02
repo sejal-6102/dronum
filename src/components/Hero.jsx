@@ -25,7 +25,7 @@ const Hero = () => {
                 </div>
               </div>
               <div className="drone-img animate__animated animate__slideInRight">
-                <img className="" src="assets/img/d-1.png" alt="" />
+                {/* <img className="" src="assets/img/d-1.png" alt="" /> */}
               </div>
             </div>
           </div>

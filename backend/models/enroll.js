@@ -7,5 +7,4 @@ const enrollSchema = new mongoose.Schema({
   city: String,
   course: String,
 });
-
-module.exports = mongoose.model("enroll", enrollSchema);
+module.exports = mongoose.models.enroll || mongoose.model("enroll", enrollSchema);
