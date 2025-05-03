@@ -17,7 +17,7 @@ const app = express();
 // Define allowed origins
 const allowedOrigins = [
  'https://dronum-git-main-sejal-6102s-projects.vercel.app', // Your MAIN BRANCH PREVIEW frontend URL <--- ADDED THIS LINE
-  'http://localhost:3000'                         // Your local development frontend URL (if you still use it)
+                          // Your local development frontend URL (if you still use it)
 ];
 
 // Configure CORS options
