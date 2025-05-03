@@ -13,7 +13,7 @@ const adminDataRoutes = require("./routes/adminData");
 const app = express();
 // app.use(cors());
 app.use(cors({
-  origin: 'https://dronum.vercel.app',
+  origin: 'https://dronum-git-main-sejal-6102s-projects.vercel.app/contact-us',
     // origin: 'http://localhost:3000',   //  // <-- Frontend URL
   methods: ['GET', 'POST'], // Add others if needed: PUT, DELETE, etc.
   credentials: true // if using cookies or auth
