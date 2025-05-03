@@ -30,7 +30,7 @@ const Team = () => {
                 <span className="text">Core Team</span>
                 <span className="line-right"></span>
               </div>
-              <h2>Creating Our Footprints</h2>
+              <h3>Creating Our Footprints</h3>
             </div>
             <div className="content">
               {team.map((i,index) => (

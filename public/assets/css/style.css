@@ -1,12 +1,12 @@
 body {
-  background-color: #fff;
+  background-color: #e8f2f7;
   font-weight: 400;
   color: #404040;
   padding: 0px;
   margin: 0px;
   font-size: 16px;
   line-height: 1.5;
-  font-family: "Rajdhani", sans-serif !important;
+  font-family: var(--font-poppins), sans-serif;
   overflow-x: hidden;
 }
 
@@ -44,13 +44,13 @@ ol {
 }
 
 ::selection {
-  background:#FF4D00;
+  background:#ff6600;
   color: #fff;
 }
 
 .button {
   display: inline-block;
-  background-color:#FF4D00;
+  background-color:#ff6600;
   text-shadow: 0 0 0 #fff, 400px 0 0 #fff;
   color: rgba(0, 0, 0, 0) !important;
   padding: 15px 40px;
@@ -59,7 +59,7 @@ ol {
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Mulish", sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   overflow: hidden;
   transition: all 0.3s ease !important;
   border: none;
@@ -83,7 +83,7 @@ ol {
   font-size: 20px;
   line-height: 20px;
   font-weight: 600;
-  color: #FF4D00;
+  color: #ff6600;
 }
 
 .heading .sub-heading .text {
@@ -100,7 +100,7 @@ ol {
 .heading .sub-heading .line-right::before {
   position: absolute;
   content: "";
-  background-color:#FF4D00;
+  background-color:#ff6600;
   width: 30px;
   height: 4px;
   bottom: 3px;
@@ -128,7 +128,7 @@ ol {
 
 .heading p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 
 }
 
@@ -272,7 +272,7 @@ header .navbar-expand-lg .navbar-nav .dropdown-menu a::before {
   content: "\f061";
   font-family: "Font Awesome 6 Free";
   font-size: 14px;
-  color:#FF4D00;
+  color:#ff6600;
   left: 5px;
   opacity: 0;
   transition: all 0.5s ease-out;
@@ -315,8 +315,8 @@ header .mobile-number {
 
 header .mobile-number span {
   color: #070236;
-  font-family: "Rajdhani", sans-serif;
-  font-size: 22px;
+  font-family: inherit, sans-serif;
+  font-size: 15px;
   font-weight: 700;
 }
 
@@ -570,7 +570,7 @@ header .mobile-number span {
 .pages-outer ul li {
   padding: 0px;
   margin-right: 3px;
-  color: #FF4D00;
+  color: #ff6600;
   position: relative;
   display: inline-block;
   font-size: 22px;
@@ -1204,7 +1204,7 @@ header .mobile-number span {
   position: absolute;
   width: 210px;
   height: 180px;
-  background-color:  #FF4D00;
+  background-color:  #ff6600;
 }
 
 .about-outer .img-content {
@@ -1224,7 +1224,7 @@ header .mobile-number span {
   text-align: right;
   bottom: 30px;
   right: 30px;
-  background-color:#FF4D00;
+  background-color:#ff6600;
   padding: 20px;
 }
 
@@ -1243,9 +1243,9 @@ header .mobile-number span {
 .about-outer .text-content span {
   font-size: 100px;
   font-weight: 700;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
   color: #fff;
-  line-height: 90px;
+  /* line-height: 90px; */
   display: block;
 }
 
@@ -1255,7 +1255,7 @@ header .mobile-number span {
   text-transform: capitalize;
   font-weight: 700;
   display: block;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
   color: #fff;
   letter-spacing: 0;
 }
@@ -1271,15 +1271,16 @@ header .mobile-number span {
 
 .about-outer .item:last-child li {
   color: #1a1a1a;
-  font-size: 24px;
+  /* font-size: px; */
   position: relative;
   font-weight: 700;
-  padding: 0px 0px 20px 60px;
+  padding: 0px 0px 20px 40px;
+  line-height:2.1;
 }
 
 .about-outer .item:last-child img {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   top: 0;
   left: 0;
@@ -1295,8 +1296,8 @@ header .mobile-number span {
 
 @media (max-width: 540px) {
   .about-outer .item:last-child li {
-    font-size: 16px;
-    padding: 8px 0px 10px 50px;
+    /* font-size: 16px; */
+    padding: 8px 0px 10px 40px;
   }
 
   .about-outer .item:last-child {
@@ -1304,8 +1305,8 @@ header .mobile-number span {
   }
 
   .about-outer .item:last-child img {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     line-height: 32px;
   }
 
@@ -1354,7 +1355,7 @@ header .mobile-number span {
 
 .service-outer .heading .item:last-child {
   width: 58.33%;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .service-outer .content {
@@ -1383,12 +1384,13 @@ header .mobile-number span {
 }
 
 .service-outer .content h2 {
-  font-size: 18px;
+  font-size: 15px;
   color: #1a1a1a;
   font-weight: 700;
   margin: 10px;
   line-height: 1.1;
   text-align: center;
+  height:30px;
 }
 
 .service-outer .content .text-content {
@@ -1425,7 +1427,7 @@ header .mobile-number span {
 
 .service-outer .content .text-inner p {
   margin-bottom: 24px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .service-outer .content .text-inner a {
@@ -1440,7 +1442,7 @@ header .mobile-number span {
 .service-outer .content .text-inner a::before {
   position: absolute;
   content: "";
-  background-color: #FF4D00;
+  background-color: #ff6600;
   right: -30px;
   top: 8px;
   width: 20px;
@@ -1566,7 +1568,7 @@ header .mobile-number span {
 
 .video-outer .heading .item:last-child {
   width: 58.33%;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .video-outer .content {
@@ -1645,7 +1647,7 @@ header .mobile-number span {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background-color: #FF4D00;
+  background-color: #ff6600;
   align-items: center;
   justify-content: center;
 }
@@ -1904,6 +1906,7 @@ header .mobile-number span {
   border: 1px solid #ddd;
   border-top: 0;
   padding: 30px;
+  height:130px;
 }
 
 .team-outer .text-content span {
@@ -2035,7 +2038,7 @@ header .mobile-number span {
   display: block;
   width: 20px;
   height: 20px;
-  background-color: #FF4D00;
+  background-color: #ff6600;
   border-radius: 50%;
   position: absolute;
 }
@@ -2082,7 +2085,7 @@ header .mobile-number span {
   text-align: center;
   line-height: 65px;
   background-color: #fff;
-  color: #FF4D00;
+  color: #ff6600;
   z-index: 1;
   font-size: 20px;
   padding-left: 5px;
@@ -2131,7 +2134,7 @@ header .mobile-number span {
 
 .quality-outer .heading p {
   color: #fff;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 @keyframes ripple {
@@ -2255,7 +2258,7 @@ header .mobile-number span {
   font-weight: 600;
   color: transparent;
   position: relative;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .news-outer .title{
@@ -2332,7 +2335,7 @@ header .mobile-number span {
 
 .news-outer .news p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .news-outer .news-items>a::before {
@@ -2488,7 +2491,7 @@ header .mobile-number span {
   padding-bottom: 30px;
   list-style: none;
   color: #000;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .pricing-outer ul li {
@@ -2613,7 +2616,7 @@ header .mobile-number span {
 
 .client-outer .bottom .item:last-child .img-content {
   padding: 0px 30px 80px 30px;
-  background-color: #FF4D00;
+  background-color: #ff6600;
 }
 
 .client-outer .client-img {
@@ -2759,7 +2762,7 @@ header .mobile-number span {
   font: inherit;
 }
 
-.client-outer .owl-carousel .owl-dots .owl-dot span {
+/* .client-outer .owl-carousel .owl-dots .owl-dot span {
   width: 100%;
   height: 2px;
   margin: 30px 1px 0px 1px;
@@ -2767,10 +2770,21 @@ header .mobile-number span {
   transition: opacity 200ms ease;
   border-radius: 0px;
   display: inline-block !important;
-}
+} */
 
 .client-outer .owl-carousel .owl-dots .owl-dot.active span {
   background: #000 !important;
+}
+
+/* Example CSS to hide dots */
+
+.your-carousel-selector .owl-dots {
+  display: none !important; /* Use !important only if necessary to override other styles */
+}
+
+/* OR, be more specific if needed */
+.owl-carousel .owl-dots {
+  display: none !important;
 }
 
 
@@ -2903,7 +2917,7 @@ footer .title {
 }
 
 footer .item ul {
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 footer .item:first-child ul {
@@ -2977,7 +2991,7 @@ footer .item:nth-child(3) ul li .text-content span {
   font-weight: 600;
   font-size: 16px;
   line-height: 16px;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
   color: #d72323;
 }
 
@@ -2997,7 +3011,7 @@ footer .item:nth-child(4) p {
   color: #d7d7d7;
   font-size: 14px;
   margin-bottom: 30px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 footer .input-group {
@@ -3088,13 +3102,13 @@ footer .copyright-menu li a {
   color: #d7d7d7;
   font-size: 14px;
   font-weight: 600;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 footer .soical-media {
   display: flex;
   font-size: 12px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 footer .soical-media li {
@@ -3143,7 +3157,7 @@ footer .bottom .bottom-inner {
 footer .bottom .bottom-inner span {
   color: #d7d7d7;
   font-size: 12px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 @media (max-width:991px) {
@@ -3283,7 +3297,7 @@ footer .bottom .bottom-inner span {
 
 .main-services-outer .heading .item:last-child p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .main-services-outer .bottom {
@@ -3339,7 +3353,7 @@ footer .bottom .bottom-inner span {
 
 .main-services-outer .bottom .text-content p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .main-services-outer .bottom .text-content a:hover::before {
@@ -3356,7 +3370,7 @@ footer .bottom .bottom-inner span {
   transition: all 0.5s ease-in-out;
   width: 20px;
   height: 2px;
-  background-color: #FF4D00;
+  background-color: #ff6600;
 }
 
 .main-services-outer .bottom .text-content a {
@@ -3478,7 +3492,7 @@ footer .bottom .bottom-inner span {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background-color: #FF4D00;
+  background-color: #ff6600;
   align-items: center;
   justify-content: center;
 }
@@ -3538,7 +3552,7 @@ footer .bottom .bottom-inner span {
 
 .sede-outer p {
   display: block;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   margin-bottom: 20px;
 }
 
@@ -3565,7 +3579,7 @@ footer .bottom .bottom-inner span {
   font-size: 20px;
   content: "\f10d";
   font-family: "Font Awesome 6 Free";
-  color: #FF4D00;
+  color: #ff6600;
   line-height: 26px;
   font-weight: 600;
 }
@@ -3574,7 +3588,7 @@ footer .bottom .bottom-inner span {
   font-size: 20px;
   line-height: 26px;
   padding-left: 0px;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
   font-weight: 700;
   margin-top: 15px;
   margin-bottom: 0px;
@@ -3587,7 +3601,7 @@ footer .bottom .bottom-inner span {
   margin-top: 20px;
   font-weight: 600;
   font-style: normal;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .sede-outer .service-detail {
@@ -3628,7 +3642,7 @@ footer .bottom .bottom-inner span {
   padding-left: 30px;
   margin-bottom: 15px;
   position: relative;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .sede-outer .service-detail .text-content li::before {
@@ -3768,7 +3782,7 @@ footer .bottom .bottom-inner span {
 }
 
 .error-outer p {
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   color: #fff;
   margin-bottom: 40px;
 }
@@ -3818,7 +3832,7 @@ footer .bottom .bottom-inner span {
 
 .faq-outer .accordion-header {
   position: relative;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .faq-outer .accordion-header button {
@@ -3839,7 +3853,7 @@ footer .bottom .bottom-inner span {
   border: none;
   box-shadow: none;
   cursor: pointer;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
   transition: all 0.2s ease-in-out;
 }
 
@@ -3869,7 +3883,7 @@ footer .bottom .bottom-inner span {
 
 .faq-outer .accordion-body {
   padding: 0px 15px 30px 15px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   color: #000;
   font-size: 16px;
 }
@@ -3910,7 +3924,7 @@ footer .bottom .bottom-inner span {
 
 .contact-outer .item .contact-info>li span {
   display: block;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
   font-weight: 700;
   font-size: 18px;
   margin-top: 5px;
@@ -3919,7 +3933,7 @@ footer .bottom .bottom-inner span {
 .contact-outer .item .contact-info>li p {
   margin-bottom: 10px;
   word-break: normal;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .contact-outer .item .contact-info ul {
@@ -3927,7 +3941,7 @@ footer .bottom .bottom-inner span {
 }
 
 .contact-outer .item .contact-info ul>li {
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .contact-outer .item:last-child .item-inner {
@@ -4021,7 +4035,7 @@ footer .bottom .bottom-inner span {
   margin: 1px 0px;
   font-weight: 600;
   letter-spacing: 1px;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
   padding: 10px 15px;
   background-color: #eee;
 }
@@ -4059,7 +4073,7 @@ footer .bottom .bottom-inner span {
 .gallery-outer .ant-tabs-tab-active .ant-tabs-tab-btn,
 .gallery-outer .ant-tabs-tab:hover,
 .gallery-outer .ant-tabs-tab .ant-tabs-tab-btn:hover {
-  background-color: #FF4D00;
+  background-color: #ff6600;
   color: #fff !important;
 }
 
@@ -4127,12 +4141,12 @@ footer .bottom .bottom-inner span {
 
 .gallery-outer .bottom .text-inner p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .gallery-outer .bottom .text-inner a {
   position: relative;
-  color: #FF4D00;
+  color: #ff6600;
   font-size: 18px;
   font-weight: 700;
   line-height: 18px;
@@ -4142,7 +4156,7 @@ footer .bottom .bottom-inner span {
 .gallery-outer .bottom .text-inner a::before {
   position: absolute;
   content: "";
-  background-color: #FF4D00;
+  background-color: #ff6600;
   right: -30px;
   top: 8px;
   width: 20px;
@@ -4256,7 +4270,7 @@ background-color: red;
 }
 
 .gdetails-outer p {
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   margin-bottom: 20px;
 }
 
@@ -4273,7 +4287,7 @@ background-color: red;
 }
 
 .gdetails-outer li {
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   font-size: 18px;
   font-weight: 600;
   padding: 0px 0px 0px 30px;
@@ -4311,11 +4325,11 @@ background-color: red;
   position: relative;
   background-color: #f6f5f8;
   color: #515151;
-  border-top: 3px solid #FF4D00;
+  border-top: 3px solid #ff6600;
   list-style: none outside;
   width: auto;
   word-wrap: break-word;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .cart-msg span a {
@@ -4340,7 +4354,7 @@ background-color: red;
   width: 100%;
   border-collapse: separate;
   border-radius: 5px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   overflow: hidden;
 }
 
@@ -4486,7 +4500,7 @@ background-color: red;
   margin: 0 -1px 24px 0;
   width: 100%;
   border-radius: 5px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .cart-outer .cart-inner .total th,
@@ -4575,7 +4589,7 @@ background-color: red;
   margin: 2em 0;
   text-align: left;
   border-radius: 5px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .check-outer .check-inner .cart-msg .coupon p {
@@ -4630,7 +4644,7 @@ background-color: red;
   border-style: solid;
   border-color: #eeeeee;
   border-width: 4px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .customer_details .content .name {
@@ -4698,7 +4712,7 @@ background-color: red;
   width: 100%;
   border-collapse: collapse;
   border-radius: 5px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .product-outer table th {
@@ -4742,7 +4756,7 @@ background-color: red;
 
 .product-outer ul li p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 /* Media Start */
@@ -4793,7 +4807,7 @@ background-color: red;
   font-weight: 700;
   margin-bottom: 10px;
   width: 100%;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   line-height: 1.1;
 }
 
@@ -4852,7 +4866,7 @@ background-color: red;
 
 .login-inner form p a {
   color: #111111;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 /* ****************************************** Blog Page ****************************************** */
@@ -4916,7 +4930,7 @@ background-color: red;
   margin-bottom: 30px;
   margin-top: 10px;
   font-weight: 600;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .blog-info-outer .post .text-content .blog-full-details .post-info .posted a {
@@ -4925,7 +4939,7 @@ background-color: red;
 
 .blog-info-outer .post .text-content .blog-full-details p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .blog-info-outer .post .text-content .media-post {
@@ -5041,7 +5055,7 @@ background-color: red;
 }
 
 .blog-info-outer .share-wrapper .pinterest {
-  background-color: #FF4D00;
+  background-color: #ff6600;
 }
 
 .blog-info-outer .share-wrapper .twitter {
@@ -5134,7 +5148,7 @@ background-color: red;
   display: block;
   margin-left: 20px;
   font-size: 15px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .comments-outer .comment-list li .comment-body .comment-details>p {
@@ -5143,7 +5157,7 @@ background-color: red;
   line-height: 26px;
   width: 100%;
   padding-right: 15px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   margin-bottom: 20px;
 }
 
@@ -5221,7 +5235,7 @@ background-color: red;
 .responce-outer .cookies label {
   font-weight: 700;
   margin-bottom: 10px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 /* Media Start */
@@ -5342,7 +5356,7 @@ background-color: red;
 
 .bgrid-outer .left p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .bgrid-outer .site-button {
@@ -5365,7 +5379,7 @@ background-color: red;
   transition: all 0.5s ease-in-out;
   width: 20px;
   height: 2px;
-  background-color: #FF4D00;
+  background-color: #ff6600;
 }
 
 .bgrid-outer .site-button:hover::before {
@@ -5388,7 +5402,7 @@ background-color: red;
 
 .bgrid-outer .left .left-inner>ul .selected,
 .bgrid-outer .left .left-inner>ul li:hover {
-  background-color: #FF4D00;
+  background-color: #ff6600;
 }
 
 .bgrid-outer .left .left-inner>ul .selected a,
@@ -5403,7 +5417,7 @@ background-color: red;
   margin: 0;
   position: relative;
   background-color: #fff;
-  border: 1px solid #FF4D00;
+  border: 1px solid #ff6600;
   color: #00173c;
   width: 40px;
   height: 40px;
@@ -5452,7 +5466,7 @@ background-color: red;
   border-left-color: #fff;
   padding: 9px 0px;
   color: transparent;
-  background-color: #FF4D00;
+  background-color: #ff6600;
   border: 0px;
   height: 56px;
   width: 55px;
@@ -5461,7 +5475,7 @@ background-color: red;
 }
 
 .bgrid-outer .right .side-bar h4 {
-  border-left: 3px solid #FF4D00;
+  border-left: 3px solid #ff6600;
   padding-left: 10px;
   font-size: 24px;
   color: #1a1a1a;
@@ -5504,7 +5518,7 @@ background-color: red;
   line-height: 16px;
   color: #d32727;
   font-weight: 600;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 
@@ -5515,7 +5529,7 @@ background-color: red;
   margin-top: 0px;
   color: #333;
   font-weight: 700;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .bgrid-outer .right .side-bar .categories ul li:first-child {
@@ -5529,7 +5543,7 @@ background-color: red;
   color: #111;
   line-height: 35px;
   font-size: 16px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   min-height: 35px;
 }
 
@@ -5571,7 +5585,7 @@ background-color: red;
   color: #333;
   font-weight: 700;
   margin-bottom: 5px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .bgrid-outer .right .side-bar .meta-info ul li:first-child {
@@ -5588,7 +5602,7 @@ background-color: red;
 .bgrid-outer .right .side-bar .meta-info ul li a {
   color: #333;
   font-weight: 700;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .bgrid-outer .right .side-bar .tag-cloud a {
@@ -5601,13 +5615,13 @@ background-color: red;
   z-index: 1;
   font-weight: 600;
   border: 1px solid #e8e8e8;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   transition: all 0.2s linear;
 }
 
 .bgrid-outer .right .side-bar .tag-cloud a:hover {
   color: #fff;
-  background-color: #FF4D00;
+  background-color: #ff6600;
 }
 
 
@@ -5639,7 +5653,7 @@ background-color: red;
 .shop-outer .top {
   display: flex;
   justify-content: space-between;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .shop-outer .top p {
@@ -5771,7 +5785,7 @@ background-color: red;
   color: #d72323;
   text-decoration: none;
   font-weight: 600;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .shop-outer .content ul {
@@ -5798,12 +5812,12 @@ background-color: red;
 
 .shop-outer .content ul li a {
   color: #333;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .shop-outer .content ul .selected,
 .shop-outer .content ul li:hover {
-  background-color: #FF4D00;
+  background-color: #ff6600;
 }
 
 .shop-outer .content ul .selected a,
@@ -5906,12 +5920,12 @@ background-color: red;
 .single-product-outer .item .price {
   color: #d32727;
   font-size: 1.25em;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .single-product-outer .item .Availability {
   margin: 15px 0;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 
 }
 
@@ -5922,7 +5936,7 @@ background-color: red;
 
 .single-product-outer .item p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 
 }
 
@@ -5975,7 +5989,7 @@ background-color: red;
 }
 
 .single-product-outer .item .category {
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 .single-product-outer .item .category span {
@@ -6025,7 +6039,7 @@ background-color: red;
 
 .single-product-outer .ant-tabs .ant-tabs-tabpane {
   padding: 10px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
   color: #404040;
   font-size: 16px;
 }
@@ -6059,7 +6073,7 @@ background-color: red;
 
 .single-product-outer .reviews-comments {
   margin-bottom: 15px;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
   font-size: 28px;
   color: #1a1a1a;
   font-weight: 700;
@@ -6073,7 +6087,7 @@ background-color: red;
 
 .single-product-outer .review-form h3 {
   font-size: 20px;
-  font-family: "Rajdhani", sans-serif;
+  font-family: inherit, sans-serif;
   margin-bottom: 15px;
   color: #1a1a1a;
   font-weight: 700;
@@ -6198,7 +6212,7 @@ background-color: red;
 
 .police-outer p {
   margin-bottom: 20px;
-  font-family: "Mulish", sans-serif;
+  font-family: inherit, sans-serif;
 }
 
 @media (max-width : 767px) {
@@ -6519,7 +6533,7 @@ background-color: red;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #ff0000, #000);
+  background: linear-gradient(180deg, #010e64, #000);
   z-index: 1;
   opacity: 0;
   transition: 0.5s;
@@ -6568,6 +6582,7 @@ background-color: red;
   margin-bottom: 5px;
   transform: translateY(200px);
   transition: transform 0.5s ease 0.3s;
+  font-family: inherit;
 }
 
 .image-gallery-content p {
@@ -6575,6 +6590,7 @@ background-color: red;
   font-size: 14px;
   transform: translateY(200px);
   transition: transform 0.5s ease 0.4s;
+  font-family: inherit;
 }
 
 .image-gallery-box:hover .image-gallery-content h2,

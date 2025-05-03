@@ -12,7 +12,7 @@ const TeamItems = (props) => {
           <div className="text-content">
             <div className="detail">
               <span>{props.vlaue.position}</span>
-              <h4>{props.vlaue.name}</h4>
+              <h6>{props.vlaue.name}</h6>
             </div>
             {/* <ul className="socil-media">
               <li>

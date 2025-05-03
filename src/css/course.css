@@ -1,0 +1,349 @@
+/*--------------------------------------------------------------
+# Course Detail Page Styles
+--------------------------------------------------------------*/
+
+.course-detail-page-wrapper {
+    background-color: #f8f9fa; /* Light background for the whole page */
+  }
+  
+  /* Left Column */
+  .course-title {
+    font-size: 2.2rem; /* Slightly smaller than h1 default */
+    font-weight: 700;
+    color: #212529;
+    line-height: 1.3;
+  }
+  
+  .rating-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem !important; /* Ensure spacing */
+  }
+  
+  .rating-star {
+    font-size: 1.1rem;
+    margin-right: 3px;
+  }
+  
+  .rating-star.filled {
+    color: #ffc107; /* Bootstrap yellow */
+  }
+  
+  .rating-star.empty {
+    color: #d1d1d1; /* Lighter grey */
+  }
+  
+  .review-count {
+    font-size: 0.9rem;
+    color: #6c757d; /* Bootstrap secondary text */
+    margin-left: 0.5rem;
+  }
+  
+  .info-boxes {
+    margin-bottom: 2.5rem !important;
+  }
+  
+  .info-box-item {
+    border: 1px solid #e9ecef; /* Bootstrap card border color */
+    padding: 1rem 0.75rem;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 0.375rem; /* Bootstrap default border-radius */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .info-box-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 0.3rem;
+    display: block;
+    text-transform: uppercase; /* Uppercase label */
+    letter-spacing: 0.5px;
+  }
+  
+  .info-box-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #212529;
+  }
+  
+  .about-course p {
+    color: #495057; /* Slightly lighter than default black */
+    line-height: 1.7;
+  }
+  .about-course p b { /* Style bold tags from HTML */
+      color: #212529;
+      font-weight: 600;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem !important;
+    color: #343a40;
+    padding-bottom: 0.5rem; /* Space under title */
+    border-bottom: 2px solid #e9ecef; /* Subtle divider */
+    display: inline-block; /* Make border only as wide as text */
+  }
+  
+  .what-you-learn {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #e9ecef;
+    border-radius: 0.375rem;
+    padding: 1.5rem !important; /* Use !important if Bootstrap padding overrides */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .learn-list li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    color: #495057;
+    font-size: 0.95rem;
+  }
+  
+  .check-icon {
+    color: #198754; /* Bootstrap success green */
+    margin-right: 0.75rem;
+    margin-top: 4px;
+    font-size: 0.9rem;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+  }
+  
+  .course-content-section .section-title {
+      border-bottom: none; /* No border for this title */
+      margin-bottom: 1rem !important;
+  }
+  
+  .course-content-accordion .accordion-item {
+      border: 1px solid #dee2e6; /* Standard border */
+      margin-bottom: 0.5rem; /* Space between items */
+      border-radius: 0.375rem !important; /* Force border radius */
+      overflow: hidden; /* Ensure body doesn't overflow rounded corners */
+  }
+  
+  .course-content-accordion .accordion-header {
+      background-color: #f8f9fa; /* Light grey header */
+      border-bottom: 1px solid #dee2e6;
+  }
+  
+  .course-content-accordion .accordion-button {
+      font-weight: 600;
+      color: #212529;
+      background-color: #f8f9fa;
+      padding: 0.8rem 1.25rem;
+      display: flex; /* Allow space-between */
+      justify-content: space-between; /* Push day to the right */
+      width: 100%; /* Ensure full width */
+  }
+  .course-content-accordion .accordion-button:not(.collapsed) {
+      color: #0d6efd; /* Blue when open */
+      background-color: #e7f1ff; /* Lighter blue background when open */
+      box-shadow: none;
+  }
+  .course-content-accordion .accordion-button::after {
+      /* Style default Bootstrap icon if needed */
+      /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230d6efd'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e"); */
+  }
+  
+  .module-title {
+      flex-grow: 1; /* Take available space */
+      margin-right: 1rem; /* Space before day */
+  }
+  .module-day {
+      font-size: 0.85rem;
+      font-weight: normal;
+      color: #6c757d;
+      white-space: nowrap; /* Prevent wrapping */
+  }
+  
+  .course-content-accordion .accordion-body {
+      padding: 1rem 1.25rem;
+      background-color: #ffffff;
+  }
+  
+  .module-details {
+      list-style-type: disc; /* Use standard bullets */
+      padding-left: 1.2rem; /* Indent bullets */
+  }
+  
+  .module-details li {
+      color: #495057;
+      font-size: 0.9rem;
+      line-height: 1.6;
+  }
+  
+  
+  /* Right Sidebar */
+  /* .sidebar-content { */
+    /* Add position: sticky; top: 20px; if you want a sticky sidebar */
+  /* } */
+  
+  /* .video-section {
+    border: 1px solid #e9ecef;
+    padding: 0; /* No padding on container */
+    /* border-radius: 0.375rem;
+    margin-bottom: 1.5rem;
+    position: relative; */
+    /* overflow: hidden; /* Hide anything overflowing the border-radius */
+    /* background-color: #fff; */ */
+  /* } */ */
+  
+  /* .video-thumbnail {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+  } */
+
+/* Add to your style.css */
+
+.sidebar-image-section {
+    background-color: #fff; /* Optional white background */
+    /* Add any other specific wrapper styles if needed */
+  }
+  
+  .course-sidebar-image {
+    display: block; /* Removes extra space below image */
+    width: 100%; /* Ensure it takes full width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 0.375rem; /* Match container's rounded corners */
+  }
+  
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #0d6efd; /* Bootstrap primary blue */
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .play-button:hover {
+    background-color: #ffffff;
+    transform: translate(-50%, -50%) scale(1.1); /* Slight scale effect */
+  }
+  
+  .course-breakdown-section {
+    border: 1px solid #e9ecef;
+    border-radius: 0.375rem;
+    background-color: #ffffff;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem !important; /* Override bootstrap padding if needed */
+  }
+  
+  .course-breakdown-item {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px dashed #e9ecef; /* Dashed divider */
+    font-size: 0.9rem;
+  }
+  
+  .course-breakdown-item:last-child {
+    border-bottom: none;
+  }
+  
+  .item-icon {
+    margin-right: 0.8rem;
+    color: #0d6efd;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  
+  .item-label {
+    flex-grow: 1;
+    color: #495057;
+  }
+  
+  .item-value {
+    color: #212529;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  
+  .enroll-button-main {
+      font-weight: 600;
+      padding: 0.75rem 1rem; /* Slightly larger padding */
+  }
+  
+  .upcoming-batches-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #343a40;
+  }
+  
+  .batch-card {
+    border: 1px solid #e9ecef;
+    background-color: #ffffff;
+  }
+  
+  .batch-date {
+    background-color: #ffc107; /* Bootstrap warning yellow */
+    color: #fff; /* White text */
+    padding: 10px 12px;
+    text-align: center;
+    min-width: 65px;
+  }
+  
+  .batch-date .day {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  
+  .batch-date .month-year {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1;
+    margin-top: 2px;
+    text-transform: uppercase; /* Uppercase month */
+  }
+  
+  .batch-info {
+    /* Padding added in JSX */
+  }
+  
+  .batch-info .batch-title {
+    font-size: 0.9rem; /* Smaller title */
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #212529;
+    line-height: 1.3;
+  }
+  
+  .batch-info .batch-time {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  .batch-info .batch-time .me-1 { /* Icon spacing */
+      font-size: 0.8rem; /* Smaller clock */
+  }
+  
+  .enroll-button-batch {
+      padding: 0.25rem 0.6rem; /* Smaller button */
+      font-size: 0.8rem;
+  }
+  
+  /* Optional: Add some box shadow on hover for cards */
+  .info-box-item:hover, .batch-card:hover, .course-breakdown-section:hover, .video-section:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.3s ease-in-out;
+  }

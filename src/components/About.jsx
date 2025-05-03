@@ -13,7 +13,7 @@ const About = () => {
                   <img src="assets/img/rtpo.jpg" alt="" />
                 </div>
                 <div className="text-content">
-                  <span className="outline-title" style={{fontSize:'40px'}}>DGCA RPTO</span>
+                  <span className="outline-title" style={{fontSize:'20px'}}>DGCA RPTO</span>
                   <strong style={{fontSize:'25px'}}>Approved!</strong>
                 </div>
               </div>

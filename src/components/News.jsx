@@ -37,7 +37,7 @@ const News = () => {
                   <span>Exploring Our Presence</span>
                   <div className="line-right"></div>
                 </div>
-                <h2>Our Presence</h2>
+                <h3>Our Presence</h3>
               </div>
             </div>
 
@@ -51,7 +51,7 @@ const News = () => {
                     </div> */}
                     <div className="title">
                       <h4>
-                        <Link to="/blog-details" style={{color:'red'}}>
+                        <Link to="/blog-details" style={{color:'red',fontSize:'15px'}}>
                         RPTO's in line up - Uttar Pradesh, Gujrat, Maharashtra, Andhrapradesh
                         </Link>
                       </h4>

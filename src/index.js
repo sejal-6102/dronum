@@ -29,6 +29,7 @@ import EnrollForm from "./components/Pages/EnrollForm";
 import AdminPannel from "./components/Pages/Admin/AdminPannel";
 import AdminLogin from "./components/Pages/AdminLogin";
 import ProtectedRoute from "./components/Pages/ProtectedRoute";
+import CourseDetailPage from './components/Pages/CourseDetailPage';
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -41,8 +42,20 @@ root.render(
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<AboutOne/>}/>
         <Route path="/who-we-are" element={<AllServices/>}/>
-        <Route path="/dgca-courses" element={<ServicesDetail/>}/>
-        <Route path="/all-courses" element={<GalleryGrid/>}/>
+
+
+        {/* <Route path="/dgca-courses" element={<ServicesDetail/>}/>
+        <Route path="/all-courses" element={<GalleryGrid/>}/> */}
+          {/* --- Updated Courses Routes --- */}
+          {/* Optional: General landing page for /courses */}
+          {/* <Route path="courses" element={<CoursesLandingPage />} /> */}
+
+          {/* Dynamic route for individual course details */}
+          {/* The ':courseId' part is a URL parameter */}
+          <Route path="courses/:courseId" element={<CourseDetailPage/>} />
+          {/* --- End of Updated Courses Routes --- */}
+
+
         <Route path="/our-glimps" element={<GalleryDetails/>}/>
         <Route path="/team-listing" element={<TeamListing/>}/>
         <Route path="/faq" element={<Faq/> }/>

@@ -45,9 +45,9 @@ const Video = () => {
                   <span className="line-left"></span>
                   <span className="text">Gallery</span>
                 </div>
-                <h2>Dronum at Glance
+                <h3>Dronum at Glance
 
-                </h2>
+                </h3>
               </div>
               <div className="item">
                 <p>

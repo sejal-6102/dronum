@@ -5,24 +5,24 @@ import { Link } from "react-router-dom";
 const images = [
   {
   src:"assets/img/daas01.jpg",
-  title:"AERIAL SURVEYING AND MAPPING: ",
-  des:"UTILIZING DRONES FOR ACCURATE AND EFFICIENT SURVEYING AND MAPPING. "
+  title:"Aerial Surveying And Mapping ",
+  des:"Utilizing Drones For Accurate And Efficient Surveying And Mapping "
   },
 
   {
   src:"assets/img/daas02.jpg",
-  title:"AGRICULTURAL SERVICES: ",
-  des:" DRONES FOR CROP MONITORING, SPRAYING, AND OTHER AGRICULTURAL APPLICATIONS.  "
+  title:"AGRICULTURAL SERVICES ",
+  des:"Drones For Crop Monitoring,Spraying,And Other Agricultural Applications "
   },
   {
   src:"assets/img/daas03.jpg",
-  title:"INFRASTRUCTURE INSPECTION:  ",
-  des:"CONDUCTING INSPECTIONS OF INFRASTRUCTURE SUCH AS BRIDGES, TOWERS AND BUILDINGS.  "
+  title:"INFRASTRUCTURE INSPECTION  ",
+  des:"Conducting Inspections Of Infrastructure Such As Bridges,Towers And Buildings  "
   },
   {
     src:"assets/img/daas04.jpg",
-    title:"PHOTOGRAPHY AND VIDEOGRAPHY:  ",
-  des:"HIGH-QUALITY AERIAL PHOTOGRAPHY AND VIDEOGRAPHY FOR EVENTS, REAL ESTATE AND OTHER PURPOSES"
+    title:"PHOTOGRAPHY AND VIDEOGRAPHY ",
+  des:"High-Quality Aerial Photography And Videography For Events ,Real Estate And Other Purposes"
     },
   
 ];
@@ -61,20 +61,22 @@ const ImageGallery = () => {
 
   return (
     <div className="image-gallery-wrapper">
-      <div className="heading animate__animated animate__zoomIn">
-        <div className="item">
-          <div className="sub-heading">
-            <span className="line-left"></span>
-            <span className="text">You Will Love It.</span>
-          </div>
-          <h2>Drone As A Service (DAAS)</h2>
-        </div>
-        <div className="item">
-          <p>
-            We provide expert inspection services for your organization’s mission-critical assets using drone technology.
-          </p>
-        </div>
-      </div>
+      <div className="heading animate__animated animate__zoomIn" style={{ width: '100%', textAlign: 'center' }}> {/* <-- Add text-align here */}
+  {/* Removed redundant item div around sub-heading/h3 as they can be centered directly */}
+  <div className="sub-heading" style={{ display: 'inline-block', marginBottom: '10px' }}> {/* Adjust display/margin as needed */}
+    <span className="line-left"></span> {/* You might need specific styling for the line */}
+    <span className="text">You Will Love It.</span>
+    <span className="line-right"></span> {/* Assuming you might want a line on the right too */}
+  </div>
+  <h3>Drone As A Service (DAAS)</h3>
+
+  {/* Keep the paragraph in its own item div if needed for other styling, but center text */}
+  <div className="item" style={{ marginTop: '15px' }}> {/* Add margin for spacing */}
+    <p>
+      We provide expert inspection services for your organization’s mission-critical assets using drone technology.
+    </p>
+  </div>
+</div>
       <div className="image-gallery-container">
   {images.map((item, index) => (
     <ImageBox

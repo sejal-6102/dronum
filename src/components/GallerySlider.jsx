@@ -54,7 +54,7 @@ const GallerySlider = () => {
                     <span className="line-left"></span>
                     <span className="text">Event Glimps</span>
                   </div>
-                  <h2>DRONUM & MARUT DRONE ACADEMY</h2>
+                  <h3>DRONUM & MARUT DRONE ACADEMY</h3>
                 </div>
                 <div className="item  ">
                   <p>

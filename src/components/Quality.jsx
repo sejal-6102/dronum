@@ -35,10 +35,10 @@ const Quality = () => {
                     <div className="line-left"></div>
                     <span> Who We Are</span>
                   </div>
-                  <h2>
+                  <h3 style={{color:"white",paddingBottom:'10px'}}>
                     Dronum India Aviation – Your Premier RPTO for Drone Training
                     in Jaipur, Rajasthan
-                  </h2>
+                  </h3>
                   <p>
                     Dronum India Aviation is Jaipur, Rajasthan-based remote
                     pilot training organization. Dronum India Aviation is a

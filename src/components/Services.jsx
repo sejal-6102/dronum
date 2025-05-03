@@ -83,7 +83,7 @@ const Services = () => {
                   <span className="line-left"></span>
                   <span className="text">You Will Love It.</span>
                 </div>
-                <h2>Courses Offered</h2>
+                <h3>Courses Offered</h3>
               </div>
               <div className="item">
                 <p>

@@ -102,7 +102,7 @@ const Footer = () => {
             <div className="middle-inner">
               <div className="logo">
                 <Link to="/">
-                  <img src="assets\img\logo.png" alt="" />
+                  <img src="/assets\img\logo.png" alt="" />
                 </Link>
               </div>
               <ul className="copyright-menu">
