@@ -15,7 +15,7 @@ const Hero = () => {
             <div className="item">
               <div className="item-inner">
                 <div className="text">
-                  <h2 className="animate__animated animate__fadeInUp" style={{textTransform:'uppercase'}}>Unlock the future of drone technology with us</h2>
+                  {/* <h2 className="animate__animated animate__fadeInUp" style={{textTransform:'uppercase'}}>Unlock the future of drone technology with us</h2> */}
                 </div>
                 <div className="left-square">
                   <span className="animate__animated animate__fadeInUp"></span>
