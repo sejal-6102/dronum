@@ -6,7 +6,7 @@ const Hero = () => {
       <div className="hero-outer">
         <div className="bg-video animate__animated animate__slideInRight">
           <video autoPlay muted loop preload="auto">
-            <source src="assets/video/video1.mp4" type="video/mp4" />
+            <source src="assets/video/dronum.mp4" type="video/mp4" />
           </video>
         </div>
 
