@@ -59,6 +59,7 @@ function MainContent({ activeSection, data, loading, error }) {
             { header: 'Email', key: 'email' },
             { header: 'Phone', key: 'phone' },
             { header: 'City', key: 'city' },
+            { header: 'drone', key: 'drone' },
              // Add other relevant booking fields
           ],
           items: data.bookings,
