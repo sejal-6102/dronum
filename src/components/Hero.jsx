@@ -17,12 +17,12 @@ const Hero = () => {
                 <div className="text">
                   {/* <h2 className="animate__animated animate__fadeInUp" style={{textTransform:'uppercase'}}>Unlock the future of drone technology with us</h2> */}
                 </div>
-                <div className="left-square">
+                {/* <div className="left-square">
                   <span className="animate__animated animate__fadeInUp"></span>
-                </div>
-                <div className="right-square">
+                </div> */}
+                {/* <div className="right-square">
                   <span className="animate__animated animate__fadeInUp"></span>
-                </div>
+                </div> */}
               </div>
               <div className="drone-img animate__animated animate__slideInRight">
                 {/* <img className="" src="assets/img/d-1.png" alt="" /> */}
