@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Your backend base URL
+  baseURL: 'https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api', // Your backend base URL
 });
 
 // Request Interceptor: Add token to headers for protected routes
