@@ -7,10 +7,14 @@ const enrollRoutes = require("./routes/enrollroutes");
 const bookRoutes = require("./routes/booknowroutes");
 const contactRoutes = require("./routes/contactRoutes");
 
+const { adminRouter } = require("./routes/adminAuth");
+const adminDataRoutes = require("./routes/adminData");
+
 const app = express();
 // app.use(cors());
 app.use(cors({
-  origin: 'https://dronum.vercel.app', // <-- Frontend URL
+  origin: 'https://dronum.vercel.app',
+    // origin: 'http://localhost:3000',   //  // <-- Frontend URL
   methods: ['GET', 'POST'], // Add others if needed: PUT, DELETE, etc.
   credentials: true // if using cookies or auth
 }));
@@ -29,6 +33,10 @@ mongoose
 app.use("/api/enroll", enrollRoutes);
 app.use("/api/book", bookRoutes);
 app.use("/api/contact", contactRoutes);
+
+
+app.use("/api/admin", adminRouter);         // Login route
+app.use("/api/dashboard", adminDataRoutes);
 
 // For local testing only (skip this in Vercel)
 if (process.env.NODE_ENV !== "production") {
