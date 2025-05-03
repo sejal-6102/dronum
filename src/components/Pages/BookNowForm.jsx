@@ -23,7 +23,7 @@ const BookNowForm = ({ isOpen, closeModal }) => {
   
     try {
      // const response = await fetch("https://dronum-backend.vercel.app/api/book"
-      const response = await fetch("http://localhost:5000/api/book", {
+      const response = await fetch("https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

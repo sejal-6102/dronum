@@ -20,7 +20,7 @@ const EnrollForm = ({ isOpen, closeModal }) => {
     }
   
     try {
-      const response = await fetch("http://localhost:5000/api/enroll", {
+      const response = await fetch("https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api/enroll", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
