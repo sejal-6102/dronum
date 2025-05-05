@@ -328,7 +328,7 @@ header .mobile-number span {
     font-weight: 600;
     padding: 35px 14px;
     text-transform: uppercase;
-    font-size: 18px;
+    /* font-size: 18px; */
     position: relative;
   }
 
@@ -414,7 +414,7 @@ header .mobile-number span {
     position: absolute;
     top: 0%;
     left: 0;
-    width: 240px;
+    width: 340px;
     background: #fff;
     height: 1200px;
     z-index: 99;
@@ -1324,9 +1324,13 @@ header .mobile-number span {
 
 /* About End */
 
+
+
+
 /* Srvices Start */
 .service-outer {
   display: block;
+  align-items: center;
 }
 
 .service-outer .service-inner {
@@ -1334,6 +1338,8 @@ header .mobile-number span {
   padding-top: 80px;
   padding-bottom: 50px;
   overflow: hidden;
+  justify-items: center;
+  
 }
 
 .service-outer .heading {
@@ -1362,10 +1368,12 @@ header .mobile-number span {
   display: flex;
   margin: 0 -15px;
   flex-wrap: wrap;
+  max-width: 1260px;
+  justify-content: center;
 }
 
 .service-outer .content .item {
-  width: 33.33%;
+  width: 30.33%;
   margin-bottom: 30px;
 }
 
@@ -2931,6 +2939,7 @@ footer .item:first-child li {
   font-size: 14px;
   color: #d7d7d7;
   line-height: 26px;
+  padding-top:6px;
 }
 
 footer .item:first-child li span {
@@ -6649,7 +6658,7 @@ background-color: red;
 @media (max-width: 480px) {
   .image-gallery-box {
     width: 100%;
-    height: 260px;
+    height: 350px;
   }
 
   .image-gallery-content h2 {

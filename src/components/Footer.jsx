@@ -84,11 +84,11 @@ const Footer = () => {
               </div> */}
               <div className="item">
                 <div className="item-inner">
-                  <h4 className="title">Newsletter</h4>
+                  <h4 className="title">About</h4>
                   <p>
-                    Join our subscribers list to get the latest news, updates
-                    and special offers delivered directly in your inbox.
-                  </p>
+                  Dronum India Aviation is Jaipur, Rajasthan-based remote pilot training organization. Dronum India Aviation is a remote pilot training organization approved by DGCA. </p>
+                  {/* <p>We help you attain high-quality, hand-on-the-throttle theoretical knowledge about drones, from flight hours to drone manufacturer approved certification for flying in several states and cities of our country. 
+                  </p> */}
 
                   {/* <div className="input-group">
                     <input type="text" placeholder="Enter your email" />

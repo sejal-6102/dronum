@@ -68,12 +68,12 @@ const ImageGallery = () => {
     <span className="text">You Will Love It.</span>
     <span className="line-right"></span> {/* Assuming you might want a line on the right too */}
   </div>
-  <h3>Drone As A Service (DAAS)</h3>
+  <h2>Drone As A Service (DAAS)</h2>
 
   {/* Keep the paragraph in its own item div if needed for other styling, but center text */}
   <div className="item" style={{ marginTop: '15px' }}> {/* Add margin for spacing */}
     <p>
-      We provide expert inspection services for your organization’s mission-critical assets using drone technology.
+    Discover a smarter, faster, and more efficient way to leverage aerial technology. With Drone as a Service <b>(DaaS)</b>, you gain access <br></br>to professional drone operations without the need to buy, maintain, or manage the equipment yourself. Whether you're in agriculture, <br></br>logistics, infrastructure, surveillance, real estate, or emergency response — our drone services are tailored to fit your needs.
     </p>
   </div>
 </div>

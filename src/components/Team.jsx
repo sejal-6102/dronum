@@ -30,7 +30,8 @@ const Team = () => {
                 <span className="text">Core Team</span>
                 <span className="line-right"></span>
               </div>
-              <h3>Creating Our Footprints</h3>
+              <h2>Creating Our Footprints</h2>
+              <p>At Dronum Aviation, our core team is the backbone of every innovation, flight, and milestone we achieve. Comprising passionate aviators, skilled engineers, visionary entrepreneurs, and strategic thinkers, our team is united by a single mission — to shape the future of drone technology in India.</p>
             </div>
             <div className="content">
               {team.map((i,index) => (

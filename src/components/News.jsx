@@ -37,7 +37,9 @@ const News = () => {
                   <span>Exploring Our Presence</span>
                   <div className="line-right"></div>
                 </div>
-                <h3>Our Presence</h3>
+                <h2>Our Presence</h2>
+                <p>At Dronum Aviation, our footprint extends across key regions where innovation meets execution. With a growing network of operations, training hubs, and service points, we are redefining how drone technology is accessed and applied across India.</p>
+              <p>From aerial surveying in remote landscapes to training future drone pilots in state-of-the-art facilities, our presence is not just about location—it's about impact. Whether it's agriculture, defense, logistics, or education, Dronum Aviation is actively building a smarter, safer, and more connected aerial ecosystem.</p>
               </div>
             </div>
 

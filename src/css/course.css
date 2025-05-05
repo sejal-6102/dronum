@@ -100,7 +100,7 @@
   }
   
   .check-icon {
-    color: #198754;
+    color: rgb(255, 102, 0);
     margin-right: 0.75rem;
     margin-top: 4px;
     font-size: 0.9rem;
@@ -134,7 +134,7 @@
       width: 100%; /* Ensure full width */
   }
   .course-content-accordion .accordion-button:not(.collapsed) {
-      color: #0d6efd; 
+      color: #020231; 
       background-color: #e7f1ff; 
       box-shadow: none;
   }
@@ -187,7 +187,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.9);
-    color: #0d6efd; /* Bootstrap primary blue */
+    color: #020231; /* Bootstrap primary blue */
     border-radius: 50%;
     width: 55px;
     height: 55px;
@@ -228,7 +228,7 @@
   
   .item-icon {
     margin-right: 0.8rem;
-    color: #0d6efd;
+    color: #020231;
     font-size: 1.1rem;
     width: 20px;
     text-align: center;
@@ -318,3 +318,233 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       transition: box-shadow 0.3s ease-in-out;
   }
+
+
+  /* src/css/course.css */
+
+/* ... आपका मौजूदा CSS ... */
+
+.course-detail-page-wrapper .course-title {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem; /* Adjust spacing */
+}
+
+.dgca-approved-badge {
+  background-color: #e7f3ff; /* Light blue background */
+  color: #020231; /* Bootstrap primary blue */
+  border: 1px solid #b6d4fe;
+  border-radius: 0.25rem;
+  padding: 0.4rem 0.8rem;
+  display: inline-flex; /* Align icon and text */
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.dgca-approved-badge .dgca-icon {
+  margin-right: 0.5rem;
+  font-size: 1.1em; /* Make icon slightly larger */
+}
+
+
+.rating-section .rating-star {
+  color: #ffc107; /* Gold color for stars */
+  margin-right: 2px;
+}
+.rating-section .rating-star.empty {
+  color: #e0e0e0; /* Light grey for empty stars */
+}
+.rating-section .review-count {
+  font-size: 0.9rem;
+  color: #6c757d; /* Grey text for review count */
+  vertical-align: middle; /* Align with stars */
+}
+
+.info-boxes .info-box-item {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #eee;
+}
+.info-boxes .info-box-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+.info-boxes .info-box-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.about-course .section-title,
+.what-you-learn .section-title,
+.course-content-section .section-title {
+  font-weight: 600;
+  color: #053B50; /* Example dark blue color */
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgb(255, 102, 0); /* Example teal border */
+  display: inline-block;
+}
+
+.what-you-learn {
+  background-color: #f8f9fa; /* Light background for emphasis */
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+}
+
+.what-you-learn .learn-list li {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-start; /* Align icon with first line of text */
+}
+
+.what-you-learn .check-icon {
+  color: rgb(255, 102, 0); /* Bootstrap success green */
+  margin-right: 0.5rem;
+  margin-top: 4px; /* Adjust vertical alignment */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.course-content-accordion .accordion-item {
+  margin-bottom: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  overflow: hidden; /* Ensure rounded corners apply */
+}
+
+.course-content-accordion .accordion-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
+ padding: 1rem 1.25rem; /* Adjust padding */
+}
+
+.course-content-accordion .accordion-button {
+  font-weight: 500;
+  /* background-color: #f8f9fa; */
+  border-radius: 0; /* Remove default radius */
+  padding: 1rem 1.25rem;
+}
+.course-content-accordion .accordion-button:not(.collapsed) {
+  background-color: #e7f1ff; /* Light blue when open */
+  color: #052c65;
+  box-shadow: none;
+}
+.course-content-accordion .accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(0,0,0,.125);
+}
+
+.course-content-accordion .accordion-body {
+  padding: 1rem 1.25rem 1rem 2.5rem; /* Indent body content */
+  background-color: #fff;
+}
+.course-content-accordion .module-details li::before {
+    content: "•"; /* Use a bullet point */
+    color: #020231; /* Blue bullet */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em; /* Align with padding */
+}
+
+
+/* Right Sidebar */
+.course-detail-right .sidebar-content {
+  /* Basic stickiness (requires browser support) */
+  position: sticky;
+  top: 80px; /* Adjust based on your header height */
+}
+
+.course-detail-right .image-section .course-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the area */
+}
+
+.course-breakdown-section {
+  background-color: #fff;
+}
+
+.course-breakdown-section .breakdown-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.course-breakdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+.course-breakdown-item:last-child {
+  border-bottom: none;
+}
+.course-breakdown-item .item-icon {
+  margin-right: 15px;
+  color: #02026c; /* Primary color for icons */
+  font-size: 1.2em;
+  min-width: 20px; /* Ensure consistent icon spacing */
+  text-align: center;
+}
+.course-breakdown-item .item-label {
+  flex-grow: 1;
+  color: #555;
+}
+.course-breakdown-item .item-value {
+  font-weight: 600;
+  color: #333;
+}
+
+.enroll-button-main {
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+}
+
+.upcoming-batches-section .upcoming-batches-title {
+  font-weight: 600;
+  color: #053B50;
+}
+
+.batch-card {
+    background-color: #fff;
+}
+
+.batch-card .batch-date {
+    /* background-color: #0d6efd; */ /* Moved to inline style for example */
+    /* color: white; */
+    padding: 10px;
+    min-width: 70px; /* Ensure date section has width */
+}
+.batch-card .batch-date .day {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+.batch-card .batch-date .month-year {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    line-height: 1;
+}
+.batch-card .batch-info .batch-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+.batch-card .batch-info .batch-time {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.enroll-button-batch {
+   padding: 0.25rem 0.75rem; /* Smaller padding for batch button */
+   font-size: 0.85rem;
+}

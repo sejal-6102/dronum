@@ -13,7 +13,7 @@ const AboutOne = () => {
   return (
     <>
       <Header />
-      <PagesHero name="About" img="assets/img/3-2.jpg"/>
+      <PagesHero name="About" img="/assets/img/pic2-4.jpg"/>
       <About />
       <Quality />
       <Team />

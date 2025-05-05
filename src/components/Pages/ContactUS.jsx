@@ -9,7 +9,7 @@ const ContactUS = () => {
   return (
     <>
         <Header/>
-        <PagesHero name="Contact Us" img="assets/img/5-2.jpg"/>
+        <PagesHero name="Contact Us" img="assets/img/pic2-4.jpg"/>
         <GoogleMap/>
         <ContactForm/>
         <Footer/>

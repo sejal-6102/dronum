@@ -33,10 +33,22 @@ const Partners = () => {
   return (
     <div className="partners-container">
       {/* Heading and Subheading */}
-      <div className="partners-header">
+      {/* <div className="partners-header">
         <h2>Our Partners</h2>
         <p>Meet the brands and businesses that support our journey</p>
-      </div>
+      </div> */}
+      <div className="top">
+              <div className="heading">
+                <div className="sub-heading">
+                  <div className="line-left"></div>
+                  <span>Exploring Our Presence</span>
+                  <div className="line-right"></div>
+                </div>
+                <h2>Our Presence</h2>
+               <p>We are proud to collaborate with a diverse network of trusted partners who share our vision for innovation, efficiency,<br></br> and impact in the drone aviation industry.From technology providers and drone manufacturers to logistics experts and <br></br>government agencies, our partners play a vital role in delivering exceptional service and cutting-edge solutions to our clients.</p>
+              
+              </div>
+            </div>
 
       <div className="partners-inner">
         {images.map((img, index) => (

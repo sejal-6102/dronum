@@ -7,9 +7,17 @@ import Sticky from "react-sticky-el";
 
 // --- Define your courses list here (or import it) ---
 const myCourses = [
-  { id: 'drone-photography-101', name: 'Drone Photography 101' },
-  { id: 'commercial-drone-pilot', name: 'Commercial Drone Pilot License' },
-  { id: 'advanced-drone-maneuvers', name: 'Advanced Drone Maneuvers' },
+  { id:'small-rpc-agri-10day', name: 'Small RPC With Agri Focus' },
+  { id: 'medium-rpc-agri-10day', name: 'Medium RPC With Agri Focus' },
+  { id: 'drone-technician-15day', name: 'Drone Repair & Maintenance Course' },
+  {id:'small-rpc-basic-7day',name:'Drone Train the Trainer (TTT)'},
+  {id:'medium-rpc-basic-7day',name:'Medium Remote Pilot Certification Course'},
+  {id:'rpc-agri-8day',name:'Remote Pilot Certification (RPC) with Agri'},
+  {id:'drone-technician-9day',name:'Drone Technician Course'},
+  {id:'rpc-instructor-15day',name:'RPC + Remote Pilot Instructor Course'},
+  {id:'drone-security-officer-20day',name:'Drone Security Officer Training'},
+  {id:'survey-mapping-rpc-8day',name:'Survey & Mapping with RPC'},
+  {id:'fpv-build-pilot-15day',name:'FPV Drones '},
   { id: 'drone-mapping-surveying', name: 'Drone Mapping & Surveying' },
   // Add all your course names and unique IDs here
 ];
