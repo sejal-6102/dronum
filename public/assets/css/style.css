@@ -1297,7 +1297,7 @@ header .mobile-number span {
 @media (max-width: 540px) {
   .about-outer .item:last-child li {
     /* font-size: 16px; */
-    padding: 8px 0px 10px 40px;
+    padding: 0px 0px 10px 40px;
   }
 
   .about-outer .item:last-child {

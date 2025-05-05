@@ -34,7 +34,7 @@ const Header = () => {
               <Navbar.Brand href="#home" className="logo">
                 <div className="logo-inner">
                   <Link to="./">
-                    <img src="/assets/img/logo.png" alt="Logo" />
+                    <img src="/assets/img/logo-png.png" alt="Logo" />
                   </Link>
                 </div>
               </Navbar.Brand>
