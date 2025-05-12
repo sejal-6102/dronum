@@ -51,7 +51,7 @@ app.use("/api/dashboard", adminDataRoutes);
 
 
 app.use('/api/public/content', publicContentRoutes); // For client-facing website
-app.use('/api/admin/cms', adminContentRoutes);
+app.use('/admin/cms', adminContentRoutes);
 
 
 // For local testing only (skip this in Vercel)
