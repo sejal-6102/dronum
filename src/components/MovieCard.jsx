@@ -8,42 +8,42 @@ const movies = [
     title: "100% Placement Assistance",
     description:
       "We provide dedicated support to help you launch a successful career in the drone industry.",
-    imgSrc: "assets/img/pic-3.jpg",
+    imgSrc: "assets/img/ad1.jpg",
      icon: <FaCheck />,
   },
   {
     title: "Expert Instructors",
     description:
       "Learn from DGCA-certified trainers with extensive experience in drone technology and operations.",
-    imgSrc: "assets/img/pic-4.jpg",
+    imgSrc: "assets/img/ad0.jpg",
      icon: <FaChalkboardTeacher />,
   },
   {
     title: "Premier Destination for Drone Training",
     description:
       "Offering comprehensive drone pilot courses, tailored to industry demands and the latest regulations.",
-    imgSrc: "assets/img/pic-5.jpg",
+    imgSrc: "assets/img/ad11.jpg",
      icon: <FaMapMarkedAlt />,
   },
   {
     title: "DGCA-Certified Drone Pilot Certificate",
     description:
       "Earn your official certification and unlock professional opportunities in various sectors.",
-    imgSrc: "assets/img/pic-6.jpg",
+    imgSrc: "assets/img/ad3.jpg",
      icon: <FaCertificate />,
   },
     {
     title: "Flexible EMI Options",
     description:
       "Avail easy EMI plans with credit card payments, making our courses accessible to everyone.",
-    imgSrc: "assets/img/pic-6.jpg",
+    imgSrc: "assets/img/ad4.jpg",
      icon: <FaCreditCard />,
   },
     {
     title: "Hygenic Food and Accommodation",
     description:
       "Clean, comfortable accommodation with hygienic and nutritious food.",
-    imgSrc: "assets/img/pic-6.jpg",
+    imgSrc: "assets/img/ad5.jpg",
      icon: <FaHotel />,
   },
 ];
