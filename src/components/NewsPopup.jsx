@@ -111,7 +111,7 @@ const NewsPopup = () => {
     const fetchNewsData = async () => {
       setLoading(true); setError(null);
       try {
-        const response = await axios.get(`${API_BASE_URL}/public/content/news_popup_items`);
+        const response = await axios.get(`${API_BASE_URL}/api/public/content/news_popup_items`);
         if (response.data && Array.isArray(response.data.contentValue)) {
           setNewsItems(response.data.contentValue);
         } else {
