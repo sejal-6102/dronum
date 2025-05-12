@@ -1,5 +1,15 @@
 import React from "react";
 
+import {
+  FaComments,
+  FaFacebookF,
+  FaLinkedinIn,
+  FaPinterest,
+  FaShare,
+  FaTwitter,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,25 +57,70 @@ const ContactForm = () => {
                   <span className="line-left"></span>
                   <span>Contact here</span>
                 </div>
-                <h2>Our Full Info</h2>
+                <h3>Our Full Info</h3>
               </div>
               <ul className="contact-info">
                 <li>
-                  <span>Phone number</span>
+                  <span>Phone number <i style={{ fontSize: "0.8em"}}>(Head Office)</i></span>
                   <p>(+91)7433 876 876</p>
-                  <p>0141 4789966</p>
+                  <p>(+91)766 587 6876</p>
+                  {/* <p>0141 4789966</p> */}
                 </li>
                 <li>
                   <span>Email Address</span>
                   <p>info@dronum.in</p>
                 </li>
                 <li>
-                  <span>Address info</span>
+                  <span>Address info <i style={{ fontSize: "0.8em"}}>(Jaipur)</i></span>
                   <p>B/229, 2nd Floor, Shivraj Niketan Colony, Vaishali Nagar, Jaipur 302021</p>
-                  <p>Registered Address: C-162, 163 Hanuman Nagar, Bharat Marg, Vaishali Nagar, Jaipur, Rajasthan, 302021</p>
+                 
                 </li>
+
+                <li>
+                <span>Socila Media </span>
+                   <div className="share-wrapper">
+                                <div className="social">
+                                  <Link to="" className="post-share">
+                                    <FaShare />
+                                  </Link>
+                                  <ul className="icon" style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+                                    <li>
+                                      <Link to="https://www.instagram.com/dronum_aviations?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="facebook">
+                                        <img src="/assets/img/instagram.png" width="40px"/>
+                                      </Link>
+                                    </li>
+                                    <li>
+                                      <Link to="https://www.facebook.com/people/Dronum-India-Aviation/61566053652177/" className="linkedin">
+                                         <img src="/assets/img/facebook.png" width="35px"/>
+                                      </Link>
+                                    </li>
+                                    <li>
+                                      <Link to="https://www.youtube.com/@DronumIndiaAvaitions" className="pinterest">
+                                         <img src="/assets/img/youtube.png" width="38px"/>
+                                      </Link>
+                                    </li>
+                                      <li>
+                                      <Link to="https://www.linkedin.com/company/dronum-india-aviation-private-limited/" className="pinterest">
+                                         <img src="/assets/img/linkedin.png" width="38px"/>
+                                      </Link>
+                                    </li>
+                                  
+                                
+                                  </ul>
+                                </div>
+                             
+                              </div>
+                </li>
+                  <li>
+                                     <span>Google My Busniess</span> 
+                                     <p> 
+                                     <Link to="https://g.co/kgs/4chjTMz"><img src="/assets/img/gmb1.png" width="40px"/></Link></p>
+                                    </li>
               </ul>
+
+               
             </div>
+           
           </div>
           
 
@@ -76,7 +131,7 @@ const ContactForm = () => {
           <div className="item" style={{ backgroundColor: "#020231", padding: "5px", borderRadius: "15px", color: "white" }}>
             <div className="item-inner">
               <div className="heading">
-                <h2 style={{ color: "white" }}>Get In Touch</h2>
+                <h3 style={{ color: "white",paddingTop:'10px',alignItems:'center'}}>Get In Touch</h3>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="input-fild">

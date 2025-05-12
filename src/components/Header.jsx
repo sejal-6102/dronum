@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Nav, NavDropdown, Navbar } from "react-bootstrap";
 // FaUser is commented out in your original code, keeping it that way
 // import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom"; // Make sure Link is imported
 import Sticky from "react-sticky-el";
+
+import { API_BASE_URL } from '../components/Pages/Admin/contentSchemas';
+import axios from 'axios';
 
 // --- Define your courses list here (or import it) ---
 const myCourses = [
@@ -24,6 +27,42 @@ const myCourses = [
 // --- End of courses list ---
 
 const Header = () => {
+
+
+   const [dynamicCourses, setDynamicCourses] = useState([]); // State for courses from API
+  const [loadingCourses, setLoadingCourses] = useState(true); // Loading state
+  // Optional: You can add an error state for courses if needed
+  // const [errorCourses, setErrorCourses] = useState(null);
+
+  useEffect(() => {
+    const fetchCoursesForNav = async () => {
+      setLoadingCourses(true);
+      // setErrorCourses(null); // Reset error
+      try {
+        // Backend endpoint: /api/public/courses-list
+        // API_BASE_URL is 'http://localhost:5000/api'
+        // Full URL will be 'http://localhost:5000/api/public/courses-list'
+        const response = await axios.get(`${API_BASE_URL}/public/content/courses-list`);
+
+        if (response.data && Array.isArray(response.data)) {
+          setDynamicCourses(response.data);
+          // Expected data format: [{ id: 'course_id', name: 'Course Name', path: '/courses/course_id' }, ...]
+        } else {
+          console.warn("Header: API response for /public/courses-list was not an array or undefined:", response.data);
+          setDynamicCourses([]); // Default to empty array
+        }
+      } catch (error) {
+        console.error("Header: Failed to fetch courses for navigation:", error);
+        // setErrorCourses("Could not load courses from server.");
+        setDynamicCourses([]); // Fallback to empty array on error
+      } finally {
+        setLoadingCourses(false);
+      }
+    };
+
+    fetchCoursesForNav();
+  }, []); // Empty dependency array: runs once on component mount
+
   return (
     <>
       <Sticky className="sticky-header">
@@ -34,7 +73,7 @@ const Header = () => {
               <Navbar.Brand href="#home" className="logo">
                 <div className="logo-inner">
                   <Link to="./">
-                    <img src="/assets/img/logo-png.png" alt="Logo" />
+                    <img src="/assets/img/logo-png1.png" alt="Logo" />
                   </Link>
                 </div>
               </Navbar.Brand>
@@ -47,36 +86,62 @@ const Header = () => {
                   <Nav.Link href="/about">About us</Nav.Link>
 
                   {/* === Courses Dropdown Section (MODIFIED) === */}
-                  <NavDropdown title="Courses" id="basic-nav-dropdown">
-                    {/* Map over the myCourses array */}
+                  {/* <NavDropdown title="Courses" id="basic-nav-dropdown">
                     {myCourses.map(course => (
                       <NavDropdown.Item
-                        key={course.id} // Essential key prop
-                        as={Link} // Use React Router Link via 'as' prop
-                        to={`/courses/${course.id}`} // Use 'to' prop for dynamic route
+                        key={course.id} 
+                        as={Link} 
+                        to={`/courses/${course.id}`} 
                       >
-                        {course.name} {/* Display the course name */}
+                        {course.name} 
                       </NavDropdown.Item>
                     ))}
+                  </NavDropdown> */}
+
+                                    {/* === Courses Dropdown Section (DYNAMIC) === */}
+                  <NavDropdown title="Courses" id="courses-nav-dropdown">
+                    {loadingCourses ? (
+                      <NavDropdown.Item disabled>Loading courses...</NavDropdown.Item>
+                    ) : dynamicCourses.length > 0 ? (
+                      dynamicCourses.map(course => (
+                        <NavDropdown.Item
+                          key={course.id || course.name} // Use a unique key, course.id is preferred
+                          as={Link}
+                          to={course.path} // Path from API e.g., /courses/pilot_training
+                        >
+                          {course.name}
+                        </NavDropdown.Item>
+                      ))
+                    ) : (
+                      <NavDropdown.Item disabled>No courses available at the moment.</NavDropdown.Item>
+                    )}
+                    {/* You can add a static "View All Courses" link if you have a page for it */}
+                    {/* <NavDropdown.Divider />
+                    <NavDropdown.Item as={Link} to="/all-courses">View All Courses</NavDropdown.Item> */}
                   </NavDropdown>
+                  {/* === End of Courses Dropdown Section === */}
                   {/* === End of Courses Dropdown Section === */}
 
                   {/* --- Why Choose Us Dropdown (Original) --- */}
                   {/* Keeping href as requested */}
                   <NavDropdown title="Why Choose Us" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/who-we-are">
-                      Who we are
+                      Why Choose Us
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/our-glimps">
                       Our Glimps
                     </NavDropdown.Item>
                   </NavDropdown>
+                   {/* <Nav.Link href="/contact-us">Our Partners</Nav.Link> */}
+                   <Nav.Link href="/#our-partners">Our Partners</Nav.Link>
 
                   {/* --- Other Links (Original) --- */}
                   {/* Keeping href as requested */}
+                  <Nav.Link href="/team-listing">Team Dronum</Nav.Link>
+                   <Nav.Link href="/blog-grid">Updates</Nav.Link>
                   <Nav.Link href="/contact-us">Contact Us</Nav.Link>
-                  <Nav.Link href="/team-listing">Team Listing</Nav.Link>
-                  <Nav.Link href="/blog-grid">Blog</Nav.Link>
+               
+              
 
                   {/* --- Commented out Blog Dropdown (Original) --- */}
                   {/* <NavDropdown title="Blog" id="basic-nav-dropdown"> */}
@@ -119,7 +184,7 @@ const Header = () => {
                   }}
                 >
                   <span> (+91) 7433 876 876</span>
-                  <span> (+91) 7665876876</span>
+                  <span> (+91) 766 587 6876</span>
                 </div>
                 {/* --- Navbar Toggle (Original) --- */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

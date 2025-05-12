@@ -16,10 +16,10 @@ const AboutOne = () => {
       <PagesHero name="About" img="/assets/img/pic2-4.jpg"/>
       <About />
       <Quality />
-      <Team />
-      <Video />
+      {/* <Team /> */}
+      {/* <Video /> */}
       {/* <Brand /> */}
-       <Partners />
+       {/* <Partners /> */}
       <Footer />
     </>
   );

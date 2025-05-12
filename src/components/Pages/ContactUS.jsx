@@ -10,8 +10,9 @@ const ContactUS = () => {
     <>
         <Header/>
         <PagesHero name="Contact Us" img="assets/img/pic2-4.jpg"/>
+         <ContactForm/>
         <GoogleMap/>
-        <ContactForm/>
+       
         <Footer/>
     </>
   )

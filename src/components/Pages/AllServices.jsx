@@ -8,7 +8,7 @@ const AllServices = () => {
   return (
     <>
     <Header/>
-    <PagesHero name="Who we are" img="assets/img/pic4-3.jpg"/>
+    <PagesHero name="Why Choose Us" img="assets/img/pic4-3.jpg"/>
     <MainServices/>
     <Footer/>
     </>

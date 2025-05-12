@@ -15,6 +15,7 @@ import Footer from "../Footer";
 import NewsPopup from "../NewsPopup";
 import ImageGallery from "../ImageGallery";
 import Partners from "../Partners";
+import GDetails from "../GDetails"
 
 
 
@@ -25,16 +26,18 @@ const Home = () => {
       <NewsPopup />
        <Hero />
       <About />
+      <GDetails/>
       <Services />
       <ImageGallery />
-      <Video />
+      {/* <Video /> */}
       {/* <Counter /> */}
       <Team />
       {/* <Quality /> */}
       <News />
       {/* <Pricing /> */}
       <Client />
-      <Partners />
+       <Partners />
+     
       <Footer />
     </>
   );

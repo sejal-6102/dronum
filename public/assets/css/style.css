@@ -35,7 +35,7 @@ ol {
 .container {
   display: block;
   margin: 0 auto;
-  max-width: 1140px;
+  max-width: 1340px;
   overflow: hidden;
 }
 
@@ -3235,46 +3235,54 @@ footer .bottom .bottom-inner span {
   border: none;
   position: fixed;
   right: 15px;
-  bottom: 15px;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
   cursor: pointer;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   z-index: 999;
   color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
-.top-up span {
-  display: block;
+/* WhatsApp Button - now higher */
+.whatsapp-btn {
+  bottom: 100px; /* Moves it up */
+}
+
+/* Scroll to Top Button - below WhatsApp */
+.scroll-top-btn {
+  bottom: 45px;
+}
+
+/* Scroll-up icon animation */
+.scroll-top-btn svg {
+  animation: vibrate 2s linear infinite;
   font-size: 24px;
-  line-height: 24px;
-  position: relative;
-  animation: vibrate 2s linear 0s infinite;
 }
 
 @keyframes vibrate {
   0% {
-    top: 0px;
+    transform: translateY(0);
   }
-
   25% {
-    top: -3px;
+    transform: translateY(-3px);
   }
-
   50% {
-    top: 0px;
+    transform: translateY(0);
   }
-
   75% {
-    top: 3px;
+    transform: translateY(3px);
   }
-
   100% {
-    top: 0px;
+    transform: translateY(0);
   }
 }
+
 
 /* Button End */
 
