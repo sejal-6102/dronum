@@ -1,30 +1,15 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "server.js", 
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)", 
-        "methods": ["OPTIONS"],
-        "headers": {
-          "Access-Control-Allow-Origin": "https://dronum-git-main-sejal-6102s-projects.vercel.app", 
-          "Access-Control-Allow-Credentials": "true",
-          "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization" 
-        },
-        "status": 204 
-      },
-      {
-        "src": "/(.*)",
-        "headers": {
-           "Access-Control-Allow-Origin": "https://dronum-git-main-sejal-6102s-projects.vercel.app", 
-           "Access-Control-Allow-Credentials": "true"
-        },
-        "dest": "server.js"
-      }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js", 
+      "use": "@vercel/node"
+    }
+  ],
+  "rewrites": [ 
+    {
+      "source": "/api/(.*)",
+      "destination": "/server.js" 
+    }
+  ]
+}
