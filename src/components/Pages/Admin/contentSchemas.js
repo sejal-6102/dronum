@@ -88,4 +88,4 @@ blog_grid_items: {
   
   // Base URL for your backend API
   // Ensure this is correct for your setup (development and production)
-  export const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://dronum-git-main-sejal-6102s-projects.vercel.app/api';
+  export const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://dronum-git-main-sejal-6102s-projects.vercel.app';
