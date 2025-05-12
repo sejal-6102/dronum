@@ -19,7 +19,8 @@ const app = express();
 app.use(cors({
   origin: 'https://dronum-git-main-sejal-6102s-projects.vercel.app',
     // origin: 'http://localhost:3000',   //  // <-- Frontend URL
-  methods: ['GET', 'POST','PUT', 'DELETE'], // Add others if needed: PUT, DELETE, etc.
+  methods: ['GET', 'POST','PUT', 'DELETE','OPTIONS'],
+   allowedHeaders: ['Content-Type', 'Authorization', /* any other custom headers your frontend sends */], // Add others if needed: PUT, DELETE, etc.
   credentials: true // if using cookies or auth
 }));
 app.use(express.json());
