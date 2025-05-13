@@ -72,5 +72,5 @@ export const contentSchemas = {
 // export const API_BASE_URL = 'https://dronum-backend-git-main-sejal-6102s-projects.vercel.app';
 // export const API_BASE_URL = 'http://localhost:5000/api';
 
-const LOCAL_DEV_BACKEND_ROOT_URL = 'http://localhost:5000';
-export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || LOCAL_DEV_BACKEND_ROOT_URL;
+// const LOCAL_DEV_BACKEND_ROOT_URL = 'http://localhost:5000';
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
