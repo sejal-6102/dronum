@@ -35,7 +35,7 @@ const BlogDetail = () => {
       setError(null);
       try {
         console.log(`[BlogDetail] Attempting to fetch post with contentKey: "${contentKeyForFullPost}" (derived from slug: "${slug}")`);
-        const response = await axios.get(`${API_BASE_URL}/public/content/${contentKeyForFullPost}`);
+        const response = await axios.get(`${API_BASE_URL}/api/public/content/${contentKeyForFullPost}`);
 
         if (response.data && response.data.contentValue) {
           let rawData = response.data.contentValue;

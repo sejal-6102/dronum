@@ -153,7 +153,7 @@ const Video = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get(`${API_BASE_URL}/public/content/video_section_slides_data`);
+        const response = await axios.get(`${API_BASE_URL}/api/public/content/video_section_slides_data`);
         console.log("[Video.jsx] API Response for video_section_slides_data:", response.data); // LOG 1
 
         if (response.data && Array.isArray(response.data.contentValue)) {

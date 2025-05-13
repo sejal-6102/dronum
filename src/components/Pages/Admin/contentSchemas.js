@@ -51,31 +51,8 @@ export const contentSchemas = {
     },
     adminEditorPath: "/admin/edit/video-section-slides" // Admin panel mein isko edit karne ka path
   },
-blog_grid_items: {
-  label: "Edit Blog Summaries (Grid Page)",
-  contentKey: "blog_grid_items",
-  type: "json_array",
-  itemSchema: {
-    img: { type: "image_url", label: "Blog Featured Image" },
-    date: { type: "text", label: "Date" },
-    title: { type: "text", label: "Blog Title" },
-    slug: { type: "text", label: "URL Slug (unique, e.g., master-drone-operations-guide)" }, // <<=== YEH FIELD
-    content: { type: "textarea", label: "Short Summary" }
-  },
-  adminEditorPath: "/admin/edit/blog-summaries"
-},
 
-  // We will add individual blog post details schemas later, or handle them dynamically
-  // For now, let's focus on making BgridItems.jsx dynamic.
-  // Example for one full blog post (admin edits JSON in textarea):
-  blog_post_master_drone_operations: { // contentKey derived from title/slug
-      label: "Edit Full Blog: Master Drone Operations...",
-      contentKey: "blog_post_master_drone_operations", // Example
-      type: "textarea", // Admin edits raw JSON for the full blog post object
-      adminEditorPath: "/admin/edit-full-blog/master-drone-operations" // Example
-  },
-  // You'll need one such entry for each blog post you want to edit for its full content.
-  // Or a more dynamic system in admin to manage these.
+
 
 
     // Add more schemas as needed
@@ -92,4 +69,8 @@ blog_grid_items: {
 
   // const ACTUAL_BACKEND_URL = 'https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api';
 
-export const API_BASE_URL = 'https://dronum-backend-git-main-sejal-6102s-projects.vercel.app'
+// export const API_BASE_URL = 'https://dronum-backend-git-main-sejal-6102s-projects.vercel.app';
+// export const API_BASE_URL = 'http://localhost:5000/api';
+
+const LOCAL_DEV_BACKEND_ROOT_URL = 'http://localhost:5000';
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || LOCAL_DEV_BACKEND_ROOT_URL;

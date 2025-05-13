@@ -144,7 +144,7 @@ const BgridItems = ({ itemsPerPage = 6 }) => { // Default itemsPerPage
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get(`${API_BASE_URL}/public/content/blog_grid_items`);
+        const response = await axios.get(`${API_BASE_URL}/api/public/content/blog_grid_items`);
         if (response.data && Array.isArray(response.data.contentValue)) {
           setAllPosts(response.data.contentValue);
         } else {

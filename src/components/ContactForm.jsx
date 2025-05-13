@@ -9,6 +9,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from '../components/Pages/Admin/contentSchemas';
 
 const ContactForm = () => {
   const handleSubmit = async (e) => {
@@ -25,8 +26,8 @@ const ContactForm = () => {
     }
 
     try {
-      // const response = await fetch("http://localhost:5000/api/contact"
-      const response = await fetch("https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api/contact" , {
+      //  const response = await fetch("https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api/contact" 
+      const response = await fetch(`${API_BASE_URL}/api/contact`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json",

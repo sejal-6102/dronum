@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../components/Pages/Admin/contentSchemas';
 
 const api = axios.create({
-  baseURL: 'https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api', // Your backend base URL
+  // baseURL: 'https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api', // Your backend base URL
+  baseURL: `${API_BASE_URL}/api`,
 });
 
 // Request Interceptor: Add token to headers for protected routes

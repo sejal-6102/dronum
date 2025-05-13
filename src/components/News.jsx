@@ -6,7 +6,7 @@ const News = () => {
   const headline = [
     {
       headline: "Sonipat",
-      backgroundImage:"assets/img/lo1.png",
+      backgroundImage:"assets/img/gujrat.png",
       maplink:"https://www.google.com/maps/place/Puran+Murti+Campus/@29.0506023,77.01168,17z/data=!3m1!4b1!4m6!3m5!1s0x390d01bc20a49e2d:0x5d67fbdc25584c4a!8m2!3d29.0506023!4d77.01168!16s%2Fg%2F1hm5q17jl?entry=ttu&g_ep=EgoyMDI1MDQwMi4xIKXMDSoASAFQAw%3D%3D"
     },
     {
@@ -38,8 +38,12 @@ const News = () => {
                   <div className="line-right"></div>
                 </div>
                 <h2>Our Presence</h2>
-                <p>At Dronum Aviation, our footprint extends across key regions where innovation meets execution. With a growing network of operations, training hubs, and service points, we are redefining how drone technology is accessed and applied across India.</p>
-              <p>From aerial surveying in remote landscapes to training future drone pilots in state-of-the-art facilities, our presence is not just about location—it's about impact. Whether it's agriculture, defense, logistics, or education, Dronum Aviation is actively building a smarter, safer, and more connected aerial ecosystem.</p>
+                <p>At Dronum Aviation, our footprint extends across key regions where innovation meets execution.
+                 With a growing network of operations, training hubs, and service points, we are redefining how drone technology
+                  is accessed and applied across India.</p>
+              <p>From aerial surveying in remote landscapes to training future drone pilots in state-of-the-art 
+              facilities, our presence is not just about location—it's about impact. Whether it's agriculture, defense, 
+              logistics, or education, Dronum Aviation is actively building a smarter, safer, and more connected aerial ecosystem.</p>
               </div>
             </div>
 

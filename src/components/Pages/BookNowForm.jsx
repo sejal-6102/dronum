@@ -1,5 +1,6 @@
 import React from "react";
 import "../../css/Form.css"
+import { API_BASE_URL } from "../Pages/Admin/contentSchemas";
 
 
 
@@ -23,7 +24,8 @@ const BookNowForm = ({ isOpen, closeModal }) => {
   
     try {
      // const response = await fetch("https://dronum-backend.vercel.app/api/book"
-      const response = await fetch("https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api/book", {
+      // const response = await fetch("https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api/book"
+        const response = await fetch(`${API_BASE_URL}/api/book`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

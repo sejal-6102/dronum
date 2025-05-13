@@ -2430,6 +2430,7 @@ header .mobile-number span {
 .pricing-outer .pricing-inner {
   display: block;
   overflow: hidden;
+  
 }
 
 .pricing-outer .top {
@@ -2452,18 +2453,28 @@ header .mobile-number span {
   width: 33.33%;
   padding: 0 15px;
   margin-bottom: 30px;
+ 
 }
 
 .pricing-outer .item-inner {
   text-align: center;
-  border: 14px solid #ebebeb;
+  border: 10px solid #d52323;
   padding: 50px 20px;
+   background-color: rgb(254, 253, 253);
+    transition: all 1s ease-in-out;
 }
 
 .pricing-outer .item:nth-child(2) .item-inner {
-  border: 14px solid #1a1a1a;
+  border: 10px solid rgb(2, 29, 65);
 }
-
+.pricing-outer .item:nth-child(2) .item-inner:hover {
+  border: 10px solid rgb(252, 87, 5);
+}
+.pricing-outer .item-inner:hover {
+  background-color: rgb(2, 29, 65);
+  border:10px solid rgb(252, 87, 5);
+  color:white;
+}
 .pricing-outer .pricing-title {
   display: block;
 }

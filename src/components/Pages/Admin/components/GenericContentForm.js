@@ -34,8 +34,8 @@ const TextInput = ({ label, value, onChange, placeholder, type = "text" }) => (
 const ImageUploadInput = ({ label, value, onChange, onUpload }) => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
-  const previewUrl = value && !value.startsWith('http')
-    ? `${API_BASE_URL.replace('/api', '')}${value}`
+  const previewUrl = value && !value.startsWith('http') && !value.startsWith('blob:') // Added blob check
+    ? `${API_BASE_URL}${value}` // Construct full URL by prepending the backend root
     : value;
 
   const handleFileChange = async (event) => {
@@ -120,7 +120,7 @@ const GenericContentForm = ({ contentKey, schema, onSaveSuccess }) => {
     setLoading(true); setError('');
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/admin/cms/content/${contentKey}`, // API URL as per your server.js
+        `${API_BASE_URL}/api/admin/cms/content/${contentKey}`, // API URL as per your server.js
         { headers: { Authorization: `Bearer ${adminToken}` } }
       );
 
@@ -156,7 +156,7 @@ const GenericContentForm = ({ contentKey, schema, onSaveSuccess }) => {
     setSaving(true); setError('');
     try {
       await axios.put(
-        `${API_BASE_URL}/admin/cms/content/${contentKey}`, // API URL as per your server.js
+        `${API_BASE_URL}/api/admin/cms/content/${contentKey}`, // API URL as per your server.js
         { contentValue: formData, contentType: schema.type }, // schema.type will be 'json_array' if set in contentSchemas.js
         { headers: { Authorization: `Bearer ${adminToken}` } }
       );
@@ -174,7 +174,7 @@ const GenericContentForm = ({ contentKey, schema, onSaveSuccess }) => {
     const fd = new FormData();
     fd.append('image', file);
     const response = await axios.post(
-      `${API_BASE_URL}/admin/cms/upload-image`, // API URL as per your server.js
+      `${API_BASE_URL}/api/admin/cms/upload-image`, // API URL as per your server.js
       fd,
       {
         headers: {

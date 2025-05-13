@@ -29,45 +29,7 @@ app.use(express.json({ limit: '10mb' })); // For parsing application/json
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 
-
-const IS_VERCEL_ENV_FOR_STATIC = !!process.env.VERCEL;
-
-app.get('/uploads/:filename', (req, res) => {
-  const { filename } = req.params;
-  let filePath;
-
-  if (IS_VERCEL_ENV_FOR_STATIC) {
-    filePath = path.join('/tmp', 'uploads', filename);
-  } else {
-    // Local development: assumes 'uploads' folder is in your 'backend' directory
-    // where server.js is.
-    filePath = path.join(__dirname, 'uploads', filename);
-  }
-
-  console.log(`[IMAGE_SERVING] Attempting to serve image: ${filename} from absolute path: ${filePath}`); // Log 1
-
-  fs.access(filePath, fs.constants.F_OK, (err) => {
-    if (err) {
-      console.error(`[IMAGE_SERVING] File not found or not accessible: ${filePath}`, err.message); // Log 2
-      return res.status(404).send('Image file not found.');
-    }
-
-    console.log(`[IMAGE_SERVING] File found: ${filePath}. Streaming it.`); // Log 3
-    const fileStream = fs.createReadStream(filePath);
-    fileStream.on('error', (streamErr) => {
-        console.error(`[IMAGE_SERVING] Error streaming file ${filePath}:`, streamErr.message); // Log 4
-        // Important: Avoid sending another response if headers already sent by pipe
-        if (!res.headersSent) {
-            res.status(500).send('Error serving file.');
-        }
-    });
-    // Pipe the file stream to the response
-    fileStream.pipe(res);
-  });
-});
-
-
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB connection
 mongoose
@@ -89,44 +51,10 @@ app.use("/api/dashboard", adminDataRoutes);
 
 
 app.use('/api/public/content', publicContentRoutes); // For client-facing website
-app.use('/admin/cms', adminContentRoutes);
+app.use('/api/admin/cms', adminContentRoutes);
 
 
-const IS_VERCEL_ENV_FOR_STATIC = !!process.env.VERCEL;
 
-app.get('/uploads/:filename', (req, res) => {
-  const { filename } = req.params;
-  let filePath;
-
-  if (IS_VERCEL_ENV_FOR_STATIC) {
-    filePath = path.join('/tmp', 'uploads', filename);
-  } else {
-    // Local development: assumes 'uploads' folder is in your 'backend' directory
-    // where server.js is.
-    filePath = path.join(__dirname, 'uploads', filename);
-  }
-
-  console.log(`[IMAGE_SERVING] Attempting to serve image: ${filename} from absolute path: ${filePath}`); // Log 1
-
-  fs.access(filePath, fs.constants.F_OK, (err) => {
-    if (err) {
-      console.error(`[IMAGE_SERVING] File not found or not accessible: ${filePath}`, err.message); // Log 2
-      return res.status(404).send('Image file not found.');
-    }
-
-    console.log(`[IMAGE_SERVING] File found: ${filePath}. Streaming it.`); // Log 3
-    const fileStream = fs.createReadStream(filePath);
-    fileStream.on('error', (streamErr) => {
-        console.error(`[IMAGE_SERVING] Error streaming file ${filePath}:`, streamErr.message); // Log 4
-        // Important: Avoid sending another response if headers already sent by pipe
-        if (!res.headersSent) {
-            res.status(500).send('Error serving file.');
-        }
-    });
-    // Pipe the file stream to the response
-    fileStream.pipe(res);
-  });
-});
 
 
 // For local testing only (skip this in Vercel)

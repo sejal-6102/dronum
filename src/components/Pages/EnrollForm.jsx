@@ -1,5 +1,6 @@
 import React from "react";
 import "../../css/Form.css"
+import { API_BASE_URL } from "../Pages/Admin/contentSchemas";
 
 
 
@@ -20,7 +21,8 @@ const EnrollForm = ({ isOpen, closeModal }) => {
     }
   
     try {
-      const response = await fetch("https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api/enroll", {
+      // const response = await fetch("https://dronum-backend-git-main-sejal-6102s-projects.vercel.app/api/enroll"
+        const response = await fetch(`${API_BASE_URL}/api/enroll`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

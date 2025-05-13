@@ -11,7 +11,7 @@ import {
   FaUserShield, FaMapMarkedAlt, FaRulerCombined, FaCogs, FaBroadcastTower,
   FaPlaneDeparture, FaProjectDiagram, FaBook, FaPaperPlane, FaTractor, FaSprayCan,
   FaWrench, FaMicrochip, FaPlane, FaChalkboardTeacher, FaClipboardList,
-  FaFileSignature, FaShieldAlt
+  FaFileSignature, FaShieldAlt, FaFilePdf
   // Add any other icons you might use in courseBreakdown.icon
 } from 'react-icons/fa';
 
@@ -63,6 +63,8 @@ const CourseDetailPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State for EnrollForm modal
 
 
+
+
   const DEFAULT_HERO_IMAGE = "/assets/img/pic2-4.jpg";
 
 
@@ -84,7 +86,12 @@ const CourseDetailPage = () => {
     return `${backendRootUrl}${relativePath}`;
   };
   // ^^^^^^ YEH FUNCTION ADD/UNCOMMENT KAREIN ^^^^^^
-
+ const getCommonBrochureUrl = () => {
+    const backendRootUrl = API_BASE_URL.replace('/api', ''); // e.g., http://localhost:5000
+    // --- IMPORTANT: Yeh path apne common brochure ke actual path se update karein ---
+    const brochurePublicPath = "/uploads/brochures/Dronum India Aviations Student Brochure.pdf"; // Example path
+    return `${backendRootUrl}${brochurePublicPath}`;
+  };
 
 
   useEffect(() => {
@@ -101,7 +108,7 @@ const CourseDetailPage = () => {
       const contentKeyForCourse = `course_details_${courseId}`; // Construct DB contentKey
 
       try {
-        const response = await axios.get(`${API_BASE_URL}/public/content/${contentKeyForCourse}`);
+        const response = await axios.get(`${API_BASE_URL}/api/public/content/${contentKeyForCourse}`);
 
         if (response.data && response.data.contentValue) {
           let rawData = response.data.contentValue;
@@ -200,6 +207,13 @@ const CourseDetailPage = () => {
   const learningPointsCol1 = learningPoints.slice(0, midPointIndex);
   const learningPointsCol2 = learningPoints.slice(midPointIndex);
 
+
+    // VVVVVV BROCHURE URL AUR FILENAME SET KAREIN (FIXED) VVVVVV
+  const brochureUrl = getCommonBrochureUrl();
+  // Aap download filename ko bhi fix kar sakte hain
+  const brochureFilename = "Dronum India Aviations Student Brochure.pdf"; // Ya jo bhi naam aap dena chahein
+  // ^^^^^^ BROCHURE URL AUR FILENAME SET KAREIN (FIXED) ^^
+
   return (
     <>
       <Header />
@@ -246,6 +260,23 @@ const CourseDetailPage = () => {
                   <div dangerouslySetInnerHTML={{ __html: course.aboutCourse }} />
                 </div>
               )}
+
+              {/* VVVVVV DOWNLOAD BROCHURE BUTTON SECTION VVVVVV */}
+              {/* Button hamesha dikhega jab course data load ho gaya ho (error na ho) */}
+              <div className="download-brochure-section my-4 text-center text-md-start">
+                <Button
+                  variant="outline-primary" // Ya 'primary', etc.
+                  href={brochureUrl}
+                  download={brochureFilename} // Browser ko download karne ke liye suggest karega
+                  target="_blank" // Naye tab mein kholne ki koshish karega (download prefer hoga)
+                  rel="noopener noreferrer" // Security best practice
+                  className="download-brochure-btn"
+                >
+                  <FaFilePdf className="me-2" />
+                  Download Our Brochure
+                </Button>
+              </div>
+              {/* ^^^^^^ DOWNLOAD BROCHURE BUTTON SECTION ^^^^^^ */}
 
               {learningPoints.length > 0 && (
                 <div className="what-you-learn mb-5 p-4 bg-light border rounded">

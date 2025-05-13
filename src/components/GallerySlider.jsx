@@ -38,7 +38,7 @@ const GallerySlider = () => {
       setError(null);   // Clear any previous errors
       try {
         // API call to get gallery slider images
-        const response = await axios.get(`${API_BASE_URL}/public/content/gallery_slider_images`);
+        const response = await axios.get(`${API_BASE_URL}/api/public/content/gallery_slider_images`);
 
         // Check if response contains data and contentValue is an array
         if (response.data && Array.isArray(response.data.contentValue)) {

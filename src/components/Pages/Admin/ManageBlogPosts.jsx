@@ -21,7 +21,7 @@ const ManageBlogPosts = () => {
       setError(null);
       try {
         // Fetch the list of blog summaries
-        const response = await axios.get(`${API_BASE_URL}/public/content/blog_grid_items`); // Public endpoint is fine for just reading summaries
+        const response = await axios.get(`${API_BASE_URL}/api/public/content/blog_grid_items`); // Public endpoint is fine for just reading summaries
         if (response.data && Array.isArray(response.data.contentValue)) {
           setBlogSummaries(response.data.contentValue);
         } else {
