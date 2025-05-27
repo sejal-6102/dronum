@@ -7,6 +7,8 @@ const cors = require("cors");
 require("dotenv").config(); // Ensures .env variables are loaded if you use a .env file locally
 console.log(`[ENV_DEBUG] AFTER DOTENV: process.env.PORT = ${process.env.PORT} (type: ${typeof process.env.PORT})`);
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
+
 
 // Import your route handlers
 const enrollRoutes = require("./routes/enrollroutes");
@@ -19,11 +21,27 @@ const adminDataRoutes = require("./routes/adminData");
 
 const app = express();
 
+
+// --- Cloudinary Configuration ---
+// Ensure these environment variables are set in Railway and your local .env for development
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true
+});
+// --- End Cloudinary Configuration ---
+
 // --- CORS Configuration ---
 // Define allowed origins. Add your production frontend URL(s) here.
 // It's best to get this from an environment variable in production.
 const allowedOrigins = [
-  'http://localhost:3000', // For local frontend development
+ 'http://localhost:3000',
+  'https://drbackend-production.up.railway.app',
+  'https://dronum-git-main-sejal-6102s-projects.vercel.app',
+  'https://trapotiez.com',
+  'https://dronbackend-production.up.railway.app',
+   // For local frontend development
   // Add your production frontend URL here. Example:
   // 'https://your-frontend-app.up.railway.app',
   // 'https://www.yourcustomdomain.com'
@@ -102,7 +120,7 @@ mongoose.connect(MONGODB_URI)
     });
 
 
-      const HARDCODED_LISTENING_PORT = 5005; // <--- CHOOSE A PORT, e.g., 5005
+      const HARDCODED_LISTENING_PORT = 5000; // <--- CHOOSE A PORT, e.g., 5005
     console.log(`[DEBUG] Intentionally ignoring process.env.PORT. Attempting to listen on hardcoded port: ${HARDCODED_LISTENING_PORT}`);
 
     app.listen(Number(HARDCODED_LISTENING_PORT), () => {
