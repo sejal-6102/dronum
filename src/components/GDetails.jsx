@@ -42,7 +42,7 @@ const GDetails = () => {
   }}
 >
   <img
-    src="assets/img/dgcpa.png"
+    src="assets/img/dgcarpto.png"
     width="150px"
     height="100px"
     alt="DGCPA"

@@ -204,19 +204,52 @@ const BlogInfo = ({ post }) => {
                   {/* Tags - Yeh bhi dynamic ho sakte hain */}
                   {/* <div className="tags-inline"></div> */}
 
-                  <div className="share-wrapper mt-4"> {/* Added margin-top */}
+                  {/* <div className="share-wrapper mt-4"> 
                     <div className="social">
-                      <span className="post-share me-2"> {/* Changed Link to span for non-clickable share icon */}
+                      <span className="post-share me-2">
                         <FaShare /> Share:
                       </span>
-                      <ul className="icon d-inline-flex list-unstyled"> {/* Improved list styling */}
+                      <ul className="icon d-inline-flex list-unstyled"> 
                         <li className="me-2"><Link to="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="facebook"><FaFacebookF /></Link></li>
                         <li className="me-2"><Link to="https://in.linkedin.com/" target="_blank" rel="noopener noreferrer" className="linkedin"><FaLinkedinIn /></Link></li>
                         <li className="me-2"><Link to="https://in.pinterest.com/" target="_blank" rel="noopener noreferrer" className="pinterest"><FaPinterest /></Link></li>
                         <li><Link to="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="twitter"><FaTwitter /></Link></li>
                       </ul>
                     </div>
-                  </div>
+                  </div> */}
+
+                      <div className="share-wrapper">
+                                                  <div>
+                                                    <Link to="" className="post-share">
+                                                      <FaShare />
+                                                    </Link>
+                                                    <ul className="icon" style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+                                                      <li>
+                                                        <Link to="https://www.instagram.com/dronum_aviations?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" >
+                                                          <img src="/assets/img/instagram.png" width="40px"/>
+                                                        </Link>
+                                                      </li>
+                                                      <li>
+                                                        <Link to="https://www.facebook.com/people/Dronum-India-Aviation/61566053652177">
+                                                           <img src="/assets/img/facebook.png" width="35px"/>
+                                                        </Link>
+                                                      </li>
+                                                      <li>
+                                                        <Link to="https://www.youtube.com/@DronumIndiaAvaitions">
+                                                           <img src="/assets/img/youtube.png" width="38px"/>
+                                                        </Link>
+                                                      </li>
+                                                        <li>
+                                                        <Link to="https://www.linkedin.com/company/dronum-india-aviation-private-limited/">
+                                                           <img src="/assets/img/linkedin.png" width="38px"/>
+                                                        </Link>
+                                                      </li>
+                                                    
+                                                  
+                                                    </ul>
+                                                  </div>
+                                               
+                                                </div>
 
                 </div>
               </div>

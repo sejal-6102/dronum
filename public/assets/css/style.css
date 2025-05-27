@@ -320,6 +320,10 @@ header .mobile-number span {
   font-weight: 700;
 }
 
+
+
+
+
 @media (min-width:992px) {
 
   header .navbar-expand-lg .navbar-nav .nav-link {
@@ -330,7 +334,9 @@ header .mobile-number span {
     text-transform: uppercase;
     /* font-size: 18px; */
     position: relative;
+    /* font-size: 18px; */
   }
+
 
   header .navbar-expand-lg .navbar-nav .nav-link::after {
     content: "";
@@ -401,7 +407,24 @@ header .mobile-number span {
     padding-left: 12px;
     padding-right: 12px;
   }
+   header .mobile-number span {
+    display: none;
+  }
+
+    header .navbar-expand-lg .navbar-nav .nav-link {
+    color:rgb(4, 4, 73);
+    display: block;
+    font-weight: 600;
+    padding: 35px 14px;
+    text-transform: uppercase;
+    /* font-size: 18px; */
+    position: relative;
+    font-size: 14px;
+  }
 }
+
+
+
 
 @media (max-width: 991px) {
 
@@ -463,6 +486,8 @@ header .mobile-number span {
     text-decoration: none;
   }
 }
+
+
 
 
 
@@ -6495,6 +6520,15 @@ background-color: red;
     font-size: 22px;
     right: 10px;
     top: 8px;
+  }
+}
+
+
+@media (min-width: 992px) {
+  #news-popup-wrapper {
+    width: 95%;
+    left: 25%;
+    transform: translateX(-50%);
   }
 }
 

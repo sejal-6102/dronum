@@ -5,38 +5,62 @@ import axios from 'axios';
 import { getAdminToken, API_BASE_URL } from '../contentSchemas';
 
 // --- Helper Input Components ---
-// TextInput, ImageUploadInput, ArrayInput components remain unchanged from your provided code.
-// I'm including them here for completeness of this file.
 
-const TextInput = ({ label, value, onChange, placeholder, type = "text" }) => (
-  <div style={{ marginBottom: '15px' }}>
-    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>{label}:</label>
-    {type === "textarea" ? (
-      <textarea
-        value={value || ''}
-        onChange={e => onChange(e.target.value)}
-        placeholder={placeholder || `Enter ${label.toLowerCase()}`}
-        rows="4"
-        style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
-      />
-    ) : (
-      <input
-        type="text"
-        value={value || ''}
-        onChange={e => onChange(e.target.value)}
-        placeholder={placeholder || `Enter ${label.toLowerCase()}`}
-        style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
-      />
-    )}
-  </div>
-);
+const TextInput = ({ label, value, onChange, placeholder, type = "text" }) => {
+  const inputType = (type === "textarea") ? "textarea" :
+                    (type === "number") ? "number" :
+                    (type === "url") ? "url" :
+                    "text";
+
+  const handleChange = (e) => {
+    let val = e.target.value;
+    // For number type, keep as string for controlled input; validation/conversion on save
+    onChange(val);
+  };
+
+  return (
+    <div style={{ marginBottom: '15px' }}>
+      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>{label}:</label>
+      {inputType === "textarea" ? (
+        <textarea
+          value={value === null || value === undefined ? '' : String(value)}
+          onChange={handleChange}
+          placeholder={placeholder || `Enter ${label.toLowerCase()}`}
+          rows="4"
+          style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
+        />
+      ) : (
+        <input
+          type={inputType}
+          value={value === null || value === undefined ? '' : String(value)}
+          onChange={handleChange}
+          placeholder={placeholder || `Enter ${label.toLowerCase()}`
+                       + (inputType === 'url' ? ' (e.g., https://example.com)' : '')
+                       + (inputType === 'number' ? ' (e.g., 123 or 12.34)' : '')
+                      }
+          style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
+        />
+      )}
+    </div>
+  );
+};
 
 const ImageUploadInput = ({ label, value, onChange, onUpload }) => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
-  const previewUrl = value && !value.startsWith('http') && !value.startsWith('blob:') // Added blob check
-    ? `${API_BASE_URL}${value}` // Construct full URL by prepending the backend root
-    : value;
+
+  let backendRootUrl = API_BASE_URL;
+  if (API_BASE_URL && API_BASE_URL.includes('/api')) {
+      backendRootUrl = API_BASE_URL.substring(0, API_BASE_URL.lastIndexOf('/api'));
+  } else if (API_BASE_URL && API_BASE_URL.endsWith('/')) {
+      backendRootUrl = API_BASE_URL.slice(0, -1);
+  }
+
+  const previewUrl = value && typeof value === 'string' && (value.startsWith('http') || value.startsWith('blob:'))
+    ? value
+    : value && typeof value === 'string' && backendRootUrl
+    ? `${backendRootUrl}${value.startsWith('/') ? value : `/${value}`}`
+    : null;
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -46,68 +70,187 @@ const ImageUploadInput = ({ label, value, onChange, onUpload }) => {
         const imageUrl = await onUpload(file);
         onChange(imageUrl);
       } catch (err) {
-        setError(err.message || "Upload failed");
+        console.error("Image upload error:", err);
+        setError(err.message || "Upload failed. Check console for details.");
       } finally {
         setUploading(false);
       }
     }
   };
+
   return (
     <div style={{ marginBottom: '15px' }}>
       <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>{label}:</label>
       <input type="file" accept="image/*" onChange={handleFileChange} disabled={uploading} style={{ marginBottom: '5px' }} />
       {uploading && <p>Uploading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      {value && (
+      {previewUrl && (
         <div>
           <img src={previewUrl} alt="Preview" style={{ maxWidth: '200px', maxHeight: '150px', marginTop: '5px', border: '1px solid #eee' }} />
-          <p style={{ fontSize: '0.8em', wordBreak: 'break-all' }}>Current: {value}</p>
+          <p style={{ fontSize: '0.8em', wordBreak: 'break-all' }}>Current path: {value}</p>
         </div>
       )}
+       {!previewUrl && value && typeof value === 'string' && (
+         <p style={{ fontSize: '0.8em', wordBreak: 'break-all' }}>Current path: {value} (Preview unavailable)</p>
+       )}
     </div>
   );
 };
 
-const ArrayInput = ({ schema, dataArray = [], onArrayChange, onUpload }) => {
-  const { itemSchema, label: arrayLabel } = schema;
+const BooleanInput = ({ label, value, onChange }) => {
+  return (
+    <div style={{ marginBottom: '15px' }}>
+      <label style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', cursor: 'pointer' }}>
+        <input
+          type="checkbox"
+          checked={!!value}
+          onChange={(e) => onChange(e.target.checked)}
+          style={{ marginRight: '8px', transform: 'scale(1.2)' }}
+        />
+        {label}
+      </label>
+    </div>
+  );
+};
+
+// Forward declaration for recursive use
+let ArrayInputComponent;
+
+const renderFormFieldBasedOnSchema = (fieldKey, fieldConfig, value, onChange, onUpload, fieldKeyPrefix) => {
+  // THIS IS THE CRITICAL FIX: Added 'json_array' to the condition
+  if (fieldConfig.type === 'array' || fieldConfig.type === 'json_array') {
+    return (
+      <ArrayInputComponent
+        key={`${fieldKeyPrefix}-${fieldKey}`} // Use fieldKey from params
+        schema={fieldConfig}
+        dataArray={Array.isArray(value) ? value : (fieldConfig.defaultValue || [])}
+        onArrayChange={newSubArrayData => onChange(fieldKey, newSubArrayData)} // Pass fieldKey to onChange
+        onUpload={onUpload}
+        fieldKeyPrefix={`${fieldKeyPrefix}-${fieldKey}`}
+      />
+    );
+  }
+  if (fieldConfig.type === 'boolean') {
+    return (
+      <BooleanInput
+        key={`${fieldKeyPrefix}-${fieldKey}`}
+        label={fieldConfig.label}
+        value={value}
+        onChange={val => onChange(fieldKey, val)} // Pass fieldKey
+      />
+    );
+  }
+  if (['text', 'textarea', 'number', 'url'].includes(fieldConfig.type)) {
+    return (
+      <TextInput
+        key={`${fieldKeyPrefix}-${fieldKey}`}
+        label={fieldConfig.label}
+        value={value}
+        onChange={val => onChange(fieldKey, val)} // Pass fieldKey
+        type={fieldConfig.type}
+        placeholder={fieldConfig.placeholder || fieldConfig.label}
+      />
+    );
+  }
+  if (fieldConfig.type === 'image_url') {
+    return (
+      <ImageUploadInput
+        key={`${fieldKeyPrefix}-${fieldKey}`}
+        label={fieldConfig.label}
+        value={value}
+        onChange={val => onChange(fieldKey, val)} // Pass fieldKey
+        onUpload={onUpload}
+      />
+    );
+  }
+  return <p key={`${fieldKeyPrefix}-${fieldKey}`} style={{color: 'red'}}>Unsupported field type: "{fieldConfig.type}" for "{fieldConfig.label}"</p>;
+};
+
+
+ArrayInputComponent = ({ schema, dataArray = [], onArrayChange, onUpload, fieldKeyPrefix = "" }) => {
+  const { itemSchema, label: arrayLabel, _itemName, _itemTitleField } = schema;
+
+  const getDefaultValueForType = (type, fieldSch = {}) => {
+    if (fieldSch.defaultValue !== undefined) return fieldSch.defaultValue;
+    if (type === 'image_url' || type === 'text' || type === 'textarea' || type === 'url') return '';
+    if (type === 'number') return '';
+    if (type === 'boolean') return false;
+    if (type === 'array' || type === 'json_array') return []; // Also handle json_array for defaults in nested items
+    return null;
+  };
 
   const handleAddItem = () => {
     const newItem = {};
-    Object.keys(itemSchema).forEach(key => { newItem[key] = itemSchema[key].type === 'image_url' ? '' : ''; });
-    onArrayChange([...dataArray, newItem]);
-  };
-  const handleRemoveItem = (index) => onArrayChange(dataArray.filter((_, i) => i !== index));
-  const handleItemChange = (index, fieldKey, fieldValue) => {
-    const newArray = dataArray.map((item, i) => i === index ? { ...item, [fieldKey]: fieldValue } : item);
-    onArrayChange(newArray);
+    Object.keys(itemSchema).forEach(key => {
+      if (key.startsWith('_')) return;
+      const fieldConfig = itemSchema[key];
+      newItem[key] = getDefaultValueForType(fieldConfig.type, fieldConfig);
+    });
+    onArrayChange(Array.isArray(dataArray) ? [...dataArray, newItem] : [newItem]);
   };
 
+  const handleRemoveItem = (index) => {
+    if (Array.isArray(dataArray)) {
+      onArrayChange(dataArray.filter((_, i) => i !== index));
+    }
+  };
+
+  const handleItemChange = (index, changedFieldKey, fieldValue) => {
+    if (Array.isArray(dataArray)) {
+      const newArray = [...dataArray];
+      const newItem = { ...newArray[index], [changedFieldKey]: fieldValue };
+      newArray[index] = newItem;
+      onArrayChange(newArray);
+    }
+  };
+
+  const currentDataArray = Array.isArray(dataArray) ? dataArray : [];
+
   return (
-    <div style={{ border: '1px dashed #ddd', padding: '15px', marginBottom: '20px' }}>
-      <h4 style={{ marginTop: 0 }}>{arrayLabel || 'Items'}</h4>
-      {dataArray.map((item, index) => (
-        <div key={index} style={{ border: '1px solid #eee', padding: '15px', marginBottom: '10px', position: 'relative' }}>
-          <button type="button" onClick={() => handleRemoveItem(index)} style={{ position: 'absolute', top: '5px', right: '5px', background: 'red', color: 'white', border: 'none', cursor: 'pointer', padding: '2px 5px',width:'120px' }}>× Remove</button>
-          <h5 style={{marginTop: 0}}>Item {index + 1}</h5>
-          {Object.keys(itemSchema).map(fieldKey => {
-            const field = itemSchema[fieldKey];
-            if (field.type === 'text' || field.type === 'textarea') {
-              return <TextInput key={fieldKey} label={field.label} value={item[fieldKey]} onChange={val => handleItemChange(index, fieldKey, val)} type={field.type} />;
-            }
-            if (field.type === 'image_url') {
-              return <ImageUploadInput key={fieldKey} label={field.label} value={item[fieldKey]} onChange={val => handleItemChange(index, fieldKey, val)} onUpload={onUpload} />;
-            }
-            return <p key={fieldKey}>Unsupported field type: {field.type}</p>;
+    <div style={{ border: '1px dashed #ddd', padding: '15px', marginBottom: '20px', marginLeft: fieldKeyPrefix.split('-').length > 2 ? '20px' : '0', backgroundColor: '#fdfdfd' }}>
+      <h4 style={{ marginTop: 0, color: '#333', borderBottom: '1px solid #eee', paddingBottom: '8px', marginBottom: '15px' }}>{arrayLabel || 'Items'}</h4>
+      {currentDataArray.length === 0 && <p style={{ fontStyle: 'italic', color: '#777' }}>No items yet. Click "Add New {(_itemName || 'Item').toLowerCase()}" to begin.</p>}
+      {currentDataArray.map((item, index) => (
+        <div key={`${fieldKeyPrefix}-item-${index}`} style={{ border: '1px solid #e0e0e0', padding: '15px', marginBottom: '15px', position: 'relative', background: '#fff', borderRadius: '4px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+          <button
+            type="button"
+            onClick={() => handleRemoveItem(index)}
+            style={{ position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: 'white', border: 'none', cursor: 'pointer', padding: '4px 10px', borderRadius: '4px', fontSize: '0.85em', zIndex: 1, fontWeight: 'bold',width:'170px' }}
+          >
+            × Remove {(_itemTitleField && item && item[_itemTitleField]) ? `"${item[_itemTitleField]}"` : `Item ${index + 1}`}
+          </button>
+          <h5 style={{ marginTop: 0, marginRight: '150px', color: '#0056b3', borderBottom: '1px solid #e9ecef', paddingBottom: '8px', marginBottom: '15px' }}>
+            {(_itemTitleField && item && typeof item === 'object' && item[_itemTitleField]) ? String(item[_itemTitleField]) : `${_itemName || 'Item'} ${index + 1}`}
+          </h5>
+          {Object.keys(itemSchema).map(subFieldKey => {
+            if (subFieldKey.startsWith('_')) return null;
+            const fieldConfig = itemSchema[subFieldKey];
+            const value = item && typeof item === 'object' ? item[subFieldKey] : getDefaultValueForType(fieldConfig.type, fieldConfig);
+
+            return renderFormFieldBasedOnSchema(
+              subFieldKey,
+              fieldConfig,
+              value,
+              // The onChange for fields *within* an array item:
+              // It receives (fieldKeyInItem, newValue) from renderFormFieldBasedOnSchema's children
+              (changedKeyInItem, newValueFromChild) => handleItemChange(index, changedKeyInItem, newValueFromChild),
+              onUpload,
+              `${fieldKeyPrefix}-item-${index}` // New prefix for deeper nesting
+            );
           })}
         </div>
       ))}
-      <button type="button" onClick={handleAddItem} style={{ padding: '8px 12px', background: '#007bff', color: 'white', border: 'none', borderRadius: '4px' }}>+ Add Item to "{arrayLabel || 'List'}"</button>
+      <button
+        type="button"
+        onClick={handleAddItem}
+        style={{ padding: '10px 15px', background: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor:'pointer', fontSize: '1em', marginTop: '10px', fontWeight: '500' }}
+      >
+        + Add New {(_itemName || 'Item')}
+      </button>
     </div>
   );
 };
 
-
-// --- Main GenericContentForm Component ---
 const GenericContentForm = ({ contentKey, schema, onSaveSuccess }) => {
   const [formData, setFormData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -115,66 +258,133 @@ const GenericContentForm = ({ contentKey, schema, onSaveSuccess }) => {
   const [error, setError] = useState('');
   const adminToken = getAdminToken();
 
+  const getInitialDataForSchema = useCallback((sch) => {
+    if (!sch) return null;
+    if (sch.defaultValue !== undefined) return sch.defaultValue;
+    if (sch.type === 'array' || sch.type === 'json_array') return [];
+    if (['text', 'textarea', 'image_url', 'url'].includes(sch.type)) return '';
+    if (sch.type === 'number') return '';
+    if (sch.type === 'boolean') return false;
+    console.warn(`GenericContentForm: Unhandled schema type "${sch.type}" for default value. Defaulting to null.`);
+    return null;
+  }, []);
+
   const fetchData = useCallback(async () => {
-    if (!adminToken) { setError("Admin token not found."); setLoading(false); return; }
+    if (!adminToken) { setError("Admin authentication token not found. Please log in again."); setLoading(false); return; }
+    if (!contentKey || !schema || !schema.type) {
+        setError("Configuration error: Content key or schema type is missing.");
+        setLoading(false);
+        setFormData(getInitialDataForSchema(schema));
+        return;
+    }
     setLoading(true); setError('');
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/api/admin/cms/content/${contentKey}`, // API URL as per your server.js
+        `${API_BASE_URL}/api/admin/cms/content/${contentKey}`,
         { headers: { Authorization: `Bearer ${adminToken}` } }
       );
+      const receivedValue = response.data.contentValue;
 
-      // VVVV  HANDLE 'array' AND 'json_array' for initializing formData  VVVV
       if (schema.type === 'array' || schema.type === 'json_array') {
-        setFormData(response.data.contentValue || []);
-      } else if (['text', 'textarea', 'image_url'].includes(schema.type)) {
-        setFormData(response.data.contentValue || '');
+        setFormData(Array.isArray(receivedValue) ? receivedValue : getInitialDataForSchema(schema));
       } else {
-        console.warn(`GenericContentForm: Unhandled schema type "${schema.type}" for contentKey "${contentKey}" during fetch. Defaulting to object.`);
-        setFormData(response.data.contentValue || {});
+        setFormData(receivedValue !== undefined && receivedValue !== null ? receivedValue : getInitialDataForSchema(schema));
       }
-      // ^^^^  HANDLE 'array' AND 'json_array' for initializing formData  ^^^^
-
     } catch (err) {
-      console.error(`Error fetching ${contentKey}:`, err);
-      setError(err.response?.data?.message || `Failed to load ${schema.label}.`);
-      // VVVV  ALSO UPDATE DEFAULTING LOGIC HERE FOR 'json_array'  VVVV
-      if (schema.type === 'array' || schema.type === 'json_array') setFormData([]);
-      else if (['text', 'textarea', 'image_url'].includes(schema.type)) setFormData('');
-      else setFormData({});
-      // ^^^^  ALSO UPDATE DEFAULTING LOGIC HERE FOR 'json_array'  ^^^^
+      console.error(`Error fetching content for ${contentKey} (${schema.label}):`, err);
+      const initialValue = getInitialDataForSchema(schema);
+      if (err.response && err.response.status === 404) {
+        setError(`Content for "${schema.label}" not found. Initializing with default values. Please save to create it.`);
+        setFormData(initialValue);
+      } else {
+        setError(err.response?.data?.message || `Failed to load ${schema.label}. Initializing with defaults. Check console.`);
+        setFormData(initialValue);
+      }
     } finally { setLoading(false); }
-  }, [contentKey, adminToken, schema.type, schema.label]);
+  }, [contentKey, adminToken, schema, getInitialDataForSchema]);
 
-  useEffect(() => { fetchData(); }, [fetchData]);
+  useEffect(() => {
+    if (schema) {
+      fetchData();
+    } else {
+      setLoading(false);
+      setError("Schema not provided to GenericContentForm.");
+    }
+  }, [fetchData, schema]);
 
-  const handleFormChange = (value) => setFormData(value);
+  // This is the onChange handler for the TOP-LEVEL form fields rendered by renderFormFieldBasedOnSchema
+  // If the top-level schema is an object, fieldKey will be the property name, value its new value.
+  // If the top-level schema is a simple type (text, boolean) or an array (json_array),
+  // fieldKey here will be the contentKey, and value will be the new state for the entire formData.
+  const handleTopLevelChange = (key, newValue) => {
+    // If schema is an object type and key is a property of that object
+    if (schema.type === 'object' && schema.itemSchema && schema.itemSchema.hasOwnProperty(key)) {
+        setFormData(prev => ({ ...prev, [key]: newValue }));
+    } else {
+        // For simple types (text, boolean) or array types (array, json_array)
+        // where the 'key' passed from renderFormFieldBasedOnSchema is actually the contentKey (acting as a pseudo-field key)
+        // and 'newValue' is the entire new value for formData.
+        setFormData(newValue);
+    }
+  };
+
+
+  const sanitizeDataForSave = useCallback((data, fieldSchema) => {
+    if (!fieldSchema) return data;
+
+    if (fieldSchema.type === 'number') {
+        if (data === '' || data === null || data === undefined) return null;
+        const num = parseFloat(String(data));
+        return isNaN(num) ? null : num;
+    }
+    if (fieldSchema.type === 'boolean') {
+        return !!data;
+    }
+    if ((fieldSchema.type === 'array' || fieldSchema.type === 'json_array') && fieldSchema.itemSchema) {
+        if (!Array.isArray(data)) return fieldSchema.defaultValue !==undefined ? fieldSchema.defaultValue : [];
+        return data.map(item => {
+            if (typeof item !== 'object' || item === null) return item;
+            const newItem = {};
+            Object.keys(fieldSchema.itemSchema).forEach(key => {
+                if(key.startsWith('_')) return;
+                newItem[key] = sanitizeDataForSave(item[key], fieldSchema.itemSchema[key]);
+            });
+            return newItem;
+        });
+    }
+    return data;
+  }, []);
+
 
   const handleSave = async (e) => {
     e.preventDefault();
-    if (!adminToken) { alert("Admin token not found."); return; }
+    if (!adminToken) { alert("Admin token not found. Please log in again."); return; }
+    if (formData === null) { alert("Form data is not loaded or initialized correctly. Please check for errors."); return; }
+
     setSaving(true); setError('');
+    const payloadValue = sanitizeDataForSave(formData, schema);
+
     try {
       await axios.put(
-        `${API_BASE_URL}/api/admin/cms/content/${contentKey}`, // API URL as per your server.js
-        { contentValue: formData, contentType: schema.type }, // schema.type will be 'json_array' if set in contentSchemas.js
+        `${API_BASE_URL}/api/admin/cms/content/${contentKey}`,
+        { contentValue: payloadValue, contentType: schema.type },
         { headers: { Authorization: `Bearer ${adminToken}` } }
       );
       alert(`${schema.label} saved successfully!`);
       if (onSaveSuccess) onSaveSuccess();
-      fetchData();
     } catch (err) {
       console.error(`Error saving ${contentKey}:`, err);
-      console.error("Error response data from backend:", err.response?.data); // Keep this for debugging
-      setError(err.response?.data?.message || `Failed to save ${schema.label}.`);
+      console.error("Error response data from backend:", err.response?.data);
+      setError(err.response?.data?.message || `Failed to save ${schema.label}. Check console for details.`);
     } finally { setSaving(false); }
   };
 
   const imageUploadHandler = async (file) => {
+    if (!adminToken) throw new Error("Admin token not available for upload.");
     const fd = new FormData();
     fd.append('image', file);
     const response = await axios.post(
-      `${API_BASE_URL}/api/admin/cms/upload-image`, // API URL as per your server.js
+      `${API_BASE_URL}/api/admin/cms/upload-image`,
       fd,
       {
         headers: {
@@ -186,40 +396,39 @@ const GenericContentForm = ({ contentKey, schema, onSaveSuccess }) => {
     return response.data.imageUrl;
   };
 
-  if (loading) return <p>Loading {schema.label} editor...</p>;
-  if (!adminToken && error) return <p style={{ color: 'red' }}>{error}</p>;
-  if (formData === null && !error) return <p>Initializing form for {schema.label}...</p>;
+  if (!schema) return <p style={{ color: 'red', padding: '10px', border: '1px solid red' }}>Configuration Error: Schema is not available.</p>;
+  if (loading) return <p>Loading {schema.label || 'content'} editor...</p>;
+  if (error && formData === null) {
+    return <p style={{ color: 'red', border: '1px solid red', padding: '10px' }}>Critical Error: {error}</p>;
+  }
+  if (formData === null && !error) return <p>Initializing form for {schema.label || 'content'}... (If this persists, check schema and console)</p>;
 
   return (
-    <form onSubmit={handleSave} style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '8px', background: '#f9f9f9' }}>
+    <form onSubmit={handleSave} style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '8px', background: '#f9f9f9', marginBottom:'30px' }}>
       <h3 style={{ borderBottom: '2px solid #007bff', paddingBottom: '10px', marginBottom: '20px' }}>Edit: {schema.label}</h3>
-      {error && <p style={{ color: 'red', border: '1px solid red', padding: '10px', marginBottom: '15px' }}>Error: {error}</p>}
+      {error && !saving && <p style={{ color: 'red', border: '1px solid red', padding: '10px', marginBottom: '15px' }}>Operation Error: {error}</p>}
 
-      {/* VVVV  RENDER ArrayInput IF schema.type is 'array' OR 'json_array'  VVVV */}
-      {(schema.type === 'array' || schema.type === 'json_array') && (
-        <ArrayInput
-          schema={schema}
-          dataArray={Array.isArray(formData) ? formData : []}
-          onArrayChange={handleFormChange}
-          onUpload={imageUploadHandler}
-        />
-      )}
-      {/* ^^^^  RENDER ArrayInput IF schema.type is 'array' OR 'json_array'  ^^^^ */}
-
-      {schema.type === 'text' && <TextInput label="Content" value={typeof formData === 'string' ? formData : ''} onChange={handleFormChange} />}
-      {schema.type === 'textarea' && <TextInput label="Content" value={typeof formData === 'string' ? formData : ''} onChange={handleFormChange} type="textarea"/>}
-      {schema.type === 'image_url' && <ImageUploadInput label="Image" value={typeof formData === 'string' ? formData : ''} onChange={handleFormChange} onUpload={imageUploadHandler} />}
-      
-      {!['array', 'json_array', 'text', 'textarea', 'image_url'].includes(schema.type) && (
-        <p style={{color: 'orange', border: '1px solid orange', padding: '10px'}}>
-          <strong>Developer Notice:</strong> Schema type "<code>{schema.type}</code>" for "<em>{schema.label}</em>"
-          does not have a specific form renderer in <code>GenericContentForm.jsx</code>.
-          Please update the component to handle this type or correct the schema type in <code>contentSchemas.js</code>.
-        </p>
+      {/* Render the form based on the top-level schema */}
+      {/* The 'onChange' passed here is handleTopLevelChange.
+          - If schema.type is 'array' or 'json_array', renderFormFieldBasedOnSchema calls ArrayInputComponent.
+            ArrayInputComponent's onArrayChange will call handleTopLevelChange with (contentKey, newArrayData).
+          - If schema.type is 'text', 'boolean', etc., renderFormFieldBasedOnSchema calls TextInput, BooleanInput.
+            Their onChange will call handleTopLevelChange with (contentKey, newValue).
+      */}
+      {renderFormFieldBasedOnSchema(
+        contentKey, // Acts as the "field key" for the top-level data
+        schema,     // The main schema for the contentKey
+        formData,
+        handleTopLevelChange, // The callback for when the entire formData changes
+        imageUploadHandler,
+        contentKey  // Initial fieldKeyPrefix, can be just contentKey or an empty string
       )}
 
-      <button type="submit" disabled={saving || loading} style={{ padding: '10px 20px', fontSize: '16px', background: saving ? '#ccc' : '#28a745', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>{saving ? 'Saving...' : 'Save Changes'}</button>
+      <button type="submit" disabled={saving || loading} style={{ padding: '10px 20px', fontSize: '16px', background: saving ? '#aaa' : '#28a745', color: 'white', border: 'none', borderRadius: '4px', cursor: (saving || loading) ? 'not-allowed' : 'pointer', marginTop: '20px' }}>
+        {saving ? 'Saving...' : 'Save Changes'}
+      </button>
     </form>
   );
 };
+
 export default GenericContentForm;

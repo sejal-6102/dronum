@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   FaLocationDot,
   FaEnvelope,
@@ -12,6 +12,13 @@ import {
 import { Link } from "react-router-dom";
 import RecentPostItems from "./Items/RecentPostItems";
 const Footer = () => {
+   const [hover, setHover] = useState(false);
+
+   
+  const style = {
+    color: hover ? 'red' : 'white',
+    transition: 'color 0.3s',
+  };
   return (
     <>
       <footer>
@@ -26,7 +33,9 @@ const Footer = () => {
                       <span>
                         <FaLocationDot />
                       </span>
-                      <Link to="https://www.google.com/maps/dir//B-229,+Vaishali+Marg,+opposite+Karnataka+Bank,+Shivraj+Niketan+Colony,+Vaishali+Nagar,+Jaipur,+Rajasthan+302021/@26.915,75.6590385,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x6805f3e7833b77a7:0xeef7ca56bebad0!2m2!1d75.74144!2d26.9150239?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style={{color:'white'}}>
+                      <Link to="https://www.google.com/maps/dir//B-229,+Vaishali+Marg,+opposite+Karnataka+Bank,+Shivraj+Niketan+Colony,+Vaishali+Nagar,+Jaipur,+Rajasthan+302021/@26.915,75.6590385,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x6805f3e7833b77a7:0xeef7ca56bebad0!2m2!1d75.74144!2d26.9150239?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D"  style={style}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}>
                       Registered Address : C-162, 163 Hanuman Nagar, Bharat Marg, Vaishali Nagar, Jaipur, Jaipur, Rajasthan, 302021
                       </Link>
                     </li>

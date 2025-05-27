@@ -212,10 +212,10 @@ root.render(
         {/* --- Main Website Routes --- */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutOne />} />
-        <Route path="/who-we-are" element={<AllServices />} />
+        <Route path="/why-choose-us" element={<AllServices />} />
         <Route path="courses/:courseId" element={<CourseDetailPage />} />
         <Route path="/our-glimps" element={<GalleryDetails />} />
-        <Route path="/team-listing" element={<TeamListing />} />
+        <Route path="/team-dronum" element={<TeamListing />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contact-us" element={<ContactUS />} />
         <Route path="/singleProduct" element={<SingleProduct />} />

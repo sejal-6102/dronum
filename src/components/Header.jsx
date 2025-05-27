@@ -29,22 +29,39 @@ const Header = () => {
    const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchCoursesForNav = async () => {
       setLoadingCourses(true);
       try {
-   
-        const response = await axios.get(`${API_BASE_URL}/api/public/content/courses-list`);
+        const fullApiUrl = `${API_BASE_URL}/api/public/content/courses-list-for-nav`;
+        console.log("Header.jsx: Attempting to fetch from URL:", fullApiUrl);
+        const response = await axios.get(fullApiUrl);
 
         if (response.data && Array.isArray(response.data)) {
-          setDynamicCourses(response.data);
+          const validCourses = response.data.filter(c => c.id && c.name && c.path);
+          setDynamicCourses(validCourses);
+          if (validCourses.length !== response.data.length) {
+            console.warn("Header: Some courses from API were filtered out due to missing id, name, or path.");
+          }
         } else {
-          console.warn("Header: API response for /public/courses-list was not an array or undefined:", response.data);
-          setDynamicCourses([]); // Default to empty array
+          console.warn("Header: API response for courses-list-for-nav was not an array or undefined:", response.data);
+          setDynamicCourses([]);
         }
       } catch (error) {
-        console.error("Header: Failed to fetch courses for navigation:", error);
-        setDynamicCourses([]); // Fallback to empty array on error
+        // VVVVVVVVVVV DETAILED ERROR LOGGING VVVVVVVVVVV
+        console.error("Header: Failed to fetch courses for navigation (Raw Error Object):", error);
+        if (error.response) {
+          console.error("Axios Error Response Data:", error.response.data);
+          console.error("Axios Error Response Status:", error.response.status);
+          console.error("Axios Error Response Headers:", error.response.headers);
+        } else if (error.request) {
+          console.error("Axios Error Request (No response received):", error.request);
+        } else {
+          console.error('Axios Error Message (Setup issue):', error.message);
+        }
+        console.error("Axios Error Config:", error.config);
+        // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        setDynamicCourses([]);
       } finally {
         setLoadingCourses(false);
       }
@@ -95,15 +112,15 @@ const Header = () => {
                   <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/about">About us</Nav.Link>
 
-                  <NavDropdown title="Courses" id="courses-nav-dropdown">
+                 <NavDropdown title="Courses" id="courses-nav-dropdown">
                     {loadingCourses ? (
                       <NavDropdown.Item disabled>Loading courses...</NavDropdown.Item>
                     ) : dynamicCourses.length > 0 ? (
                       dynamicCourses.map(course => (
                         <NavDropdown.Item
-                          key={course.id || course.name} // Use a unique key, course.id is preferred
+                          key={course.id} // id should be unique
                           as={Link}
-                          to={course.path} // Path from API e.g., /courses/pilot_training
+                          to={course.path} // This should be like /courses/your-course-id
                         >
                           {course.name}
                         </NavDropdown.Item>
@@ -111,11 +128,10 @@ const Header = () => {
                     ) : (
                       <NavDropdown.Item disabled>No courses available at the moment.</NavDropdown.Item>
                     )}
-             
                   </NavDropdown>
                  
                   <NavDropdown title="Why Choose Us" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/who-we-are">
+                    <NavDropdown.Item href="/why-choose-us">
                       Why Choose Us
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/our-glimps">
@@ -124,7 +140,7 @@ const Header = () => {
                   </NavDropdown>
                    <Nav.Link  onClick={() => handleNavClick('our-partners-section')} >Our Partners</Nav.Link>
 
-                  <Nav.Link href="/team-listing">Team Dronum</Nav.Link>
+                  <Nav.Link href="/team-dronum">Team Dronum</Nav.Link>
                    <Nav.Link href="/blog-grid">Updates</Nav.Link>
                   <Nav.Link href="/contact-us">Contact Us</Nav.Link>
                

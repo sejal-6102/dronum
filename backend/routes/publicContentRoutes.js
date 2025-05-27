@@ -1,72 +1,102 @@
+// backend/routes/publicContentRoutes.js
 const express = require('express');
 const router = express.Router();
-const WebsiteContent = require('../models/WebsiteContent');
+const WebsiteContent = require('../models/WebsiteContent'); // Assuming this model holds all_courses_data
 
-// GET content for a specific key (for main website)
+// This is your OLD system for courses, keep it if still needed or phase out
+// router.get('/courses-list-old', async (req, res) => { // Renamed to avoid confusion
+//   try {
+//     const courseDocuments = await WebsiteContent.find({
+//       contentKey: { $regex: /^course_details_/, $options: 'i' }
+//     });
+//     if (!courseDocuments || courseDocuments.length === 0) {
+//       return res.json([]);
+//     }
+//     const coursesList = courseDocuments.map(doc => {
+//       let name = 'Unnamed Course';
+//       const courseId = doc.contentKey.substring('course_details_'.length);
+//       if (doc.contentValue) {
+//         let courseData = doc.contentValue;
+//         if (typeof courseData === 'string') {
+//           try { courseData = JSON.parse(courseData); }
+//           catch (e) {
+//             console.warn(`Could not parse JSON for contentKey ${doc.contentKey} in courses-list-old:`, e.message);
+//             courseData = {};
+//           }
+//         }
+//         if (typeof courseData === 'object' && courseData !== null && courseData.name) {
+//           name = courseData.name;
+//         }
+//       }
+//       return { id: courseId, name: name, path: `/courses/${courseId}` };
+//     }).sort((a, b) => a.name.localeCompare(b.name));
+//     res.json(coursesList);
+//   } catch (error) {
+//     console.error("[API /public/courses-list-old] Error:", error);
+//     res.status(500).json({ message: "Failed to fetch courses list (old system)." });
+//   }
+// });
 
-router.get('/courses-list', async (req, res) => {
-  try {
-    // Fetch documents where contentKey starts with 'course_details_'
-    // Using a regex for case-insensitive matching of the prefix
-    const courseDocuments = await WebsiteContent.find({
-      contentKey: { $regex: /^course_details_/, $options: 'i' }
-    });
 
-    if (!courseDocuments || courseDocuments.length === 0) {
-      return res.json([]); // Return empty array if no courses found
+// VVVVVV CORRECTED NEW Endpoint for Navbar Courses List VVVVVV
+// This will be accessible at GET /api/public/content/courses-list-for-nav
+router.get('/courses-list-for-nav', async (req, res) => { // REMOVED '/public/' from this path
+    try {
+        const allCoursesEntry = await WebsiteContent.findOne({ contentKey: 'all_courses_data' });
+
+        if (!allCoursesEntry || !allCoursesEntry.contentValue) {
+            console.warn('Backend (/courses-list-for-nav): all_courses_data not found or empty.');
+            return res.json([]);
+        }
+
+        let coursesArray = allCoursesEntry.contentValue;
+
+        if (typeof coursesArray === 'string') {
+            try {
+                coursesArray = JSON.parse(coursesArray);
+            } catch (parseError) {
+                console.error('Backend (/courses-list-for-nav): Failed to parse all_courses_data JSON:', parseError);
+                return res.json([]);
+            }
+        }
+
+        if (!Array.isArray(coursesArray)) {
+            console.warn('Backend (/courses-list-for-nav): all_courses_data.contentValue is not an array.');
+            return res.json([]);
+        }
+
+        const navCourses = coursesArray.map(course => {
+            if (course && course.id && course.name) {
+                return {
+                    id: String(course.id),
+                    name: String(course.name),
+                    path: `/courses/${course.id}`
+                };
+            }
+            console.warn('Backend (/courses-list-for-nav): Skipping malformed course object in all_courses_data:', course);
+            return null;
+        }).filter(course => course !== null);
+
+        res.json(navCourses);
+
+    } catch (error) {
+        console.error('Backend Error in /courses-list-for-nav endpoint:', error);
+        res.status(500).json({ message: 'Error retrieving courses list for navigation.' });
     }
-
-    const coursesList = courseDocuments.map(doc => {
-      let name = 'Unnamed Course'; // Default name
-      // Extract courseId from contentKey
-      // Example: 'course_details_pilot_training' -> 'pilot_training'
-      const courseId = doc.contentKey.substring('course_details_'.length);
-
-      // Safely access contentValue and its name property
-      if (doc.contentValue) {
-        let courseData = doc.contentValue;
-        // If contentValue was saved as a JSON string by admin (e.g., from a textarea)
-        if (typeof courseData === 'string') {
-          try {
-            courseData = JSON.parse(courseData);
-          } catch (e) {
-            console.warn(`Could not parse JSON for contentKey ${doc.contentKey} in courses-list:`, e.message);
-            courseData = {}; // Fallback to empty object on parse error
-          }
-        }
-        // Ensure courseData is an object before accessing .name
-        if (typeof courseData === 'object' && courseData !== null && courseData.name) {
-          name = courseData.name;
-        }
-      }
-
-      return {
-        id: courseId,         // For React key and potentially other uses
-        name: name,           // Course name for display
-        path: `/courses/${courseId}` // Path for frontend routing (Link 'to' prop)
-      };
-    }).sort((a, b) => a.name.localeCompare(b.name)); // Optional: Sort courses alphabetically by name
-
-    res.json(coursesList);
-
-  } catch (error) {
-    console.error("[API /public/courses-list] Error fetching courses list:", error);
-    res.status(500).json({ message: "Failed to fetch courses list. Please try again." });
-  }
 });
 
+
+// Generic content fetcher - accessible at GET /api/public/content/{some_content_key}
 router.get('/:contentKey', async (req, res) => {
   try {
     const { contentKey } = req.params;
-    const content = await WebsiteContent.findOne({ contentKey });
+    const content = await WebsiteContent.findOne({ contentKey }); // Using WebsiteContent
 
     if (!content) {
-      // Return a default/empty structure based on contentKey if you want to avoid errors on frontend
-      // For example, for sliders, return an empty array for contentValue
       if (contentKey.includes('slider') || contentKey.includes('gallery')) {
         return res.json({ contentKey, contentValue: [] });
       }
-      return res.status(404).json({ message: 'Content not found' });
+      return res.status(404).json({ message: `Content for key '${contentKey}' not found` });
     }
     res.json({ contentKey: content.contentKey, contentValue: content.contentValue });
   } catch (error) {
