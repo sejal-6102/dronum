@@ -13,7 +13,7 @@ const websiteContentSchema = new mongoose.Schema({
   },
   contentType: { // Optional: for hinting UI or specific handling
     type: String,
-    enum: ['text', 'image_url', 'json_object', 'json_array', 'rich_text','textarea'],
+    enum: ['text', 'image_url', 'json_object', 'json_array', 'rich_text','textarea','object'],
   },
   pageHint: { // Optional: To group content by page in admin if needed
     type: String,

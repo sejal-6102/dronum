@@ -243,15 +243,24 @@ root.render(
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
 
-          {/* Dynamic routes for content defined in contentSchemas.js */}
-          {Object.values(contentSchemas).map(schema => {
-            if (schema.adminEditorPath && schema.adminEditorPath.startsWith('/admin/')) {
-              const relativePath = schema.adminEditorPath.substring('/admin/'.length);
+          {Object.values(contentSchemas).map(currentSchema => { // Renamed 'schema' to 'currentSchema' to avoid conflict if schema is also a prop name
+            if (currentSchema.adminEditorPath && currentSchema.adminEditorPath.startsWith('/admin/')) {
+              const relativePath = currentSchema.adminEditorPath.substring('/admin/'.length);
+              
+              console.log(`[index.js Router] Generating admin route: path="${relativePath}" for contentKey="${currentSchema.contentKey}" (using adminEditorPath: "${currentSchema.adminEditorPath}")`);
+              
+              // Check if currentSchema itself is valid before passing
+              if (!currentSchema.contentKey || !currentSchema.type) {
+                console.error(`[index.js Router] SKIPPING route for adminEditorPath "${currentSchema.adminEditorPath}" due to INCOMPLETE SCHEMA: `, currentSchema);
+                return null; 
+              }
+
               return (
                 <Route
-                  key={schema.contentKey}
+                  key={currentSchema.contentKey}
                   path={relativePath}
-                  element={<GenericEditorPage contentKey={schema.contentKey} />}
+                  // Render GenericContentForm directly, passing the schema object
+                  element={<GenericContentForm contentKey={currentSchema.contentKey} schema={currentSchema} />} 
                 />
               );
             }

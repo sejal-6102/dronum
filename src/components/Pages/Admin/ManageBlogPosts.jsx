@@ -51,7 +51,7 @@ const ManageBlogPosts = () => {
     <div>
       <h2>Manage Blog Posts</h2>
       <p>From here, you can edit the full content of each blog post. To edit the summaries shown on the blog grid page, go to "Edit Blog Summaries (Grid Page)".</p>
-      <Link to="/admin/edit/blog-summaries" className="btn btn-info mb-3">
+      <Link to="/admin/edit/blog_grid_items" className="btn btn-info mb-3">
         Edit Blog Summaries (Grid/Listing Page)
       </Link>
 

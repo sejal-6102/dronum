@@ -1,23 +1,10 @@
 // frontend/src/components/Pages/Admin/EditFullBlogPost.jsx
-// (Code from previous response - yeh GenericContentForm ko use karta hai
-// slug ke basis par contentKey banakar aur type: "textarea" schema ke saath)
 import React from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom'; // useNavigate import karein
+import { useParams, Link } from 'react-router-dom';
 import GenericContentForm from './components/GenericContentForm';
 
 const EditFullBlogPost = () => {
   const { slug } = useParams();
-  const navigate = useNavigate(); // For navigation after save
-
-  // contentKey for the database, derived from the slug
- const contentKeyForFullPost = `blog_post_${slug}`;
-
-  // A simple schema definition specifically for GenericContentForm for this page
-  const blogPostSchemaForEditor = {
-      label: `Edit Full Content for Blog: ${slug}`,
-    contentKey: contentKeyForFullPost, // Yeh contentKey GenericContentForm use karega save/fetch ke liye
-    type: "textarea", // Admin edits raw JSON
-  };
 
   if (!slug) {
     return (
@@ -28,11 +15,84 @@ const EditFullBlogPost = () => {
       </div>
     );
   }
+  const contentKeyForFullPost = `blog_post_${slug}`;
+
+  const blogPostSchemaForEditor = {
+    label: `Edit Full Content for Blog: ${slug}`,
+    contentKey: contentKeyForFullPost,
+    type: "object",
+    itemSchema: { // Top-level fields for the blog post
+      title: { 
+        type: "text", 
+        label: "1. Blog Post Main Title", // Numbering for clarity
+        defaultValue: "",
+        placeholder: "Main title of the post"
+      },
+      date: { 
+        type: "text", 
+        label: "2. Publication Date", 
+        placeholder: "e.g., December 04, 2024",
+        defaultValue: "" 
+      },
+      author: { // Added author as it's in your desired output
+        type: "text", 
+        label: "3. Author Name",
+        defaultValue: "Dronum", // Default to Dronum as per your image
+        placeholder: "Author Name"
+      },
+      img: { // For the main featured image (MISSING in your example output image, but usually desired)
+        type: "image_url", 
+        label: "4. Main Featured Image (Optional - for top of post)",
+        note: "optional image",
+        defaultValue: "" 
+      },
+      // Sections array for content
+      sections: {
+        type: "json_array",
+        label: "5. Blog Content Sections (Sub-Headings and Paragraphs)",
+        _itemName: "Content Block", // Changed from "Section" to "Content Block"
+        _itemTitleField: "admin_section_label", 
+        itemSchema: { // Fields for EACH Content Block
+          admin_section_label: { 
+            type: "text", 
+            label: "Admin Label (for your reference, e.g., 'Intro Heading', 'First Paragraph')", 
+            defaultValue: "New Content Block",
+            placeholder: "Helps you organize content blocks"
+          },
+          section_type: {
+            type: "select",
+            label: "Type of this Content Block",
+            options: [
+              // Option for a more prominent heading (like your first "Launch Your Drone...")
+              { value: "primary_heading", label: "Primary Sub-Heading (Bold, larger)" }, 
+              // Option for standard sub-headings (like "Fast and Effective Learning")
+              { value: "secondary_heading", label: "Secondary Sub-Heading (Regular)" }, 
+              { value: "paragraph", label: "Paragraph (Text block)" },
+            ],
+            defaultValue: "paragraph"
+          },
+          // Field for Heading Text (used if section_type is 'primary_heading' or 'secondary_heading')
+          heading_text: { 
+            type: "text", 
+            label: "Heading Text (if block type is a Heading)",
+            placeholder: "Sub-heading ",
+            defaultValue: ""
+          },
+          // Field for Paragraph Content (used if section_type is 'paragraph')
+          paragraph_content: { 
+            type: "textarea", 
+            label: "Paragraph Text (if block type is Paragraph)",
+            rows: 5, // Suggest more rows for easier typing
+            placeholder: "Paragraph . Basic HTML like <p>, <strong>, <ul>, <li> is okay.",
+            defaultValue: "" // Start with empty, client adds <p> or types plain
+          },
+        }
+      }
+    }
+  };
 
   const handleSaveSuccess = () => {
-    console.log(`EditFullBlogPost.jsx: Full content for blog with slug "${slug}" (using contentKey: "${contentKeyForFullPost}") saved successfully.`);
-    alert(`Blog post "${slug}" full content saved!`);
-    // navigate('/admin/manage-blogs'); // Optional redirect
+    alert(`Blog post "${slug}" content saved!`);
   };
 
   return (
@@ -40,32 +100,11 @@ const EditFullBlogPost = () => {
       <Link to="/admin/manage-blogs" className="btn btn-outline-secondary mb-3">
         ← Back to Blog Management
       </Link>
-      {/* GenericContentForm will handle fetching existing data for this contentKey (if any)
-          and saving the updated JSON string to this contentKey. */}
-     <GenericContentForm
-        contentKey={contentKeyForFullPost} // <<--- YEH contentKey PASS HO RAHA HAI
+      <GenericContentForm
+        contentKey={contentKeyForFullPost}
         schema={blogPostSchemaForEditor}
         onSaveSuccess={handleSaveSuccess}
       />
-      <div className="mt-4 p-3 border bg-light rounded">
-        <p><strong>Instructions for JSON data:</strong></p>
-        <p>
-          Enter the complete data for this blog post as a valid JSON object.
-          This JSON should include fields like <code>"title"</code>, <code>"date"</code>,
-          <code>"img"</code> (path to main image, e.g., "/uploads/your-image.jpg"),
-          and a <code>"sections"</code> array. Each item in the "sections" array
-          should be an object with <code>"heading"</code> and <code>"content"</code> (which can contain HTML).
-        </p>
-        <p>Example for one section within the "sections" array:</p>
-        <pre style={{whiteSpace: 'pre-wrap', wordBreak: 'break-all', maxHeight: '150px', overflowY:'auto', background:'#e9ecef', padding:'10px'}}>
-{`{
-  "heading": "Your Section Title",
-  "content": "<p>Your paragraph here. <strong>Bold text</strong> and <em>italic text</em> are allowed using HTML tags.</p><ul><li>List item 1</li><li>List item 2</li></ul>"
-}`}
-        </pre>
-        <p>Make sure the overall structure is a single JSON object: <code>{`{ "title": "...", "date": "...", "img": "...", "slug": "${slug}", "sections": [...] }`}</code></p>
-        <p><strong>Important:</strong> The "slug" in your JSON should match the slug in the URL (<strong>{slug}</strong>) for consistency, although `BlogDetail.jsx` primarily uses the URL slug to fetch.</p>
-      </div>
     </div>
   );
 };

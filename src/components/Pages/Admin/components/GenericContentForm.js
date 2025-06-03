@@ -6,6 +6,18 @@ import { getAdminToken, API_BASE_URL } from '../contentSchemas';
 
 // --- Helper Input Components ---
 
+
+const getDefaultValueForType = (type, fieldSch = {}) => {
+  if (fieldSch.defaultValue !== undefined) return fieldSch.defaultValue;
+  if (type === 'image_url' || type === 'text' || type === 'textarea' || type === 'url' || type === 'select') return ''; // Added 'select'
+  if (type === 'number') return ''; // Or 0, depending on preference for empty vs. zero
+  if (type === 'boolean') return false;
+  if (type === 'array' || type === 'json_array') return [];
+  console.warn(`getDefaultValueForType: Unhandled type "${type}" for default value. Defaulting to null.`);
+  return null;
+};
+// ^^^^^ END OF MOVED getDefaultValueForType ^^^^^
+
 const TextInput = ({ label, value, onChange, placeholder, type = "text" }) => {
   const inputType = (type === "textarea") ? "textarea" :
                     (type === "number") ? "number" :
@@ -113,6 +125,29 @@ const BooleanInput = ({ label, value, onChange }) => {
   );
 };
 
+
+// NEW: SelectInput Component
+const SelectInput = ({ label, value, onChange, options, placeholder }) => {
+  return (
+    <div style={{ marginBottom: '15px' }}>
+      <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>{label}:</label>
+      <select
+        value={value || ''} // Handle undefined or null for controlled component
+        onChange={(e) => onChange(e.target.value)}
+        style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', height: 'auto', backgroundColor: 'blue' }}
+      >
+        {placeholder && <option value="" disabled>{placeholder}</option>}
+        {options && options.map(opt => (
+          <option key={opt.value} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
+
 // Forward declaration for recursive use
 let ArrayInputComponent;
 
@@ -130,6 +165,21 @@ const renderFormFieldBasedOnSchema = (fieldKey, fieldConfig, value, onChange, on
       />
     );
   }
+
+
+  if (fieldConfig.type === 'select') {
+    return (
+      <SelectInput
+        key={`${fieldKeyPrefix}-${fieldKey}`}
+        label={fieldConfig.label}
+        value={value}
+        onChange={val => onChange(fieldKey, val)}
+        options={fieldConfig.options} // Pass options from schema
+        placeholder={fieldConfig.placeholder} // Pass placeholder
+      />
+    );
+  }
+  // ^^^^ END OF NEW 'select' TYPE HANDLING ^^^^
   if (fieldConfig.type === 'boolean') {
     return (
       <BooleanInput
@@ -408,21 +458,38 @@ const GenericContentForm = ({ contentKey, schema, onSaveSuccess }) => {
       <h3 style={{ borderBottom: '2px solid #007bff', paddingBottom: '10px', marginBottom: '20px' }}>Edit: {schema.label}</h3>
       {error && !saving && <p style={{ color: 'red', border: '1px solid red', padding: '10px', marginBottom: '15px' }}>Operation Error: {error}</p>}
 
-      {/* Render the form based on the top-level schema */}
-      {/* The 'onChange' passed here is handleTopLevelChange.
-          - If schema.type is 'array' or 'json_array', renderFormFieldBasedOnSchema calls ArrayInputComponent.
-            ArrayInputComponent's onArrayChange will call handleTopLevelChange with (contentKey, newArrayData).
-          - If schema.type is 'text', 'boolean', etc., renderFormFieldBasedOnSchema calls TextInput, BooleanInput.
-            Their onChange will call handleTopLevelChange with (contentKey, newValue).
-      */}
-      {renderFormFieldBasedOnSchema(
-        contentKey, // Acts as the "field key" for the top-level data
-        schema,     // The main schema for the contentKey
-        formData,
-        handleTopLevelChange, // The callback for when the entire formData changes
-        imageUploadHandler,
-        contentKey  // Initial fieldKeyPrefix, can be just contentKey or an empty string
+      {/* VVVVVV  THIS IS THE CORRECTED RENDERING LOGIC VVVVVV */}
+      {schema.type === "object" && schema.itemSchema ? (
+        // If the top-level schema IS an object (like our full blog post schema)
+        Object.keys(schema.itemSchema).map(objectFieldKey => {
+            // objectFieldKey will be "title", "date", "img", "sections", etc.
+            const fieldConfigForObject = schema.itemSchema[objectFieldKey];
+            const valueForObjectField = (formData && typeof formData === 'object') 
+                                          ? formData[objectFieldKey] 
+                                          : getDefaultValueForType(fieldConfigForObject.type, fieldConfigForObject); // Get default if formData or field is undefined
+
+            return renderFormFieldBasedOnSchema(
+                objectFieldKey,                 // The key for this field (e.g., "title")
+                fieldConfigForObject,           // The schema for this specific field (e.g., {type: "text", label: "Blog Post Title", ...})
+                valueForObjectField,            // The current value from formData for this field
+                handleTopLevelChange,           // This will correctly update formData[objectFieldKey] because schema.type is 'object'
+                imageUploadHandler,
+                `${contentKey}-${objectFieldKey}` // Unique key prefix for React
+            );
+        })
+      ) : (
+        // If the top-level schema IS NOT an object 
+        // (e.g., it's a json_array like blog_grid_items, or a simple textarea)
+        renderFormFieldBasedOnSchema(
+            contentKey,             // The main contentKey acts as the fieldKey
+            schema,                 // The whole schema itself
+            formData,               // The whole formData (e.g., the array of summaries, or the textarea string)
+            handleTopLevelChange,   // This will correctly set the entire formData because schema.type is not 'object'
+            imageUploadHandler,
+            contentKey
+        )
       )}
+      {/* ^^^^^^ END OF CORRECTED RENDERING LOGIC ^^^^^^ */}
 
       <button type="submit" disabled={saving || loading} style={{ padding: '10px 20px', fontSize: '16px', background: saving ? '#aaa' : '#28a745', color: 'white', border: 'none', borderRadius: '4px', cursor: (saving || loading) ? 'not-allowed' : 'pointer', marginTop: '20px' }}>
         {saving ? 'Saving...' : 'Save Changes'}

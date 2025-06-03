@@ -12,6 +12,50 @@ export const contentSchemas = {
       // Path for admin page to edit this content
       adminEditorPath: "/admin/edit/gallery-slider"
     },
+
+     blog_grid_items: {
+      // This is the title "Edit: Edit Blog Summaries" you see
+      contentKey: "blog_grid_items",
+      type: "json_array",
+      _itemName: "Blog Summary", // Optional: For the "Add New Blog Summary" button
+      _itemTitleField: "title",  // Optional: To show the actual title next to "Remove Item X"
+      
+      // VVVVVV  THIS IS THE IMPORTANT PART TO CHANGE VVVVVV
+      itemSchema: { 
+        title: { 
+          type: "text", 
+          label: "Title", // This will be the field label for the title
+          defaultValue: "",
+          placeholder: "Enter the main title of the blog post" 
+        },
+        slug: { 
+          type: "text", 
+          label: "Slug (for URL)", 
+          defaultValue: "",
+          placeholder: "e.g., my-awesome-blog-post (leave blank to auto-generate from title on save - backend feature)" 
+        },
+        date: { 
+          type: "text", 
+          label: "Date", 
+          defaultValue: "",
+          placeholder: "e.g., December 25, 2024"
+        },
+        img: { 
+          type: "image_url", // This will give you the image upload field
+          label: "Featured Image (for Grid)", 
+          defaultValue: "" 
+        },
+        summary: { // This was 'content' in your BgridItems, let's call it 'summary' for clarity
+          type: "textarea", 
+          label: "Short Summary (for Grid Page)", 
+          defaultValue: "",
+          placeholder: "A brief summary that appears on the blog listing page (approx 100-150 characters)."
+        }
+        // If you had other fields like author, category, add them here too.
+      },
+      // ^^^^^^  END OF IMPORTANT PART TO CHANGE ^^^^^^
+      adminEditorPath: "/admin/edit/blog_grid_items"
+    },
       news_popup_items: { // Naya contentKey
     label: "Latest News Popup Items",
     contentKey: "news_popup_items", // Yeh key database mein use hogi
@@ -151,12 +195,50 @@ export const contentSchemas = {
       // Example: For Gandhi Nagar (static id: 1), admin adds an item with locationId: 1 and its details.
       adminEditorPath: "/admin/edit/rpto-locations" // Admin panel path
     },
+      team_members: {
+      label: "Edit Team Members",       // Admin panel mein dikhne wala label
+      contentKey: "team_members",       // Database mein is key se save hoga
+      type: "json_array",             // Kyunki yeh team members ka array hoga
+      _itemName: "Team Member",       // "Add New Team Member" button ke liye
+      _itemTitleField: "name",        // Remove button mein member ka naam dikhane ke liye
+      adminEditorPath: "/admin/edit/team-members", // Admin panel mein isko edit karne ka URL
+      itemSchema: { // Har team member ke object ka structure
+        name: { 
+          type: "text", 
+          label: "Name", 
+          placeholder: "Team member ka poora naam",
+          defaultValue: "" 
+        },
+        position: { 
+          type: "text", 
+          label: "Position / Designation", 
+          placeholder: "Jaise: Padma Shri Awardee, Sky Diver, CEO, Lead Instructor",
+          defaultValue: "" 
+        },
+        img: { 
+          type: "image_url", 
+          label: "Member's Image",
+          note: "Team member ki photo upload karein.",
+          defaultValue: "" 
+        }
+        // Agar social media links add karne hain, toh yahaan unke fields add karein:
+        // facebook_url: { type: "url", label: "Facebook URL (Optional)", defaultValue: "" },
+        // linkedin_url: { type: "url", label: "LinkedIn URL (Optional)", defaultValue: "" },
+      }
+    },
+    // ^^^^^^ TEAM MEMBERS SCHEMA KHATAM ^^^^^^
+
+    // Add more schemas as needed
+  };
 
 
 
 
     // Add more schemas as needed
-  };
+  
+
+
+  
   
   // Helper to get admin token (replace with your actual token retrieval logic)
   export const getAdminToken = () => {

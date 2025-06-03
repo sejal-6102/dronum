@@ -1,97 +1,152 @@
 // frontend/src/components/Pages/BlogDetail.jsx
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from "react-router-dom"; // useParams to get URL parameters
+import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
-import Header from '../Header'; // Adjust path as per your structure
-import Footer from '../Footer'; // Adjust path
-import PagesHero from '../PagesHero'; // Adjust path
-import BlogInfo from '../BlogInfo';   // Adjust path
-
-// Adjust path to contentSchemas.js based on this file's location
+import Header from '../Header';
+import Footer from '../Footer';
+import PagesHero from '../PagesHero';
+import BlogInfo from '../BlogInfo';
 import { API_BASE_URL } from './Admin/contentSchemas';
 
 const BlogDetail = () => {
-  // Get the 'slug' parameter from the URL (defined in your index.js route as /blog-details/:slug)
   const { slug } = useParams();
-
-  const [post, setPost] = useState(null);       // State to hold the fetched full blog post
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null);     // Error state
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch blog post only if slug is present in the URL
     if (!slug) {
-      setError("Blog slug not found in URL. Cannot fetch post.");
+      setError("Blog slug not found in URL.");
       setLoading(false);
-      setPost(null);
       return;
     }
 
-    // Construct the contentKey for the database using the slug
     const contentKeyForFullPost = `blog_post_${slug}`;
 
-    const fetchBlogPost = async () => {
+    const fetchBlogPostAndCombine = async () => {
       setLoading(true);
       setError(null);
-      try {
-        console.log(`[BlogDetail] Attempting to fetch post with contentKey: "${contentKeyForFullPost}" (derived from slug: "${slug}")`);
-        const response = await axios.get(`${API_BASE_URL}/api/public/content/${contentKeyForFullPost}`);
+      setPost(null); // Reset post state at the beginning of a fetch
 
-        if (response.data && response.data.contentValue) {
-          let rawData = response.data.contentValue;
-          // If admin saved data as a JSON string, parse it
-          if (typeof rawData === 'string') {
+      let fullPostData = null;
+      let summaryData = null;
+      let fetchedError = null;
+
+      try {
+        // 1. Attempt to fetch the full blog post content
+        console.log(`[BlogDetail] Fetching full post: ${contentKeyForFullPost}`);
+        const fullPostResponse = await axios.get(`${API_BASE_URL}/api/public/content/${contentKeyForFullPost}`);
+
+        if (fullPostResponse.data && fullPostResponse.data.contentValue) {
+          let rawFullData = fullPostResponse.data.contentValue;
+          if (typeof rawFullData === 'string') {
             try {
-              rawData = JSON.parse(rawData);
+              fullPostData = JSON.parse(rawFullData);
+              console.log("[BlogDetail] Parsed full post data:", fullPostData);
             } catch (parseError) {
-              console.error("BlogDetail: Failed to parse blog post JSON:", parseError, "\nRaw Data received:", rawData);
-              setPost(null); // Set post to null on parse error
-              // Throw error to be caught by outer catch block
-              throw new Error(`Data for blog "${slug}" appears to be improperly formatted.`);
+              console.error("BlogDetail: Failed to parse full blog post JSON:", parseError, "\nRaw Data:", rawFullData);
+              fetchedError = `Data for blog "${slug}" (full content) is improperly formatted.`;
+              // Don't stop here, we might still get an image from summary
             }
+          } else {
+            fullPostData = rawFullData; // Assume it's already an object
+            console.log("[BlogDetail] Received full post data (already object):", fullPostData);
           }
-          setPost(rawData); // Set the parsed (or already object) data
         } else {
-          console.warn(`BlogDetail: No contentValue found for key ${contentKeyForFullPost}. Response:`, response.data);
-          setError(`Blog post with slug "${slug}" not found or has no content.`);
-          setPost(null);
+          console.warn(`[BlogDetail] No contentValue for full post: ${contentKeyForFullPost}`);
+          // This is not necessarily an error if we can find summary data
         }
       } catch (err) {
-        console.error(`BlogDetail: Failed to fetch blog post for key ${contentKeyForFullPost}:`, err);
-        let errorMessage = `Could not load the blog post for slug: "${slug}".`;
-        if (err.response) { // HTTP error from backend
-            if (err.response.status === 404) {
-                errorMessage = `Blog post with slug "${slug}" was not found (404). Please ensure it has been published with this slug.`;
-            } else if (err.response.data && err.response.data.message) {
-                errorMessage = err.response.data.message; // Use backend's error message if available
-            }
-        } else if (err.message.includes("improperly formatted")) { // Catch error thrown from JSON.parse
-            errorMessage = err.message;
+        if (err.response && err.response.status === 404) {
+          console.warn(`[BlogDetail] Full post ${contentKeyForFullPost} not found (404). Will try to use summary.`);
+          // Not a critical error yet, summary might exist.
+        } else if (!err.message.includes("improperly formatted")) { // Ignore parse error already handled
+          console.error(`[BlogDetail] Error fetching full post ${contentKeyForFullPost}:`, err);
+          fetchedError = `Could not load full content for blog "${slug}".`;
         }
-        setError(errorMessage);
-        setPost(null);
-      } finally {
-        setLoading(false);
+         // If parse error happened for fullPostData, fetchedError is already set
       }
+
+      // 2. Always attempt to fetch blog summaries to get the image if needed, or title/date as fallback
+      try {
+        console.log(`[BlogDetail] Fetching blog summaries (blog_grid_items)`);
+        const summariesResponse = await axios.get(`${API_BASE_URL}/api/public/content/blog_grid_items`);
+        if (summariesResponse.data && Array.isArray(summariesResponse.data.contentValue)) {
+          summaryData = summariesResponse.data.contentValue.find(item => item.slug === slug);
+          if (summaryData) {
+            console.log("[BlogDetail] Found matching summary data:", summaryData);
+          } else {
+            console.warn(`[BlogDetail] No matching summary found for slug "${slug}".`);
+          }
+        } else {
+          console.warn("[BlogDetail] Blog summaries (blog_grid_items) not found or not an array.");
+        }
+      } catch (err) {
+        console.error("[BlogDetail] Error fetching blog summaries:", err);
+        // This is not critical enough to stop rendering if fullPostData exists
+      }
+
+      // 3. Combine data and set state
+      if (fullPostData) {
+        // We have full post data. Check if its 'img' needs to be overridden by summary's 'img'.
+        const combinedPost = { ...fullPostData }; // Start with full post data
+
+        // If full post data doesn't have an image, AND summary data exists with an image, use summary image.
+        if ((!combinedPost.img || combinedPost.img.trim() === "") && summaryData && summaryData.img && summaryData.img.trim() !== "") {
+          console.log(`[BlogDetail] Using image from summary for post "${slug}": ${summaryData.img}`);
+          combinedPost.img = summaryData.img;
+        }
+        // Ensure essential fields like title and date are present, falling back to summary if needed
+        if (!combinedPost.title && summaryData && summaryData.title) combinedPost.title = summaryData.title;
+        if (!combinedPost.date && summaryData && summaryData.date) combinedPost.date = summaryData.date;
+        if (!combinedPost.slug) combinedPost.slug = slug; // Ensure slug is there
+
+        setPost(combinedPost);
+        if(fetchedError && !combinedPost.img) setError(fetchedError); // Show parse error if still no image
+        else setError(null); // Clear previous non-critical errors if we got data
+
+      } else if (summaryData) {
+        // No full post data, but we have summary data. Use it as a fallback.
+        console.log(`[BlogDetail] No full post data for "${slug}". Using summary data as fallback.`);
+        setPost({
+          title: summaryData.title || "Blog Post",
+          slug: summaryData.slug || slug,
+          date: summaryData.date || "",
+          img: summaryData.img || "",
+          author: summaryData.author || "Admin Dronum", // Assuming summary might have author
+          category: summaryData.category || "",    // Assuming summary might have category
+          sections: [{ type: "paragraph", content: summaryData.summary || "<p>Content not fully loaded. Please check back later.</p>" }], // Use summary as content
+        });
+        setError(fetchedError); // Show any error from full post fetch attempt
+      } else {
+        // No full post data AND no matching summary. This is an error.
+        setError(fetchedError || `Blog post with slug "${slug}" not found.`);
+        setPost(null);
+      }
+
+      setLoading(false);
     };
 
-    fetchBlogPost();
-  }, [slug]); // Re-fetch if the slug from URL changes
+    fetchBlogPostAndCombine();
+  }, [slug]);
 
-  // Helper function to get full image URL
-   const getFullImageUrl = (relativePath) => {
-    if (!relativePath) return '';
-    if (relativePath.startsWith('http') || relativePath.startsWith('blob:')) return relativePath;
-    const backendRootUrl = API_BASE_URL.replace('/api', ''); // Assumes API_BASE_URL ends with /api
-    return `${backendRootUrl}${relativePath}`;
+  // getFullImageUrl function remains the same
+  const getFullImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('blob:')) {
+      return imagePath;
+    }
+    const backendRootUrl = API_BASE_URL.replace('/api', '');
+    return `${backendRootUrl}${imagePath.startsWith('/') ? imagePath : `/${imagePath}`}`;
   };
 
-  // --- UI for Loading State ---
+  // --- UI for Loading, Error, and Main Render states remain largely the same ---
   if (loading) {
+    // ... (loading UI)
     return (
       <>
         <Header />
-        <PagesHero name="Loading Blog Post..." img="/assets/img/default-blog-hero.jpg" />
+        <PagesHero name="Loading Blog Post..." img="/assets/img/default-blog-hero.jpg" style={{ fontSize:'20px'}}/>
         <div className="container" style={{ textAlign: "center", padding: "50px" }}>
           <p>Loading content, please wait...</p>
         </div>
@@ -100,8 +155,8 @@ const BlogDetail = () => {
     );
   }
 
-  // --- UI for Error or Post Not Found State ---
   if (error || !post) {
+    // ... (error UI)
     return (
       <>
         <Header />
@@ -116,17 +171,14 @@ const BlogDetail = () => {
     );
   }
 
-  // --- Main Render when post data is available ---
   return (
     <>
       <Header />
-      {/* Use fetched image and title for PagesHero */}
       <PagesHero
-        img={getFullImageUrl(post.img) || "/assets/img/default-blog-hero.jpg"} // Fallback to a default hero image
-        name={post.title || "Blog Details"} // Fallback to a default title
+        img={getFullImageUrl(post.img) || "/assets/img/default-blog-hero.jpg"}
+        name={post.title || "Blog Details"}
       />
-      {/* BlogInfo component will display the main content of the blog */}
-      <BlogInfo post={post} /> {/* Pass the entire fetched post object to BlogInfo */}
+      <BlogInfo post={post} />
       <Footer />
     </>
   );

@@ -554,7 +554,7 @@ header .mobile-number span {
 }
 
 .pages-outer .title .sub-title h2 {
-  font-size: 62px;
+  font-size: 42px;
   margin-bottom: 0px;
   line-height: 52px;
   position: relative;
@@ -4977,7 +4977,7 @@ background-color: red;
 }
 
 .blog-info-outer .post .text-content .blog-full-details h2 {
-  font-size: 48px;
+  /* font-size: 48px; */
   color: #1a1a1a;
   font-weight: 700;
   line-height: 1.1;
