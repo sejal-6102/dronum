@@ -58,7 +58,7 @@ const location = useLocation();
       <ImageGallery />
       {/* <Video /> */}
       {/* <Counter /> */}
-      <Team />
+      {/* <Team /> */}
       {/* <Quality /> */}
       {/* <News /> */}
       <Pricing />
