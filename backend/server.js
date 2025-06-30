@@ -41,6 +41,7 @@ const allowedOrigins = [
   'https://dronum-git-main-sejal-6102s-projects.vercel.app',
   'https://trapotiez.com',
   'https://dronbackend-production.up.railway.app',
+  "https://dronum-backend-git-main-sejal-6102s-projects.vercel.app"
    // For local frontend development
   // Add your production frontend URL here. Example:
   // 'https://your-frontend-app.up.railway.app',
